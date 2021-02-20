@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project/applocalization.dart';
+import 'package:project/Ui/applocalization.dart';
 
-import 'main.dart';
-import 'modules/language.dart';
+import '../main.dart';
+import '../modules/language.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);

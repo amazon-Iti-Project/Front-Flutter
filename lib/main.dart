@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:project/applocalization.dart';
-import 'package:project/homepage.dart';
-import 'package:project/screens/login_screen.dart';
+import 'package:project/Ui/applocalization.dart';
+import 'package:project/Ui/screens/login_screen.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 
 void main() async {
@@ -44,6 +43,7 @@ class _MyAppState extends State<MyApp> {
         GlobalCupertinoLocalizations.delegate,
       ],
       localeResolutionCallback: (locale, supportedLocales) {
+         
         for (var supportedLocale in supportedLocales) {
           if (supportedLocale.languageCode == locale.languageCode &&
               supportedLocale.countryCode == locale.countryCode) {
