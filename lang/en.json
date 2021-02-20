@@ -9,6 +9,16 @@
     "changelang":"Change Language ",
     "email":"Enter Your Email Address ",
     "password":"Enter Your Password",
-    "login":"Login"
+    "login":"Login",
+    "addtocart":"Add To Cart",
+    "buynow":"Buy Now ",
 
-}
+    
+
+
+  "orderdate":"Order Date",
+  "transactiontype":"Trasaction Type",
+  "delivereddate":"Deleverd Date",
+  "orderprice":"Order Price",
+  "shipmentfees":"Shipment Fees",
+  "transactionaltotal":"Transactional Total"}

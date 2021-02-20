@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:project/applocalization.dart';
 import 'package:project/homepage.dart';
-import 'package:project/screens/login_screen.dart';
+import 'package:project/screens/product_detalis_screen.dart';
+import 'package:project/screens/trasaction_screen.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 
 void main() async {
@@ -52,7 +53,7 @@ class _MyAppState extends State<MyApp> {
         }
       },
       home: SplashScreenView(
-        home: LoginScreen(),
+        home: TrasnactionScreen(),
         duration: 3000,
         imageSize: 100,
         imageSrc: "Images/logo.png",
