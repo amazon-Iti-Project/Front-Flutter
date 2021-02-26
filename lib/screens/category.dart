@@ -5,6 +5,8 @@ import 'package:project/screens/categoryList.dart';
 import 'package:project/widgets/categoryHeader.dart';
 import 'package:project/widgets/singleItem.dart';
 
+import '../applocalization.dart';
+
 class Category extends StatefulWidget {
   @override
   _CategoryState createState() => _CategoryState();
@@ -66,7 +68,7 @@ class _CategoryState extends State<Category> {
                 child: Row(
                   children: [
                     Icon(Icons.arrow_back_ios),
-                    Text("All Departments",
+                    Text(AppLocalizations.of(context).translate('allDep'),
                         style: TextStyle(fontWeight: FontWeight.bold))
                   ],
                 ),
@@ -85,7 +87,7 @@ class _CategoryState extends State<Category> {
                   padding: const EdgeInsets.all(16.0),
                   child: Center(
                     child: Text(
-                      'SHOP BY CATEGORY',
+                      AppLocalizations.of(context).translate('shopByCat'),
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 24,

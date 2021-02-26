@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project/screens/category.dart';
 
+import '../applocalization.dart';
+
 class AllDepartments extends StatelessWidget {
   var depList = <String>["Prime Video",'Music,CDs & Vinyl','Digital Music','Kindle Store','Arts & Crafts','Automotive','Baby','Beauty & Personal Care','Books','Computers','Electronics',"Women's Fashion","Gil's Fashion","Men's Fashion"];
   @override
@@ -45,7 +47,7 @@ class AllDepartments extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
-                child: Text("Earth's biggest selection",style: TextStyle(
+                child: Text(AppLocalizations.of(context).translate('earthBigSelection'),style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 )),

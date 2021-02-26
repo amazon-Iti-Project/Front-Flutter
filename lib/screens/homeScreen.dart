@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:countdown_flutter/countdown_flutter.dart';
 import 'package:project/widgets/nineSections.dart';
 
+import '../applocalization.dart';
+
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -23,7 +25,8 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Row(
                 children: [
                   Icon(Icons.location_on_outlined),
-                  Text('Deliver to Egypt', style: TextStyle(fontSize: 16))
+                  Text(AppLocalizations.of(context).translate('egyDelivery'),
+                   style: TextStyle(fontSize: 16))
                 ],
               ),
             ),
@@ -44,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     children: [
                       Text(
-                        'Sign in for the best experience',
+                        AppLocalizations.of(context).translate('signInForBestEx'),
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.black87,
@@ -59,13 +62,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: RaisedButton(
                       onPressed: () {},
                       color: Color.fromRGBO(242, 196, 89, 1),
-                      child: Text('Sign In'),
+                      child: Text(AppLocalizations.of(context).translate('signIn')),
                     ),
                   ),
                   TextButton(
                       onPressed: () {},
                       child: Text(
-                        'Create an account',
+                        AppLocalizations.of(context).translate('createAccount'),
                       ))
                 ],
               ),
@@ -97,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     children: [
                       Text(
-                        'Deal of the day',
+                        AppLocalizations.of(context).translate('dealOfTheDay'),
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.black87,
@@ -118,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.only(top: 8.0),
                     child: Row(
                       children: [
-                        Text('Save up to 23% off on Tacklife power Tools'),
+                        Text(AppLocalizations.of(context).translate('dealOffer')),
                       ],
                     ),
                   ),
@@ -129,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Row(
                     children: [
-                      Text('Ends in '),
+                      Text(AppLocalizations.of(context).translate('endsIn')),
                       CountdownFormatted(
                         duration: Duration(hours: 10),
                         builder: (BuildContext ctx, String remaining) {
@@ -147,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       TextButton(
                           onPressed: () {},
                           child: Text(
-                            'See all deals',
+                            AppLocalizations.of(context).translate('allDeals'),
                           )),
                     ],
                   )
@@ -172,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: MediaQuery.of(context).size.width * 0.15,
                 child: Divider(color: Colors.black),
               ),
-              Text(" You've reached the end Keep exploring! "),
+              Text(AppLocalizations.of(context).translate('reachEnd')),
               Container(
                 width: MediaQuery.of(context).size.width * 0.15,
                 child: Divider(color: Colors.black),
@@ -189,7 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   children: [
                     Text(
-                      'Explore Departments',
+                      AppLocalizations.of(context).translate('exploreDeps'),
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.black87,
@@ -215,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text("Beauty"),
+                              Text(AppLocalizations.of(context).translate('beauty')),
                             ],
                           ),
                         ),
@@ -234,7 +237,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text("Home and Kitchen"),
+                              Text(AppLocalizations.of(context).translate('homeAndKitchen')),
                             ],
                           ),
                         ),
@@ -259,7 +262,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text("Sports and Outdoors"),
+                              Text(AppLocalizations.of(context).translate('sportsAndOutdoors')),
                             ],
                           ),
                         ),
@@ -277,7 +280,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text("Electronics"),
+                              Text(AppLocalizations.of(context).translate('electronics')),
                             ],
                           ),
                         ),
@@ -302,7 +305,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text("Outdoor Clothing"),
+                              Text(AppLocalizations.of(context).translate('outClothes')),
                             ],
                           ),
                         ),
@@ -320,7 +323,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text("Pet Supplies"),
+                              Text(AppLocalizations.of(context).translate('petSupplies')),
                             ],
                           ),
                         ),
@@ -333,7 +336,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       TextButton(
                           onPressed: () {},
                           child: Text(
-                            'All Departments',
+                            AppLocalizations.of(context).translate('allDeps'),
                           )),
                     ],
                   )

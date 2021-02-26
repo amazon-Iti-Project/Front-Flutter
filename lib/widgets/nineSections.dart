@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../applocalization.dart';
+
 class NineSections extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class NineSections extends StatelessWidget {
                   padding: const EdgeInsets.only(left:8.0,bottom: 8.0),
                   child: Row(
                     children: [
-                      Text('Best sellers in Electronics',
+                      Text(AppLocalizations.of(context).translate('bestSellElect'),
                           style: TextStyle(fontSize: 20))
                     ],
                   ),

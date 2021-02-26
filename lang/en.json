@@ -13,12 +13,37 @@
     "addtocart":"Add To Cart",
     "buynow":"Buy Now ",
 
-    
-
-
   "orderdate":"Order Date",
   "transactiontype":"Trasaction Type",
   "delivereddate":"Deleverd Date",
   "orderprice":"Order Price",
   "shipmentfees":"Shipment Fees",
-  "transactionaltotal":"Transactional Total"}
+  "transactionaltotal":"Transactional Total",
+
+  "searchStat":"What are you looking for?",
+  "bestSellElect":"Best sellers in Electronics",
+  "earthBigSelection":"Earth's biggest selection",
+  "allDep":"All Departments",
+  "shopByCat":"SHOP BY CATEGORY",
+  "delivery":"Delivery",
+  "CompAccessories":"Computer Accessories",
+  "category":"Category",
+  "results":"Results",
+  "egyDelivery":"Deliver to Egypt",
+  "signInForBestEx":"Sign in for the best experience",
+  "signIn":"Sign In",
+  "createAccount":"Create an account",
+  "dealOfTheDay":"Deal of the day",
+  "dealOffer":"Save up to 23% off on Tacklife power Tools",
+  "endsIn":"Ends in ",
+  "allDeals":"See all deals",
+  "reachEnd":" You've reached the end Keep exploring! ",
+  "exploreDeps":"Explore Departments",
+  "beauty":"Beauty",
+  "homeAndKitchen":"Home and Kitchen",
+  "sportsAndOutdoors":"Sports and Outdoors",
+  "electronics":"Electronics",
+  "outClothes":"Outdoor Clothing",
+  "petSupplies":"Pet Supplies"
+
+}

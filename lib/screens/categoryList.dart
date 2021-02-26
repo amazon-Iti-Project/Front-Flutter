@@ -4,6 +4,8 @@ import 'package:project/screens/product_detalis_screen.dart';
 import 'package:project/widgets/appbar.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+import '../applocalization.dart';
+
 class CategoryList extends StatefulWidget {
   @override
   _CategoryListState createState() => _CategoryListState();
@@ -35,7 +37,7 @@ class _CategoryListState extends State<CategoryList> {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
-                          Text("Delivery"),
+                          Text(AppLocalizations.of(context).translate('delivery')),
                           Icon(Icons.arrow_drop_down_rounded),
                         ],
                       ),
@@ -53,7 +55,7 @@ class _CategoryListState extends State<CategoryList> {
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: [
-                            Text("Computer Accessories"),
+                            Text(AppLocalizations.of(context).translate('CompAccessories')),
                             Icon(Icons.arrow_drop_down_rounded),
                           ],
                         ),
@@ -72,7 +74,7 @@ class _CategoryListState extends State<CategoryList> {
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: [
-                            Text("Category (1)"),
+                            Text(AppLocalizations.of(context).translate('category')),
                             Icon(Icons.arrow_drop_down_rounded),
                           ],
                         ),
@@ -88,7 +90,8 @@ class _CategoryListState extends State<CategoryList> {
                   padding: const EdgeInsets.only(left:8.0,top:8.0),
                   child: Row(
                     children: [
-                      Text("Results",style:TextStyle(
+                      Text(AppLocalizations.of(context).translate('results')
+                        ,style:TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20
                       )),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../applocalization.dart';
+
 class AmazonAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -51,7 +53,7 @@ class AmazonAppBar extends StatelessWidget {
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.search,color: Colors.black),
                   suffixIcon: Icon(Icons.photo_camera_outlined),
-                  hintText: 'What are you looking for?',
+                  hintText: AppLocalizations.of(context).translate('searchStat'),
                   fillColor: Colors.white,
                   filled: true,
                   border: OutlineInputBorder()
