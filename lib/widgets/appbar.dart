@@ -16,7 +16,9 @@ class AmazonAppBar extends StatelessWidget {
                     child: Row(children: [
                   IconButton(
                       icon: Icon(Icons.menu, color: Colors.black, size: 28),
-                      onPressed: null),
+                      onPressed: (){
+                        Scaffold.of(context).openDrawer();
+                      }),
                   Container(
                       width: 100,
                       height: 40,

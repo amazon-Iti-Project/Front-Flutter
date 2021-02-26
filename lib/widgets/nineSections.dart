@@ -32,7 +32,7 @@ class NineSections extends StatelessWidget {
                             width: 150,
                             height: 150,
                             color: Colors.grey[200],
-                            child: Image.network('https://lh3.googleusercontent.com/proxy/oN1f8219fXNAeN9_em8DwGUgGzJxBeAs_qpIyT9ZteyKxTOeM_r-L71EBv2mcXMTw864bhbwQrwHUqbXz47ssd8ptIWtNxZPwc99bEIuoIs7D5ugc2CZlYjM14szbk9s'),
+                            child: Image.network('https://www.apple.com/v/macos/photos/f/images/meta/og__fn0yxd063t6q.png'),
                           ),
                         ),
                         Padding(
@@ -63,7 +63,7 @@ class NineSections extends StatelessWidget {
                             width: 150,
                             height: 150,
                             color: Colors.grey[200],
-                            child: Image.network('https://lh3.googleusercontent.com/proxy/oN1f8219fXNAeN9_em8DwGUgGzJxBeAs_qpIyT9ZteyKxTOeM_r-L71EBv2mcXMTw864bhbwQrwHUqbXz47ssd8ptIWtNxZPwc99bEIuoIs7D5ugc2CZlYjM14szbk9s'),
+                            child: Image.network('https://www.apple.com/v/macos/photos/f/images/meta/og__fn0yxd063t6q.png'),
                           ),
                         ),
                       ],

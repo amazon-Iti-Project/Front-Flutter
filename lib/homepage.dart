@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/applocalization.dart';
+import 'package:project/screens/allDepartments.dart';
 import 'package:project/screens/homeScreen.dart';
 import 'package:project/widgets/appbar.dart';
 
@@ -83,11 +84,26 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(fontSize: 20),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
-                child: Text(
-                  AppLocalizations.of(context).translate('shopbydep'),
-                  style: TextStyle(fontSize: 20),
+              InkWell(
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => AllDepartments()));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
+                      child: Text(
+                        AppLocalizations.of(context).translate('shopbydep'),
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 24.0, right: 8.0),
+                      child: Icon(Icons.arrow_forward_ios),
+                    )
+                  ],
                 ),
               ),
               Container(
@@ -125,8 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      body:
-      Stack(
+      body: Stack(
         children: [
           HomeScreen(),
           AmazonAppBar(),
