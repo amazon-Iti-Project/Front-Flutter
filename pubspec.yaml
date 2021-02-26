@@ -24,6 +24,11 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.0
+  dio: ^3.0.10
+  timeline_tile: ^1.0.0
+  google_fonts: ^1.1.2
+  timeline_node: ^0.1.0
+  steps_indicator: ^1.2.0
   #localization library
  
   #Animated Splash Screen 
@@ -32,6 +37,7 @@ dependencies:
 
   flutter_localizations:
     sdk: flutter
+    
 
 dev_dependencies:
   flutter_test:

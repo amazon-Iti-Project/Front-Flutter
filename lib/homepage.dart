@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/applocalization.dart';
+import 'package:project/screens/orders_screen.dart';
 
 import 'main.dart';
 import 'modules/language.dart';
+import 'screens/trasaction_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -62,11 +64,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(fontSize: 20),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
-                child: Text(
-                  AppLocalizations.of(context).translate('yourorder'),
-                  style: TextStyle(fontSize: 20),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => OrderList()),
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
+                  child: Text(
+                    AppLocalizations.of(context).translate('yourorder'),
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
               ),
               Padding(

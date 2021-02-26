@@ -1,0 +1,42 @@
+{
+    "orders": [
+        {
+            "id": 1,
+            "status": "Delivered",
+            "address": "1335 Avenue of the Americas - New York, USA, 10019",
+            "orderPrice": 200,
+            "dueDate": "2021-01-07",
+            "canCancelledUntil": "2021-01-09",
+            "orderDate": "2021-01-01",
+            "deliveredDate": "2021-01-10",
+            "products": [
+                {
+                    "id": 100,
+                    "name": "Samsung Electronics Galaxy Watch 3 Titanium ",
+                    "price": 200,
+                    "description": "Samsung Electronics Galaxy Watch 3 Titanium (45mm, GPS, Bluetooth) Smart Watch with Advanced Health Monitoring, Fitness Tracking, and Long Lasting Battery, Mystic Black (US Version)",
+                    "image": "https://m.media-amazon.com/images/I/71ejkOW4y2L._AC_AA180_.jpg"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "status": "Delivering",
+            "address": "1335 Avenue of the Americas - New York, USA, 10019",
+            "orderPrice": 1000,
+            "dueDate": "2021-02-07",
+            "canCancelledUntil": "2021-02-09",
+            "orderDate": "2021-02-01",
+            "deliveredDate": "2021-01-10",
+            "products": [
+                {
+                    "id": 100,
+                    "name": "Portable 2TB External Hard",
+                    "price": 500,
+                    "description": "Seagate Portable 2TB External Hard Drive Portable",
+                    "image": "https://m.media-amazon.com/images/I/81tjLksKixL._AC_UY218_.jpg"
+                }
+            ]
+        }
+    ]
+}

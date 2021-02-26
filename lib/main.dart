@@ -7,6 +7,8 @@ import 'package:project/screens/product_detalis_screen.dart';
 import 'package:project/screens/trasaction_screen.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 
+import 'screens/login_screen.dart';
+
 void main() async {
   runApp(MyApp());
 }
@@ -53,7 +55,7 @@ class _MyAppState extends State<MyApp> {
         }
       },
       home: SplashScreenView(
-        home: TrasnactionScreen(),
+        home: LoginScreen(),
         duration: 3000,
         imageSize: 100,
         imageSrc: "Images/logo.png",
