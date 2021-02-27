@@ -44,6 +44,15 @@
   "sportsAndOutdoors":"Sports and Outdoors",
   "electronics":"Electronics",
   "outClothes":"Outdoor Clothing",
-  "petSupplies":"Pet Supplies"
+  "petSupplies":"Pet Supplies",
 
+  "orderContainGift":"This order contains a gift",
+  "subtotal":"Subtotal",
+  "items":" items",
+  "proceedToCheckout":"Proceed to checkout",
+  "inStock":"In Stock",
+  "color":"Color",
+  "delete":"Delete",
+  "saveForLater":"Save for later",
+  "compareSimilarItems":"Compare with similar items"
 }

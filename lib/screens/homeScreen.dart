@@ -336,7 +336,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       TextButton(
                           onPressed: () {},
                           child: Text(
-                            AppLocalizations.of(context).translate('allDeps'),
+                            AppLocalizations.of(context).translate('allDep'),
                           )),
                     ],
                   )

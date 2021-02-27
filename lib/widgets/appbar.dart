@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/screens/cart.dart';
 
 import '../applocalization.dart';
 
@@ -39,7 +40,10 @@ class AmazonAppBar extends StatelessWidget {
                       IconButton(
                           icon: Icon(Icons.add_shopping_cart,
                               color: Colors.black, size: 28),
-                          onPressed: null),
+                          onPressed: (){
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) => CartScreen()));
+                          }),
                     ],
                   ),
                 ),

@@ -24,11 +24,11 @@ class AllDepartments extends StatelessWidget {
         actions: [
           IconButton(
               icon: Icon(Icons.search, color: Colors.black, size: 30),
-              onPressed: null),
+              onPressed: (){}),
           IconButton(
               icon: Icon(Icons.shopping_cart_outlined,
                   color: Colors.black, size: 28),
-              onPressed: null),
+              onPressed: (){}),
         ],
         elevation: 0.0,
         flexibleSpace: Container(
