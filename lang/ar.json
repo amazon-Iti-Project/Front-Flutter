@@ -55,5 +55,13 @@
   "color":"لون",
   "delete":"حذف",
   "saveForLater":"احفظ لاحقا",
-  "compareSimilarItems":"مقارنة بمنتجات مماثلة"
+  "compareSimilarItems":"مقارنة بمنتجات مماثلة",
+  "selectAddress":"اختر عنوان الشحن",
+  "phoneNumber":"رقم الهاتف: ",
+  "deliverToAddress":"توصيل إلى هذا العنوان",
+  "edit":"تعديل",
+  "remove":"حذف",
+  "addNewAddress":"إضافة عنوان جديد",
+  "shipToAmazonPickup":"الشحن إلى نقطة توصيل Amazon",
+  "shipToMultiAddress":"الشحن إلى أماكن متعددة"
 }

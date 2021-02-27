@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:project/screens/checkout.dart';
 
 import '../applocalization.dart';
 
@@ -236,7 +237,10 @@ class _CartScreenState extends State<CartScreen> {
                   Container(
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) => CheckoutScreen()));
+                      },
                       color: Color.fromRGBO(242, 196, 89, 1),
                       child: Text(AppLocalizations.of(context)
                           .translate('proceedToCheckout')),

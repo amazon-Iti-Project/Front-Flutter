@@ -54,5 +54,13 @@
   "color":"Color",
   "delete":"Delete",
   "saveForLater":"Save for later",
-  "compareSimilarItems":"Compare with similar items"
+  "compareSimilarItems":"Compare with similar items",
+  "selectAddress":"Select a shipping address",
+  "phoneNumber":"Phone number: ",
+  "deliverToAddress":"Deliver to this address",
+  "edit":"Edit",
+  "remove":"Remove",
+  "addNewAddress":"Add a new address",
+  "shipToAmazonPickup":"Ship to an Amazon pickup location",
+  "shipToMultiAddress":"Ship to multiple addresses"
 }
