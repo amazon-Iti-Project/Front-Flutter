@@ -17,11 +17,9 @@ let port = process.env.PORT || 3000;
 
 
 app.get('/',(req,res)=>{
-    res.send('first step is working');
-})
-app.get('/all',(req,res)=>{
     res.send(data);
 })
+
 app.listen(port,()=>{
     console.log(`this example is listening on ${port}`)
 })
