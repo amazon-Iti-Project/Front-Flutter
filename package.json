@@ -22,9 +22,10 @@
   },
   "homepage": "https://github.com/amazon-Iti-Project/Front-Flutter#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "json-server": "^0.16.3"
   },
   "engines": {
-    "node":"14.16.0"
+    "node": "14.16.0"
   }
 }
