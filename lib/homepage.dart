@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/applocalization.dart';
 import 'package:project/screens/your_account_screen.dart';
+import 'package:project/screens/allDepartments.dart';
+import 'package:project/screens/homeScreen.dart';
+import 'package:project/widgets/appbar.dart';
 
 import 'main.dart';
 import 'modules/language.dart';
@@ -33,9 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Home Page"),
-      ),
+      backgroundColor: Colors.grey[200],
       drawer: Drawer(
         elevation: 10,
         child: SafeArea(
@@ -92,11 +93,26 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(fontSize: 20),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
-                child: Text(
-                  AppLocalizations.of(context).translate('shopbydep'),
-                  style: TextStyle(fontSize: 20),
+              InkWell(
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => AllDepartments()));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
+                      child: Text(
+                        AppLocalizations.of(context).translate('shopbydep'),
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 24.0, right: 8.0),
+                      child: Icon(Icons.arrow_forward_ios),
+                    )
+                  ],
                 ),
               ),
               Container(
@@ -134,18 +150,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              "AmazonHome",
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+      body: Stack(
+        children: [
+          HomeScreen(),
+          AmazonAppBar(),
+        ],
       ),
     );
   }

@@ -30,6 +30,8 @@ dependencies:
   splash_screen_view: ^1.0.1
   http: ^0.12.2
 
+  countdown_flutter: ^0.1.2
+  flutter_rating_bar: ^3.2.0+1
 
 
   flutter_localizations:
@@ -71,7 +73,7 @@ flutter:
   fonts:
     - family: DancingScript     
       fonts:
-        - asset: fonts/dancingscript-Bold.ttf
+        - asset: fonts/DancingScript-Bold.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
