@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:countdown_flutter/countdown_flutter.dart';
+import 'package:project/screens/login_screen.dart';
+import 'package:project/screens/signUp_screen.dart';
 import 'package:project/widgets/nineSections.dart';
 
 import '../applocalization.dart';
@@ -26,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Icon(Icons.location_on_outlined),
                   Text(AppLocalizations.of(context).translate('egyDelivery'),
-                   style: TextStyle(fontSize: 16))
+                      style: TextStyle(fontSize: 16))
                 ],
               ),
             ),
@@ -47,7 +49,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     children: [
                       Text(
-                        AppLocalizations.of(context).translate('signInForBestEx'),
+                        AppLocalizations.of(context)
+                            .translate('signInForBestEx'),
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.black87,
@@ -60,13 +63,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     child: RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) => LoginScreen()));
+                      },
                       color: Color.fromRGBO(242, 196, 89, 1),
-                      child: Text(AppLocalizations.of(context).translate('signIn')),
+                      child: Text(
+                          AppLocalizations.of(context).translate('signIn')),
                     ),
                   ),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) => SignUpScreen()));
+                      },
                       child: Text(
                         AppLocalizations.of(context).translate('createAccount'),
                       ))
@@ -121,7 +131,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.only(top: 8.0),
                     child: Row(
                       children: [
-                        Text(AppLocalizations.of(context).translate('dealOffer')),
+                        Text(AppLocalizations.of(context)
+                            .translate('dealOffer')),
                       ],
                     ),
                   ),
@@ -202,144 +213,158 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top:8.0),
+                  padding: const EdgeInsets.only(top: 8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width*0.43,
-                          child: Image.network('https://images.unsplash.com/photo-1500840216050-6ffa99d75160?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1073&q=80'),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top:6.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(AppLocalizations.of(context).translate('beauty')),
-                            ],
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.43,
+                            child: Image.network(
+                                'https://images.unsplash.com/photo-1500840216050-6ffa99d75160?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1073&q=80'),
                           ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width*0.43,
-                          // child: Image.network('https://images.zadinteriors.com/blog/2020/02/Simple-and-Affordable-Home-Decor-Ideas.jpg'),
-                          child:Image.network('https://images.unsplash.com/photo-1558944351-3f79926e74ef?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80')
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top:6.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(AppLocalizations.of(context).translate('homeAndKitchen')),
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.only(top: 6.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(AppLocalizations.of(context)
+                                    .translate('beauty')),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                              width: MediaQuery.of(context).size.width * 0.43,
+                              // child: Image.network('https://images.zadinteriors.com/blog/2020/02/Simple-and-Affordable-Home-Decor-Ideas.jpg'),
+                              child: Image.network(
+                                  'https://images.unsplash.com/photo-1558944351-3f79926e74ef?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80')),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 6.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(AppLocalizations.of(context)
+                                    .translate('homeAndKitchen')),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top:8.0),
+                  padding: const EdgeInsets.only(top: 8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width*0.43,
-                          child: Image.network('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top:6.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(AppLocalizations.of(context).translate('sportsAndOutdoors')),
-                            ],
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.43,
+                            child: Image.network(
+                                'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'),
                           ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width*0.43,
-                          child: Image.network('https://images.unsplash.com/photo-1547982033-1aa007c7f612?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top:6.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(AppLocalizations.of(context).translate('electronics')),
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.only(top: 6.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(AppLocalizations.of(context)
+                                    .translate('sportsAndOutdoors')),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.43,
+                            child: Image.network(
+                                'https://images.unsplash.com/photo-1547982033-1aa007c7f612?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 6.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(AppLocalizations.of(context)
+                                    .translate('electronics')),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top:8.0),
+                  padding: const EdgeInsets.only(top: 8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width*0.43,
-                          child: Image.network('https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1053&q=80'),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top:6.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(AppLocalizations.of(context).translate('outClothes')),
-                            ],
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.43,
+                            child: Image.network(
+                                'https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1053&q=80'),
                           ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width*0.43,
-                          child: Image.network('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top:6.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(AppLocalizations.of(context).translate('petSupplies')),
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.only(top: 6.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(AppLocalizations.of(context)
+                                    .translate('outClothes')),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.43,
+                            child: Image.network(
+                                'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 6.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(AppLocalizations.of(context)
+                                    .translate('petSupplies')),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 Row(
-                    children: [
-                      TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            AppLocalizations.of(context).translate('allDep'),
-                          )),
-                    ],
-                  )
+                  children: [
+                    TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          AppLocalizations.of(context).translate('allDep'),
+                        )),
+                  ],
+                )
               ],
             ),
           ),
