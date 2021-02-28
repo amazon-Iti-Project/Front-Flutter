@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/applocalization.dart';
+import 'package:project/screens/your_account_screen.dart';
 
 import 'main.dart';
 import 'modules/language.dart';
@@ -69,11 +70,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(fontSize: 20),
                 ),
               ),
-              Padding(
+              Container(
                 padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
-                child: Text(
-                  AppLocalizations.of(context).translate('yourlist'),
-                  style: TextStyle(fontSize: 20),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => YourAccountScreen()),
+                    );
+                  },
+                  child: Text(
+                    AppLocalizations.of(context).translate('yourlist'),
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
               ),
               Padding(

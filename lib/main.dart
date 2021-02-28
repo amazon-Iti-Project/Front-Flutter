@@ -53,7 +53,9 @@ class _MyAppState extends State<MyApp> {
         }
       },
       home: SplashScreenView(
-        home: TrasnactionScreen(),
+        // home: TrasnactionScreen(),
+        home: MyHomePage(),
+        // home: Category(),
         duration: 3000,
         imageSize: 100,
         imageSrc: "Images/logo.png",
