@@ -8,14 +8,14 @@ class SingleItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width*0.45,
-      height: 100,
+      height: 200,
       child: Center(
         child: Column(
           children: [
-            Text(this.name),
+            Text(this.name,style: TextStyle(fontSize: 16),),
             Container(
-              width: 100,
-              height: 80,
+              width: 120,
+              height: 120,
               child: Image.network(this.imgSrc))
           ],
         ),

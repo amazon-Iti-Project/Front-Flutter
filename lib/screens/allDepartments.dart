@@ -2,10 +2,41 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project/screens/category.dart';
 
-import '../applocalization.dart';
+import 'package:http/http.dart' as http;
+import '../models/categoryCollection.dart';
+import 'dart:convert';
 
-class AllDepartments extends StatelessWidget {
-  var depList = <String>["Prime Video",'Music,CDs & Vinyl','Digital Music','Kindle Store','Arts & Crafts','Automotive','Baby','Beauty & Personal Care','Books','Computers','Electronics',"Women's Fashion","Gil's Fashion","Men's Fashion"];
+import '../applocalization.dart';
+import '../constants.dart';
+
+Future<List<CategoryCollection>> fetchCategories() async {
+  print('entered!');
+  final response = await http.get(API_URL + "/categoriesCollection");
+  if (response.statusCode == 200) {
+    print('data');
+    return List<CategoryCollection>.from((jsonDecode(response.body) as List)
+        .map((e) => CategoryCollection.fromJson((e)))).toList();
+  } else {
+    print("Error!");
+    return [];
+  }
+}
+
+class AllDepartments extends StatefulWidget {
+  @override
+  _AllDepartmentsState createState() => _AllDepartmentsState();
+}
+
+class _AllDepartmentsState extends State<AllDepartments> {
+
+  Future<List<CategoryCollection>> allCategories;
+
+  @override
+  void initState() {
+    super.initState();
+    allCategories = fetchCategories();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,11 +55,11 @@ class AllDepartments extends StatelessWidget {
         actions: [
           IconButton(
               icon: Icon(Icons.search, color: Colors.black, size: 30),
-              onPressed: (){}),
+              onPressed: () {}),
           IconButton(
               icon: Icon(Icons.shopping_cart_outlined,
                   color: Colors.black, size: 28),
-              onPressed: (){}),
+              onPressed: () {}),
         ],
         elevation: 0.0,
         flexibleSpace: Container(
@@ -47,41 +78,64 @@ class AllDepartments extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
-                child: Text(AppLocalizations.of(context).translate('earthBigSelection'),style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                )),
+              child: Text(
+                  AppLocalizations.of(context).translate('earthBigSelection'),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  )),
             ),
             Container(
-              width: MediaQuery.of(context).size.width*0.9,
-              height: MediaQuery.of(context).size.height*0.79,
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(5),
-                border: Border.all(color: Colors.grey[300])
-                
-              ),
-              child: ListView.builder(
-                itemCount: depList.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    child: ListTile(
-                      onTap: (){
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => Category()
-                        ));
-                      },
-                      title: Text(depList[index]),
-                      trailing: Icon(Icons.arrow_forward_ios,color: Colors.black,size: 14,),
-                    ),
-                    decoration: BoxDecoration(
-                      border: new Border(
-                        bottom: new BorderSide(color: Colors.grey[300])
-                    ),
-                  ));
-                },
-              ),
-            ),
+                width: MediaQuery.of(context).size.width * 0.9,
+                height: MediaQuery.of(context).size.height * 0.3,
+                decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Colors.grey[300])),
+                child: FutureBuilder<List<CategoryCollection>>(
+                  future: allCategories,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      final categories = snapshot.data;
+                      return ListView.builder(
+                        itemCount: categories.length,
+                        itemBuilder: (context, index) {
+                          final category = categories[index];
+                          return Container(
+                              child: ListTile(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          Category(categoryItems: category.data,title: category.title,)));
+                                },
+                                title: Text(category.title),
+                                trailing: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.black,
+                                  size: 14,
+                                ),
+                              ),
+                              decoration: BoxDecoration(
+                                border: new Border(
+                                    bottom: new BorderSide(
+                                        color: Colors.grey[300])),
+                              ));
+                        },
+                      );
+                    }
+                    else{
+                      return Container(
+                        width: 100,
+                        height: 100,
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2.0,
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                )),
           ],
         ),
       ),
