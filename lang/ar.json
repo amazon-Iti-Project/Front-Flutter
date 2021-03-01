@@ -9,6 +9,16 @@
     "changelang":"تغير اللغه",
     "email":"ادخل البريد الالكتروني",
     "password":"ادخل كلمه المرور",
-    "login":"تسجيل الدخول"
+    "login":"تسجيل الدخول",
+    "addtocart":"اضف الي العربه",
+    "buynow":"اشتر الان ",
+
+    "orderdate":"تاريخ الشراء",
+    "transactiontype":"نوع العمليه",
+    "delivereddate":"تاريخ التوصيل",
+    "orderprice":"ثمن المنتح",
+    "shipmentfees":"مصاريف الشحن",
+    "transactionaltotal":"المجموع"
+
 
 }
