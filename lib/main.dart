@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:project/Ui/seller/addProduct/addProduct.dart';
 import 'package:project/Ui/seller/payment/seller-payment-home.dart';
+import 'package:project/applocalization.dart';
+import 'package:project/homepage.dart';
+import 'package:project/screens/category.dart';
 import 'package:project/screens/product_detalis_screen.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 
@@ -95,8 +98,10 @@ class _MyAppState extends State<MyApp> {
 
       },
       home: SplashScreenView(
-        home: SellerPaymentHome(),
-        duration: 1000,
+        // home: TrasnactionScreen(),
+        home:MyHomePage(),
+        // home: Category(),
+        duration: 3000,
         imageSize: 100,
         imageSrc: "Images/logo.png",
         text: "Amazon",

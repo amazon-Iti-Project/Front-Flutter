@@ -1,17 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project/Ui/applocalization.dart';
-import 'package:project/Ui/homepage.dart';
 import 'package:project/homepage.dart';
 
-class LoginScreen extends StatefulWidget {
-  LoginScreen({Key key}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  SignUpScreen({Key key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _SignUpScreenState createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   bool _isHidden = true;
   final _formKey = GlobalKey<FormState>();
   final key = GlobalKey<FormState>();
@@ -62,13 +60,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Row(
                                 children: [
                                   Text(
-                                    'Sign-In.',
+                                    'Create account.',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18),
                                   ),
                                   Text(
-                                    ' Alerady a customer?',
+                                    ' New to Amazon?',
                                     style: TextStyle(fontSize: 15),
                                   ),
                                 ],
@@ -79,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: TextFormField(
                                 validator: (value) {
                                   if (value.isEmpty) {
-                                    return '(Email(phone for mobile accounts))';
+                                    return 'Please enter your name';
                                   }
                                   return null;
                                 },
@@ -91,13 +89,26 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: TextFormField(
                                 validator: (value) {
                                   if (value.isEmpty) {
-                                    return 'Please enter your Password';
+                                    return 'Please enter your email or mobile number';
+                                  }
+                                  return null;
+                                },
+                                decoration: InputDecoration(
+                                    labelText: 'Mobile number or email'),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: TextFormField(
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'Please enter a Password';
                                   }
                                   return null;
                                 },
                                 obscureText: _isHidden,
                                 decoration: InputDecoration(
-                                  hintText: 'Enter the Password',
+                                  hintText: 'Create a Password',
                                   suffix: InkWell(
                                     onTap: _togglePasswordView,
                                     child: Icon(
@@ -126,14 +137,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Center(
-                                    child: const Text('Sign in',
+                                    child: const Text('Verify email',
                                         style: TextStyle(fontSize: 20))),
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(10.0),
                               child: Text(
-                                  "By signing in, you agree to Amazon's Conditions of Use and Privacy Notice."),
+                                  "By creating an account, you agree to Amazon's Conditions of Use and Privacy Notice."),
                             ),
                             Center(
                               child: Row(
