@@ -19,7 +19,7 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
-
+  
 dependencies:
   flutter:
     sdk: flutter
@@ -33,9 +33,9 @@ dependencies:
  
   #Animated Splash Screen 
   splash_screen_view: ^1.0.1
+  
   countdown_flutter: ^0.1.2
   flutter_rating_bar: ^3.2.0+1
-
 
   flutter_localizations:
     sdk: flutter

@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/modules/language.dart';
 import 'package:project/screens/customer/category/allDepartments.dart';
+import 'package:project/screens/customer/order/ordersList_Screen.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/widgets/appbar.dart';
 
 import '../../../main.dart';
 import 'homeScreen.dart';
-
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -64,11 +64,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(fontSize: 20),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
-                child: Text(
-                  AppLocalizations.of(context).translate('yourorder'),
-                  style: TextStyle(fontSize: 20),
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => OrderList()));
+                },
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
+                  child: Text(
+                    AppLocalizations.of(context).translate('yourorder'),
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
               ),
               Padding(
@@ -86,9 +92,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               InkWell(
-                onTap: (){
+                onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => AllDepartments()));
+                      builder: (BuildContext context) => AllDepartments()));
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:project/models/categoryCollection.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/widgets/categoryHeader.dart';
 import 'package:project/widgets/singleItem.dart';
@@ -9,6 +10,10 @@ import 'categoryList.dart';
 
 
 class Category extends StatefulWidget {
+  final List<Datum> categoryItems;
+  final String title;
+  Category({this.categoryItems, this.title});
+
   @override
   _CategoryState createState() => _CategoryState();
 }
@@ -52,7 +57,6 @@ class _CategoryState extends State<Category> {
       ),
       body: ListView(
         children: [
-          //316570
           Container(
             height: 50,
             decoration: BoxDecoration(
@@ -77,7 +81,7 @@ class _CategoryState extends State<Category> {
             ),
           ),
           CategoryHeader(
-              title: 'Computer, Tablets and IT Accessories',
+              title: widget.title,
               description:
                   "Shop laptops, desktops, monitors, tablets, PC gaming, hard drivers and storage, accessories and more"),
           Container(
@@ -100,39 +104,28 @@ class _CategoryState extends State<Category> {
                   height: 400,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: ListView(
-                      children: [
-                        Wrap(
-                          children: [
-                            InkWell(
-                              onTap: (){
-                                Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (BuildContext context) => CategoryList()));
-                              },
-                              child: SingleItem(
-                                name: "Computer Accessories",
-                                imgSrc:
-                                    "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-                              ),
-                            ),
-                            SingleItem(
-                              name: "Computer Accessories",
-                              imgSrc:
-                                  "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-                            ),
-                            SingleItem(
-                              name: "Computer Accessories",
-                              imgSrc:
-                                  "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-                            ),
-                            SingleItem(
-                              name: "Computer Accessories",
-                              imgSrc:
-                                  "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-                            ),
-                          ],
-                        ),
-                      ],
+                    child: GridView.builder(
+                      gridDelegate:
+                          new SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 1,
+                      ),
+                      itemCount: widget.categoryItems.length,
+                      itemBuilder: (context, index) {
+                        final singleCategory = widget.categoryItems[index];
+                        return InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    CategoryList(catName: singleCategory.name)
+                                    ));
+                          },
+                          child: SingleItem(
+                            name: singleCategory.name,
+                            imgSrc: singleCategory.image,
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ),
