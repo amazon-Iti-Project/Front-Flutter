@@ -1,0 +1,498 @@
+{
+  "__collections__": {
+    "Shipments": {
+      "36EWaTxYDHGlcZI2xRZb": {
+        "status": "received",
+        "order": "orderId",
+        "date": "2020",
+        "__collections__": {}
+      },
+      "BLljbaGa4fn2cs2ouh2c": {
+        "date": "2020",
+        "order": "orderId",
+        "status": "received",
+        "__collections__": {}
+      },
+      "BgFdxvchkZ3kjhQ64USv": {
+        "date": "2020",
+        "order": "orderId",
+        "status": "received",
+        "__collections__": {}
+      },
+      "Wt38vZoBKmV4jkueNI0h": {
+        "order": "orderId",
+        "status": "received",
+        "date": "2020",
+        "__collections__": {}
+      },
+      "v2MBYWYmzAK4oHddN21v": {
+        "date": "2020",
+        "order": "orderId",
+        "status": "received",
+        "__collections__": {}
+      },
+      "yiZ6n4pK7txVpeCMLAbA": {
+        "date": "2020",
+        "status": "received",
+        "order": "orderId",
+        "__collections__": {}
+      }
+    },
+    "admins": {
+      "MXir9HsbH8Qo0RGFFHrxT1r0caj2": {
+        "name": "kamal",
+        "__collections__": {}
+      }
+    },
+    "brands": {
+      "9ISAgwL1fFl7w3UGhClo": {
+        "image": "path",
+        "name": "electronics",
+        "timestamp": {
+          "__datatype__": "timestamp",
+          "value": {
+            "_seconds": 1610168186,
+            "_nanoseconds": 21000000
+          }
+        },
+        "__collections__": {}
+      }
+    },
+    "categorys": {
+      "kk9AMXfNLOJZjuVE9FE9": {
+        "name": "electronics",
+        "timestamp": {
+          "__datatype__": "timestamp",
+          "value": {
+            "_seconds": 1610167755,
+            "_nanoseconds": 990000000
+          }
+        },
+        "image": "path",
+        "__collections__": {}
+      }
+    },
+    "customers": {
+      "MXir9HsbH8Qo0RGFFHrxT1r0caj2": {
+        "image": "path",
+        "name": "electronics",
+        "timestamp": {
+          "__datatype__": "timestamp",
+          "value": {
+            "_seconds": 1610169762,
+            "_nanoseconds": 414000000
+          }
+        },
+        "__collections__": {}
+      },
+      "sHID16JmpwdE5Vmfb039": {
+        "name": "electronics",
+        "timestamp": {
+          "__datatype__": "timestamp",
+          "value": {
+            "_seconds": 1610168477,
+            "_nanoseconds": 770000000
+          }
+        },
+        "image": "path",
+        "__collections__": {}
+      }
+    },
+    "orders": {
+      "6GQxcJHffYmKOYHovJih": {
+        "products": "productId1",
+        "seller": "MXir9HsbH8Qo0RGFFHrxT1r0caj2",
+        "date": "2020",
+        "customer": "MXir9HsbH8Qo0RGFFHrxT1r0caj2",
+        "status": "received",
+        "__collections__": {}
+      },
+      "84MZwI2bUnMUwgFBII2c": {
+        "customer": "MXir9HsbH8Qo0RGFFHrxT1r0caj2",
+        "seller": "MXir9HsbH8Qo0RGFFHrxT1r0caj2",
+        "status": "received",
+        "products": "productId1",
+        "date": "2020",
+        "__collections__": {}
+      },
+      "9iqbhflXfxpSbQVz2oPX": {
+        "status": "received",
+        "seller": "MXir9HsbH8Qo0RGFFHrxT1r0caj2",
+        "date": "2020",
+        "customer": "MXir9HsbH8Qo0RGFFHrxT1r0caj2",
+        "products": "productId1",
+        "__collections__": {}
+      },
+      "JDyEZZ33CpImE98dSSHz": {
+        "date": "2020",
+        "seller": "MXir9HsbH8Qo0RGFFHrxT1r0caj2",
+        "products": "productId1",
+        "status": "received",
+        "customer": "MXir9HsbH8Qo0RGFFHrxT1r0caj2",
+        "__collections__": {}
+      },
+      "K5OrYHdhEYfWtTz8bs04": {
+        "status": "received",
+        "seller": "MXir9HsbH8Qo0RGFFHrxT1r0caj2",
+        "products": "productId1",
+        "customer": "MXir9HsbH8Qo0RGFFHrxT1r0caj2",
+        "date": "2020",
+        "__collections__": {}
+      },
+      "NqobH89Ql6F5WDb5ANG1": {
+        "customer": "MXir9HsbH8Qo0RGFFHrxT1r0caj2",
+        "products": "productId1",
+        "seller": "MXir9HsbH8Qo0RGFFHrxT1r0caj2",
+        "date": "2020",
+        "status": "received",
+        "__collections__": {}
+      },
+      "YTxwAggKQ3tPBgfQOzr2": {
+        "seller": "MXir9HsbH8Qo0RGFFHrxT1r0caj2",
+        "status": "received",
+        "products": "productId1",
+        "date": "2020",
+        "customer": "MXir9HsbH8Qo0RGFFHrxT1r0caj2",
+        "__collections__": {}
+      },
+      "kamal": {
+        "status": "received",
+        "customer": "MXir9HsbH8Qo0RGFFHrxT1r0caj2",
+        "products": "productId1",
+        "date": "2020",
+        "seller": "asdasd",
+        "__collections__": {}
+      }
+    },
+    "payments": {
+      "34WuGTzxbl5SinEH3jIf": {
+        "date": "2020",
+        "type": "cash",
+        "order": "6GQxcJHffYmKOYHovJih",
+        "shippingFee": 20,
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "price": 200,
+        "__collections__": {}
+      },
+      "AFwvCpaKNJSqdHUkH4Sv": {
+        "shippingFee": 20,
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "date": "2020",
+        "price": 200,
+        "order": "6GQxcJHffYmKOYHovJih",
+        "type": "cash",
+        "__collections__": {}
+      },
+      "DB9fnNTCBLOwuswd5iIn": {
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "type": "cash",
+        "order": "6GQxcJHffYmKOYHovJih",
+        "shippingFee": 20,
+        "price": 200,
+        "date": "2020",
+        "__collections__": {}
+      },
+      "E3q3cGMF2LbsTwFAIppb": {
+        "order": "6GQxcJHffYmKOYHovJih",
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "price": 200,
+        "date": "2020",
+        "type": "cash",
+        "shippingFee": 20,
+        "__collections__": {}
+      },
+      "ECfYU1n3keQD7c3GELWF": {
+        "price": 200,
+        "type": "cash",
+        "shippingFee": 20,
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "date": "2020",
+        "order": "6GQxcJHffYmKOYHovJih",
+        "__collections__": {}
+      },
+      "FPX4iSELrG26lW3Ff7Oz": {
+        "date": "2020",
+        "order": "6GQxcJHffYmKOYHovJih",
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "price": 200,
+        "type": "cash",
+        "shippingFee": 20,
+        "__collections__": {}
+      },
+      "H8pd1yDX4LsIbgpgFhsD": {
+        "shippingFee": 20,
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "date": "2020",
+        "order": "6GQxcJHffYmKOYHovJih",
+        "type": "cash",
+        "price": 200,
+        "__collections__": {}
+      },
+      "J1Qkk6avSqmL1TcxaJlZ": {
+        "price": 200,
+        "date": "2020",
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "order": "6GQxcJHffYmKOYHovJih",
+        "shippingFee": 20,
+        "type": "cash",
+        "__collections__": {}
+      },
+      "Ju4OlbVpWMqrtzRmHDae": {
+        "price": 200,
+        "shippingFee": 20,
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "date": "2020",
+        "order": "6GQxcJHffYmKOYHovJih",
+        "type": "cash",
+        "__collections__": {}
+      },
+      "KIplbO1P4EaQ1e8FOVZF": {
+        "price": 200,
+        "date": "2020",
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "type": "cash",
+        "shippingFee": 20,
+        "order": "6GQxcJHffYmKOYHovJih",
+        "__collections__": {}
+      },
+      "KMrBpzhPOtkjPBJjIUb3": {
+        "order": "6GQxcJHffYmKOYHovJih",
+        "shippingFee": 20,
+        "price": 200,
+        "date": "2020",
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "type": "cash",
+        "__collections__": {}
+      },
+      "KQLMEuUB9aUysjbp0QZ0": {
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "shippingFee": 20,
+        "date": "2020",
+        "order": "6GQxcJHffYmKOYHovJih",
+        "price": 200,
+        "type": "cash",
+        "__collections__": {}
+      },
+      "LnZFKAsnSIp3J6VqVG3J": {
+        "date": "2020",
+        "shippingFee": 20,
+        "type": "cash",
+        "price": 200,
+        "order": "6GQxcJHffYmKOYHovJih",
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "__collections__": {}
+      },
+      "QjkZ5fPR8F0CjDmjojeD": {
+        "order": "6GQxcJHffYmKOYHovJih",
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "date": "2020",
+        "price": 200,
+        "type": "cash",
+        "shippingFee": 20,
+        "__collections__": {}
+      },
+      "S7SXLg3fwDb07BnkgIW7": {
+        "price": 200,
+        "date": "2020",
+        "type": "cash",
+        "order": "6GQxcJHffYmKOYHovJih",
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "shippingFee": 20,
+        "__collections__": {}
+      },
+      "XQPkyGeMhZFd0ih3NXv1": {
+        "order": "6GQxcJHffYmKOYHovJih",
+        "price": 200,
+        "date": "2020",
+        "shippingFee": 20,
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "type": "cash",
+        "__collections__": {}
+      },
+      "Y53UUqE5mvtxWOOy08iu": {
+        "price": 200,
+        "order": "6GQxcJHffYmKOYHovJih",
+        "type": "cash",
+        "shippingFee": 20,
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "date": "2020",
+        "__collections__": {}
+      },
+      "cVFbAVULB6EeSFP9Hzvw": {
+        "shippingFee": 20,
+        "date": "2020",
+        "order": "6GQxcJHffYmKOYHovJih",
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "type": "cash",
+        "price": 200,
+        "__collections__": {}
+      },
+      "dG8qKy9iSQLep86ZTg6S": {
+        "price": 200,
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "order": "6GQxcJHffYmKOYHovJih",
+        "date": "2020",
+        "type": "cash",
+        "shippingFee": 20,
+        "__collections__": {}
+      },
+      "e4eEYGRjMPE9uQawA4EM": {
+        "type": "cash",
+        "price": 200,
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "shippingFee": 20,
+        "date": "2020",
+        "order": "6GQxcJHffYmKOYHovJih",
+        "__collections__": {}
+      },
+      "kwvqgoXpLGOGQTYfDyek": {
+        "shippingFee": 20,
+        "date": "2020",
+        "type": "cash",
+        "price": 200,
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "order": "6GQxcJHffYmKOYHovJih",
+        "__collections__": {}
+      },
+      "l0MTtSiLChPTICwgbuPy": {
+        "date": "2020",
+        "price": 200,
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "shippingFee": 20,
+        "order": "6GQxcJHffYmKOYHovJih",
+        "type": "cash",
+        "__collections__": {}
+      },
+      "l9dnO5S1Vany3up0B5QD": {
+        "price": 200,
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "shippingFee": 20,
+        "date": "2020",
+        "order": "6GQxcJHffYmKOYHovJih",
+        "type": "cash",
+        "__collections__": {}
+      },
+      "lQ42zMwcdlD258yj1cP9": {
+        "shippingFee": 20,
+        "price": 200,
+        "type": "cash",
+        "order": "6GQxcJHffYmKOYHovJih",
+        "date": "2020",
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "__collections__": {}
+      },
+      "m7Vp2PK7XmqQuOCWv3U6": {
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "price": 200,
+        "order": "6GQxcJHffYmKOYHovJih",
+        "date": "2020",
+        "type": "cash",
+        "shippingFee": 20,
+        "__collections__": {}
+      },
+      "rrbMOfigXZiKBOZrvzke": {
+        "order": "6GQxcJHffYmKOYHovJih",
+        "shippingFee": 20,
+        "date": "2020",
+        "type": "cash",
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "price": 200,
+        "__collections__": {}
+      },
+      "tNtRmML1BWhR8IYJJ0nl": {
+        "shippingFee": 20,
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "type": "cash",
+        "date": "2020",
+        "price": 200,
+        "order": "6GQxcJHffYmKOYHovJih",
+        "__collections__": {}
+      },
+      "u492o4EA0QwIuMDzgbFU": {
+        "order": "6GQxcJHffYmKOYHovJih",
+        "type": "cash",
+        "shippingFee": 20,
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "date": "2020",
+        "price": 200,
+        "__collections__": {}
+      },
+      "vSHK3lWyxVozRwvcQiIz": {
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "date": "2020",
+        "order": "6GQxcJHffYmKOYHovJih",
+        "price": 200,
+        "shippingFee": 20,
+        "type": "cash",
+        "__collections__": {}
+      },
+      "wK2sBN5Ml3k9GUobM060": {
+        "price": 200,
+        "date": "2020",
+        "type": "cash",
+        "shippingFee": 20,
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "order": "6GQxcJHffYmKOYHovJih",
+        "__collections__": {}
+      },
+      "yqS8kRu26e02waBHw51g": {
+        "order": "6GQxcJHffYmKOYHovJih",
+        "date": "2020",
+        "price": 200,
+        "type": "cash",
+        "shippingFee": 20,
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "__collections__": {}
+      },
+      "z10TgyYKT0Dhktcgj40M": {
+        "shippingFee": 20,
+        "shipping": "36EWaTxYDHGlcZI2xRZb",
+        "price": 200,
+        "type": "cash",
+        "order": "6GQxcJHffYmKOYHovJih",
+        "date": "2020",
+        "__collections__": {}
+      }
+    },
+    "products": {
+      "0FbXTcC5lKPUKTE2eX5l": {
+        "soldNumber": 50,
+        "productFee": 50,
+        "Category": "cat.Id",
+        "description": "corei7",
+        "images": [
+          "path1",
+          "path2"
+        ],
+        "price": 100,
+        "shippingFee": 20,
+        "brand": "brandId",
+        "color": "red",
+        "discount": "20%",
+        "stockNumber": 200,
+        "name": "DellLaptop",
+        "size": "large",
+        "tags": [
+          "computer",
+          "laptop",
+          "electronics"
+        ],
+        "__collections__": {}
+      }
+    },
+    "sellers": {
+      "MXir9HsbH8Qo0RGFFHrxT1r0caj2": {
+        "name": "electronics",
+        "timestamp": {
+          "__datatype__": "timestamp",
+          "value": {
+            "_seconds": 1610169505,
+            "_nanoseconds": 985000000
+          }
+        },
+        "image": "path",
+        "__collections__": {}
+      }
+    }
+  }
+}

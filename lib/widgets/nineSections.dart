@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
-import '../applocalization.dart';
+import 'package:project/services/Localization/applocalization.dart';
 
 class NineSections extends StatelessWidget {
   @override
