@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project/Ui/applocalization.dart';
-import 'package:project/applocalization.dart';
-import 'package:project/screens/allDepartments.dart';
-import 'package:project/screens/homeScreen.dart';
+import 'package:project/modules/language.dart';
+import 'package:project/screens/customer/category/allDepartments.dart';
+import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/widgets/appbar.dart';
 
-import '../main.dart';
-import '../modules/language.dart';
+import '../../../main.dart';
+import 'homeScreen.dart';
+
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);

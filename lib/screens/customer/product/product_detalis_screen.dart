@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project/Ui/applocalization.dart';
-import 'package:project/Ui/homepage.dart';
+import 'package:project/screens/customer/home/homepage.dart';
+import 'package:project/services/Localization/applocalization.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   ProductDetailsScreen({Key key}) : super(key: key);

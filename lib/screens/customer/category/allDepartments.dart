@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:project/screens/category.dart';
+import 'package:project/services/Localization/applocalization.dart';
 
-import '../applocalization.dart';
+import 'category.dart';
 
 class AllDepartments extends StatelessWidget {
   var depList = <String>["Prime Video",'Music,CDs & Vinyl','Digital Music','Kindle Store','Arts & Crafts','Automotive','Baby','Beauty & Personal Care','Books','Computers','Electronics',"Women's Fashion","Gil's Fashion","Men's Fashion"];

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:project/screens/checkout.dart';
+import 'package:project/services/Localization/applocalization.dart';
 
-import '../applocalization.dart';
+import 'checkout.dart';
 
 class CartScreen extends StatefulWidget {
   @override

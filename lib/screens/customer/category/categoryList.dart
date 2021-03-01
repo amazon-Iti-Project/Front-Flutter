@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:project/screens/product_detalis_screen.dart';
+import 'package:project/screens/customer/product/product_detalis_screen.dart';
+import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/widgets/appbar.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import '../applocalization.dart';
 
 class CategoryList extends StatefulWidget {
   @override

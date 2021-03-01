@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:project/screens/templatesWidgets/app-text.dart';
 
-import '../../app-text.dart';
 
 class SellerPaymentDetails extends StatefulWidget {
   @override

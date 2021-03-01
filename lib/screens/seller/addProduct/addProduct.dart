@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:project/Ui/seller/addProduct/picK-Image.dart';
-import 'package:project/Ui/seller/inventory/seller-inventory.dart';
+import 'package:project/screens/seller/addProduct/picK-Image.dart';
+import 'package:project/screens/seller/inventory/seller-inventory.dart';
 
 import 'addProductDropDown.dart';
 import 'addProductInput.dart';

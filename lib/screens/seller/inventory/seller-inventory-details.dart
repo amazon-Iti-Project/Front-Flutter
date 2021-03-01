@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-
-import '../../app-text.dart';
+import 'package:project/screens/templatesWidgets/app-text.dart';
 
 class SellerInventroyDetails extends StatefulWidget {
   @override

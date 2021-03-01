@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project/services/Localization/applocalization.dart';
 
-import 'applocalization.dart';
 
 class LocalizedText extends StatelessWidget {
   final String data;

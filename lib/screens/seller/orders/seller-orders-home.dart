@@ -1,11 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:project/Ui/seller/inventory/seller-inventory-details.dart';
-import 'package:project/Ui/seller/orders/deliverd-orders.dart';
-
-import '../../app-text.dart';
 import 'bending-orders.dart';
+import 'deliverd-orders.dart';
 
 class SellerOrdersHome extends StatefulWidget {
   @override

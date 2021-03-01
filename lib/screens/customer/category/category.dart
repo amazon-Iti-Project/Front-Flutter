@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:project/screens/allDepartments.dart';
-import 'package:project/screens/categoryList.dart';
+import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/widgets/categoryHeader.dart';
 import 'package:project/widgets/singleItem.dart';
 
-import '../applocalization.dart';
+import 'allDepartments.dart';
+import 'categoryList.dart';
+
 
 class Category extends StatefulWidget {
   @override

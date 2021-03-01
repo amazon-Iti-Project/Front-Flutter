@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:project/Ui/seller/inventory/seller-inventory-details.dart';
-import 'package:project/Ui/seller/orders/order-details-card.dart';
 
-import '../../app-text.dart';
+import 'order-details-card.dart';
 
 class SellerBendingOrders extends StatefulWidget {
   @override

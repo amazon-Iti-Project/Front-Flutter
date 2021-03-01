@@ -3,20 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:project/Ui/seller/addProduct/addProduct.dart';
-import 'package:project/Ui/seller/payment/seller-payment-home.dart';
-import 'package:project/applocalization.dart';
-import 'package:project/homepage.dart';
-import 'package:project/screens/category.dart';
-import 'package:project/screens/product_detalis_screen.dart';
+import 'package:project/screens/customer/home/homepage.dart';
+import 'package:project/services/Localization/applocalization.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 
-import 'Ui/applocalization.dart';
-import 'Ui/homepage.dart';
-import 'Ui/seller/inventory/seller-inventory.dart';
-import 'Ui/seller/orders/bending-orders.dart';
-import 'Ui/seller/orders/seller-orders-home.dart';
-import 'Ui/seller/payment/seller-payments.dart';
 import 'models/product.dart';
 import 'package:http/http.dart' as http;
 import 'package:dio/dio.dart';
