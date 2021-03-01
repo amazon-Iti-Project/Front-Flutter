@@ -31,29 +31,6 @@
       "tags": []
     },
     {
-      "name": "DigitalCamera",
-      "categoryName": "laptops",
-      "price": 120,
-      "quantity": 80,
-      "category": "3",
-      "brand": "2",
-      "discount": 50,
-      "shipping": {
-        "period": 2,
-        "shipPrice": 20
-      },
-      "fee": {
-        "admin": 1,
-        "category": 1,
-        "fee": 15
-      },
-      "size": "medium",
-      "color": "red",
-      "image": "https://shuttershopegypt.com/wp-content/uploads/2020/07/canon_eos_r6_mirrorless_digital_1594281159_1573881.png",
-      "tags": [],
-      "id": 1
-    },
-    {
       "name": "Tv 24inch",
       "categoryName": "laptops",
       "price": 100,
