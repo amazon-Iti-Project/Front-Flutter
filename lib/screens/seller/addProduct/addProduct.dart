@@ -36,8 +36,7 @@ class SellerAddProductState extends State<SellerAddProduct> {
                     SellerAddProductInput(),
                     AddProductDropDown(),
                     AddProductDropDown(),
-                       PhotoPicker(),
-                    
+                    PhotoPicker(),
                   ],
                 ),
               ),
@@ -62,11 +61,18 @@ class SellerAddProductState extends State<SellerAddProduct> {
                           style: TextStyle(fontSize: 20),
                         ),
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SellerInventroy()),
-                          );
+                          if (_formKey.currentState.validate()) {
+                            // If the form is valid, display a snackbar. In the real world,
+                            // you'd often call a server or save the information in a database.
+
+                            Scaffold.of(context).showSnackBar(
+                                SnackBar(content: Text('Processing Data')));
+                          }
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => SellerInventroy()),
+                          // );
                         },
                         padding: const EdgeInsets.all(10.0),
                       ),

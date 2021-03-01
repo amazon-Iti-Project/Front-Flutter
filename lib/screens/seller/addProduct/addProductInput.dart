@@ -2,21 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class SellerAddProductInput extends StatelessWidget {
+  Function validFun;
+  SellerAddProductInput({this.validFun});
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical:8.0),
-          child: Text("Product Name",
-          textAlign:TextAlign.start,
-          style: TextStyle(fontSize: 20,
-          color: HexColor("#f08804"),
-          ),
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: Text(
+            "Product Name",
+            textAlign: TextAlign.start,
+            style: TextStyle(
+              fontSize: 20,
+              color: HexColor("#f08804"),
+            ),
           ),
         ),
         TextFormField(
@@ -39,7 +42,7 @@ class SellerAddProductInput extends StatelessWidget {
                 borderSide: BorderSide(color: Colors.red, width: 1),
                 borderRadius: BorderRadius.all(Radius.circular(10.0)),
               ),
-              contentPadding:EdgeInsets.all(8),
+              contentPadding: EdgeInsets.all(8),
               // labelText:"Product Name",
               // labelStyle: TextStyle(
               //   color:HexColor("#232F3E"),
@@ -56,10 +59,12 @@ class SellerAddProductInput extends StatelessWidget {
                 fontSize: 20,
                 color: Colors.grey[600],
               )),
-          validator: (value) {
-            if (value.isEmpty) return 'Please enter some text';
-            return null;
-          },
+          validator: this.validFun != null
+              ? this.validFun
+              : (value) {
+                  if (value.isEmpty) return 'Please enter some text';
+                  return null;
+                },
         ),
       ]),
     );

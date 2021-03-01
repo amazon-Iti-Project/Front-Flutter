@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:project/screens/customer/home/homepage.dart';
+import 'package:project/screens/seller/addProduct/addProduct.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 
@@ -89,7 +90,7 @@ class _MyAppState extends State<MyApp> {
       },
       home: SplashScreenView(
         // home: TrasnactionScreen(),
-        home:MyHomePage(),
+        home:SellerAddProduct(),
         // home: Category(),
         duration: 3000,
         imageSize: 100,
