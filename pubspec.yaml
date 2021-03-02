@@ -76,7 +76,7 @@ flutter:
   fonts:
     - family: DancingScript     
       fonts:
-        - asset: fonts/dancingscript-Bold.ttf
+        - asset: fonts/DancingScript-Bold.ttf
     - family: AmazonFont     
       fonts:
         - asset: fonts/Ember/AmazonEmber_Rg.ttf
