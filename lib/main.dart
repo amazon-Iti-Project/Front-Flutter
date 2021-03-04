@@ -86,8 +86,9 @@ class _MyAppState extends State<MyApp> {
       },
       home: SplashScreenView(
         // home: TrasnactionScreen(),
-        home:SellerAddProduct(),
+        // home:SellerAddProduct(),
         // home: Category(),
+        home: MyHomePage(),
         duration: 3000,
         imageSize: 100,
         imageSrc: "Images/logo.png",
