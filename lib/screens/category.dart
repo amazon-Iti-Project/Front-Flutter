@@ -5,14 +5,19 @@ import 'package:project/screens/categoryList.dart';
 import 'package:project/widgets/categoryHeader.dart';
 import 'package:project/widgets/singleItem.dart';
 
+import '../Product.dart';
 import '../applocalization.dart';
 
 class Category extends StatefulWidget {
+  final Future<List<Product>> products;
+  const Category({Key key, this.products}) : super(key: key);
+
   @override
   _CategoryState createState() => _CategoryState();
 }
 
 class _CategoryState extends State<Category> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,9 +109,10 @@ class _CategoryState extends State<Category> {
                         Wrap(
                           children: [
                             InkWell(
-                              onTap: (){
+                              onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (BuildContext context) => CategoryList()));
+                                    builder: (BuildContext context) =>
+                                        CategoryList()));
                               },
                               child: SingleItem(
                                 name: "Computer Accessories",

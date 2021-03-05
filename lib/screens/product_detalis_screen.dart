@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/applocalization.dart';
 import 'package:project/homepage.dart';
-
+import 'package:project/widgets/appbar.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   ProductDetailsScreen({Key key}) : super(key: key);
@@ -17,9 +17,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Amazon"),
-      ),
       body: SafeArea(
         child: Form(
           key: key,
@@ -28,6 +25,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               // mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                AmazonAppBar(),
                 Container(
                     margin: EdgeInsets.only(
                         left: 15, top: 15, right: 20, bottom: 0),
@@ -247,7 +245,4 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       ),
     );
   }
-
-
 }
-

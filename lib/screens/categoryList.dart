@@ -1,5 +1,10 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:project/Product.dart';
+import 'package:project/modules/products.dart';
 import 'package:project/screens/product_detalis_screen.dart';
 import 'package:project/widgets/appbar.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -11,6 +16,14 @@ class CategoryList extends StatefulWidget {
 }
 
 class _CategoryListState extends State<CategoryList> {
+  Future<List<Product>> futurePosts;
+
+  @override
+  void initState() {
+    super.initState();
+    futurePosts = fetchProducts();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,14 +49,15 @@ class _CategoryListState extends State<CategoryList> {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
-                          Text(AppLocalizations.of(context).translate('delivery')),
+                          Text(AppLocalizations.of(context)
+                              .translate('delivery')),
                           Icon(Icons.arrow_drop_down_rounded),
                         ],
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left:8.0),
+                    padding: const EdgeInsets.only(left: 8.0),
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -54,7 +68,8 @@ class _CategoryListState extends State<CategoryList> {
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: [
-                            Text(AppLocalizations.of(context).translate('CompAccessories')),
+                            Text(AppLocalizations.of(context)
+                                .translate('CompAccessories')),
                             Icon(Icons.arrow_drop_down_rounded),
                           ],
                         ),
@@ -62,7 +77,7 @@ class _CategoryListState extends State<CategoryList> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left:8.0),
+                    padding: const EdgeInsets.only(left: 8.0),
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -73,7 +88,8 @@ class _CategoryListState extends State<CategoryList> {
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: [
-                            Text(AppLocalizations.of(context).translate('category')),
+                            Text(AppLocalizations.of(context)
+                                .translate('category')),
                             Icon(Icons.arrow_drop_down_rounded),
                           ],
                         ),
@@ -86,24 +102,22 @@ class _CategoryListState extends State<CategoryList> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left:8.0,top:8.0),
+                  padding: const EdgeInsets.only(left: 8.0, top: 8.0),
                   child: Row(
                     children: [
-                      Text(AppLocalizations.of(context).translate('results')
-                        ,style:TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20
-                      )),
+                      Text(AppLocalizations.of(context).translate('results'),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20)),
                     ],
                   ),
                 ),
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) => ProductDetailsScreen()
-                    ));
+                        builder: (BuildContext context) =>
+                            ProductDetailsScreen()));
                   },
-                                  child: Padding(
+                  child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Card(
                       elevation: 0.0,
@@ -114,16 +128,20 @@ class _CategoryListState extends State<CategoryList> {
                           Container(
                             width: 200,
                             height: 200,
-                            child: Image.network('https://i01.appmifile.com/webfile/globalimg/in/cms/4BAADF0B-B0D8-D9C3-1D38-43BAB1F76080.jpg'),
+                            child: Image.network(
+                                'https://i01.appmifile.com/webfile/globalimg/in/cms/4BAADF0B-B0D8-D9C3-1D38-43BAB1F76080.jpg'),
                           ),
                           Container(
-                            child:Column(
+                            child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Laptop",style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                ),),
+                                Text(
+                                  "Laptop",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
                                 RatingBar.builder(
                                   itemSize: 16,
                                   initialRating: 4.5,
@@ -131,7 +149,8 @@ class _CategoryListState extends State<CategoryList> {
                                   direction: Axis.horizontal,
                                   allowHalfRating: true,
                                   itemCount: 5,
-                                  itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
+                                  itemPadding:
+                                      EdgeInsets.symmetric(horizontal: 0.0),
                                   itemBuilder: (context, _) => Icon(
                                     Icons.star,
                                     color: Colors.amber,
@@ -142,13 +161,15 @@ class _CategoryListState extends State<CategoryList> {
                                 ),
                                 Row(
                                   children: [
-                                    Text("\$59.99",style: TextStyle(
-                                      fontSize: 18,
-                                    )),
-                                    Text('\$62.99',style: TextStyle(
-                                      color: Colors.grey,
-                                      decoration: TextDecoration.lineThrough
-                                    ))
+                                    Text("\$59.99",
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                        )),
+                                    Text('\$62.99',
+                                        style: TextStyle(
+                                            color: Colors.grey,
+                                            decoration:
+                                                TextDecoration.lineThrough))
                                   ],
                                 )
                               ],
@@ -159,67 +180,29 @@ class _CategoryListState extends State<CategoryList> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Card(
-                    elevation: 0.0,
-                    semanticContainer: true,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 200,
-                          height: 200,
-                          child: Image.network('https://i01.appmifile.com/webfile/globalimg/in/cms/4BAADF0B-B0D8-D9C3-1D38-43BAB1F76080.jpg'),
-                        ),
-                        Container(
-                          child:Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Laptop",style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                              ),),
-                              RatingBar.builder(
-                                itemSize: 16,
-                                initialRating: 4.5,
-                                minRating: 1,
-                                direction: Axis.horizontal,
-                                allowHalfRating: true,
-                                itemCount: 5,
-                                itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
-                                itemBuilder: (context, _) => Icon(
-                                  Icons.star,
-                                  color: Colors.amber,
-                                ),
-                                onRatingUpdate: (rating) {
-                                  print(rating);
-                                },
-                              ),
-                              Row(
-                                children: [
-                                  Text("\$59.99",style: TextStyle(
-                                    fontSize: 18,
-                                  )),
-                                  Text('\$62.99',style: TextStyle(
-                                    color: Colors.grey,
-                                    decoration: TextDecoration.lineThrough
-                                  ))
-                                ],
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
               
               ],
             ),
           ),
         ],
       ),
+      
     );
+  }
+}
+
+List<Product> parseProducts(String responseBody) {
+  final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+  return parsed.map<Product>((json) => Product.fromJson(json)).toList();
+}
+
+Future<List<Product>> fetchProducts() async {
+  final response =
+      await http.get("https://fierce-mountain-42224.herokuapp.com/products");
+
+  if (response.statusCode == 200) {
+    return parseProducts(response.body);
+  } else {
+    throw Exception('Unable to fetch products from the REST API');
   }
 }
