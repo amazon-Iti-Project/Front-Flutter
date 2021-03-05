@@ -63,5 +63,10 @@
   "remove":"حذف",
   "addNewAddress":"إضافة عنوان جديد",
   "shipToAmazonPickup":"الشحن إلى نقطة توصيل Amazon",
-  "shipToMultiAddress":"الشحن إلى أماكن متعددة"
+  "shipToMultiAddress":"الشحن إلى أماكن متعددة",
+  "fName":"",
+  "address":"العنوان",
+  "addressHint1":"",
+  "addressHint2":"Apt, Suite, Unit, Building (optional)",
+  "addAddress":""
 }

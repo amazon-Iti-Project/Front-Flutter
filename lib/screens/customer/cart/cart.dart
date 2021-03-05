@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project/models/product.dart';
 import 'package:project/models/user.dart';
+import 'package:project/screens/customer/cart/newAddress.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/productService.dart';
 import 'package:project/services/userService.dart';
@@ -254,146 +255,6 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                   );
                 },
-                // children: [
-                //   Padding(padding: const EdgeInsets.only(top: 125.0)),
-                //   Container(
-                //     height: 350,
-                //     decoration: BoxDecoration(
-                //       color: Colors.white,
-                //       border: Border(
-                //         bottom: BorderSide(color: Colors.grey[300]),
-                //       ),
-                //     ),
-                //     child: Column(
-                //       children: [
-                //         Row(
-                //           children: [
-                //             Container(
-                //               width: 200,
-                //               height: 200,
-                //               child: Image.network(
-                //                   'https://i01.appmifile.com/webfile/globalimg/in/cms/4BAADF0B-B0D8-D9C3-1D38-43BAB1F76080.jpg'),
-                //             ),
-                //             Container(
-                //               child: Column(
-                //                 crossAxisAlignment: CrossAxisAlignment.start,
-                //                 children: [
-                //                   Text(
-                //                     "Laptop",
-                //                     style: TextStyle(
-                //                       fontSize: 22,
-                //                     ),
-                //                   ),
-                //                   Text("\$59.99",
-                //                       style: TextStyle(
-                //                           fontSize: 18, color: Colors.red[900])),
-                //                   Text(
-                //                       AppLocalizations.of(context)
-                //                           .translate('inStock'),
-                //                       style: TextStyle(
-                //                           fontSize: 18, color: Colors.green[700])),
-                //                   Row(
-                //                     children: [
-                //                       Text(
-                //                           AppLocalizations.of(context)
-                //                                   .translate('color') +
-                //                               ": ",
-                //                           style: TextStyle(
-                //                               fontSize: 18,
-                //                               fontWeight: FontWeight.bold)),
-                //                       Text("black",
-                //                           style: TextStyle(
-                //                             fontSize: 18,
-                //                           )),
-                //                     ],
-                //                   ),
-                //                 ],
-                //               ),
-                //             )
-                //           ],
-                //         ),
-                //         Padding(
-                //           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                //           child: Row(children: [
-                //             ElevatedButton(
-                //                 style: ButtonStyle(
-                //                   backgroundColor: MaterialStateProperty.all<Color>(
-                //                       Colors.grey[400]),
-                //                   elevation: MaterialStateProperty.all<double>(0.0),
-                //                 ),
-                //                 onPressed: () {
-                //                   // Respond to button press
-                //                 },
-                //                 child: Text('-'),
-                //               ),
-                //             Container(
-                //               width: 70,
-                //               height: 35,
-                //               child: Center(child: Text(_value.toString())),
-                //               decoration: BoxDecoration(
-                //                   color: Colors.white,
-                //                   border: Border.all(color: Colors.grey)),
-                //             ),
-                //             ElevatedButton(
-                //               style: ButtonStyle(
-                //                 backgroundColor: MaterialStateProperty.all<Color>(
-                //                     Colors.grey[400]),
-                //                 elevation: MaterialStateProperty.all<double>(0.0),
-                //               ),
-                //               onPressed: () {
-                //                 // Respond to button press
-                //               },
-                //               child: Text('+'),
-                //             ),
-                //           ]),
-                //         ),
-                //         Row(
-                //           children: [
-                //             Padding(
-                //               padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                //               child: ElevatedButton(
-                //                 style: ButtonStyle(
-                //                   backgroundColor: MaterialStateProperty.all<Color>(
-                //                       Colors.grey[400]),
-                //                   elevation: MaterialStateProperty.all<double>(0.0),
-                //                 ),
-                //                 onPressed: () {
-                //                   // Respond to button press
-                //                 },
-                //                 child: Text(AppLocalizations.of(context)
-                //                     .translate('delete')),
-                //               ),
-                //             ),
-                //             Padding(
-                //               padding: const EdgeInsets.only(left: 8.0,right: 8.0),
-                //               child: ElevatedButton(
-                //                 style: ButtonStyle(
-                //                   backgroundColor: MaterialStateProperty.all<Color>(
-                //                       Colors.grey[400]),
-                //                   elevation: MaterialStateProperty.all<double>(0.0),
-                //                 ),
-                //                 onPressed: () {
-                //                   // Respond to button press
-                //                 },
-                //                 child: Text(AppLocalizations.of(context)
-                //                     .translate('saveForLater')),
-                //               ),
-                //             ),
-                //           ],
-                //         ),
-                //         Row(
-                //           children: [
-                //             TextButton(
-                //               onPressed: () {},
-                //               child: Text(AppLocalizations.of(context)
-                //                   .translate('compareSimilarItems')),
-                //             ),
-                //           ],
-                //         ),
-                //       ],
-                //     ),
-                //   ),
-                // ],
               ),
             ),
           ]),
@@ -445,7 +306,7 @@ class _CartScreenState extends State<CartScreen> {
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                CheckoutScreen()));
+                                NewAddress()));
                       },
                       color: Color.fromRGBO(242, 196, 89, 1),
                       child: Text(AppLocalizations.of(context)

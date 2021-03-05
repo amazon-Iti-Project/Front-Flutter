@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:project/screens/customer/cart/newAddress.dart';
 import 'package:project/screens/customer/home/homepage.dart';
 import 'package:project/screens/seller/addProduct/addProduct.dart';
 import 'package:project/services/Localization/applocalization.dart';
@@ -88,7 +89,8 @@ class _MyAppState extends State<MyApp> {
         // home: TrasnactionScreen(),
         // home:SellerAddProduct(),
         // home: Category(),
-        home: MyHomePage(),
+        // home: MyHomePage(),
+        home: NewAddress(),
         duration: 3000,
         imageSize: 100,
         imageSrc: "Images/logo.png",

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/screens/customer/card/cart.dart';
+import 'package:project/screens/customer/cart/cart.dart';
 import 'package:project/screens/customer/order/order-timeline.dart';
 import 'package:project/screens/customer/order/order.dart';
 // import 'package:project/models/order.dart';
