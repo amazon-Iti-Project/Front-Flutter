@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD:lib/screens/trasaction_screen.dart
-import 'package:project/applocalization.dart';
-=======
->>>>>>> 67841f14d905cedbaf64a582625848dd4aa856a4:lib/screens/customer/payment/trasaction_screen.dart
+import 'package:project/services/Localization/applocalization.dart';
 
 class TrasnactionScreen extends StatefulWidget {
   TrasnactionScreen({Key key}) : super(key: key);

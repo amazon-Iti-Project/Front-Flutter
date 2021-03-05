@@ -1,13 +1,10 @@
 import 'package:countdown_flutter/countdown_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-<<<<<<< HEAD:lib/screens/homeScreen.dart
-=======
 import 'package:countdown_flutter/countdown_flutter.dart';
 import 'package:project/screens/customer/Auth/login_screen.dart';
 import 'package:project/screens/customer/Auth/signUp_screen.dart';
 import 'package:project/services/Localization/applocalization.dart';
->>>>>>> 67841f14d905cedbaf64a582625848dd4aa856a4:lib/screens/customer/home/homeScreen.dart
 import 'package:project/widgets/nineSections.dart';
 
 

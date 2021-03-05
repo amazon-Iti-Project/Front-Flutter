@@ -1,19 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD:lib/homepage.dart
-import 'package:project/applocalization.dart';
-import 'package:project/screens/your_account_screen.dart';
-import 'package:project/screens/allDepartments.dart';
-import 'package:project/screens/homeScreen.dart';
-=======
 import 'package:project/modules/language.dart';
 import 'package:project/screens/customer/category/allDepartments.dart';
 import 'package:project/screens/customer/order/ordersList_Screen.dart';
 import 'package:project/services/Localization/applocalization.dart';
->>>>>>> 67841f14d905cedbaf64a582625848dd4aa856a4:lib/screens/customer/home/homepage.dart
 import 'package:project/widgets/appbar.dart';
 
 import '../../../main.dart';
+import '../../your_account_screen.dart';
 import 'homeScreen.dart';
 
 class MyHomePage extends StatefulWidget {

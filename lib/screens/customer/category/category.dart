@@ -5,14 +5,6 @@ import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/widgets/categoryHeader.dart';
 import 'package:project/widgets/singleItem.dart';
 
-<<<<<<< HEAD:lib/screens/category.dart
-import '../Product.dart';
-import '../applocalization.dart';
-
-class Category extends StatefulWidget {
-  final Future<List<Product>> products;
-  const Category({Key key, this.products}) : super(key: key);
-=======
 import 'allDepartments.dart';
 import 'categoryList.dart';
 
@@ -21,7 +13,6 @@ class Category extends StatefulWidget {
   final List<Datum> categoryItems;
   final String title;
   Category({this.categoryItems, this.title});
->>>>>>> 67841f14d905cedbaf64a582625848dd4aa856a4:lib/screens/customer/category/category.dart
 
   @override
   _CategoryState createState() => _CategoryState();
@@ -114,42 +105,6 @@ class _CategoryState extends State<Category> {
                   height: 400,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-<<<<<<< HEAD:lib/screens/category.dart
-                    child: ListView(
-                      children: [
-                        Wrap(
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        CategoryList()));
-                              },
-                              child: SingleItem(
-                                name: "Computer Accessories",
-                                imgSrc:
-                                    "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-                              ),
-                            ),
-                            SingleItem(
-                              name: "Computer Accessories",
-                              imgSrc:
-                                  "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-                            ),
-                            SingleItem(
-                              name: "Computer Accessories",
-                              imgSrc:
-                                  "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-                            ),
-                            SingleItem(
-                              name: "Computer Accessories",
-                              imgSrc:
-                                  "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-                            ),
-                          ],
-                        ),
-                      ],
-=======
                     child: GridView.builder(
                       gridDelegate:
                           new SliverGridDelegateWithFixedCrossAxisCount(
@@ -172,7 +127,6 @@ class _CategoryState extends State<Category> {
                           ),
                         );
                       },
->>>>>>> 67841f14d905cedbaf64a582625848dd4aa856a4:lib/screens/customer/category/category.dart
                     ),
                   ),
                 ),

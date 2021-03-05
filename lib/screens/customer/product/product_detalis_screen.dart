@@ -1,16 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD:lib/screens/product_detalis_screen.dart
-import 'package:project/applocalization.dart';
-import 'package:project/homepage.dart';
-import 'package:project/widgets/appbar.dart';
-=======
+import 'package:project/models/product.dart';
 import 'package:project/screens/customer/home/homepage.dart';
 import 'package:project/services/Localization/applocalization.dart';
->>>>>>> 67841f14d905cedbaf64a582625848dd4aa856a4:lib/screens/customer/product/product_detalis_screen.dart
+import 'package:project/services/productService.dart';
+import 'package:project/widgets/appbar.dart';
+
 
 class ProductDetailsScreen extends StatefulWidget {
-  ProductDetailsScreen({Key key}) : super(key: key);
+  int id;
+  Product product;
+
+  ProductDetailsScreen(
+    int id, {
+    Key key,
+  }) : super(key: key);
 
   @override
   _ProductDetailsScreenState createState() => _ProductDetailsScreenState();
@@ -18,12 +22,18 @@ class ProductDetailsScreen extends StatefulWidget {
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   final key = GlobalKey<FormState>();
-<<<<<<< HEAD:lib/screens/product_detalis_screen.dart
+  @override
+  void initState() {
+    super.initState();
+    getProductbyid();
+    print(widget.id);
+  }
 
-=======
-  // final _emailController = TextEditingController();
-  // final _passwordController = TextEditingController();
->>>>>>> 67841f14d905cedbaf64a582625848dd4aa856a4:lib/screens/customer/product/product_detalis_screen.dart
+  getProductbyid() async {
+    widget.product = await ProductService().getProductByID(widget.id);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +42,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           key: key,
           child: ListView(children: [
             Column(
-              // mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AmazonAppBar(),
@@ -40,7 +49,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     margin: EdgeInsets.only(
                         left: 15, top: 15, right: 20, bottom: 0),
                     child: Text(
-                      "ASUS Laptop L210 Ultra Thin Laptop, 11.6” HD Display, Intel Celeron N4020 Processor, 4GB RAM, 64GB Storage, NumberPad, Windows 10 Home in S Mode with One Year of Microsoft 365 Personal, L210MA-DB01",
+                      "lkl",
+                      // widget.product.name,
                       style: TextStyle(fontSize: 20),
                     )),
                 Center(

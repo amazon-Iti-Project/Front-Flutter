@@ -1,23 +1,19 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_localizations/flutter_localizations.dart';
-<<<<<<< HEAD
-import 'package:project/applocalization.dart';
-import 'package:project/homepage.dart';
-
-=======
+import 'package:project/pp.dart';
 import 'package:project/screens/customer/cart/newAddress.dart';
-import 'package:project/screens/customer/home/homepage.dart';
-import 'package:project/screens/seller/addProduct/addProduct.dart';
+import 'package:project/screens/customer/category/category.dart';
 import 'package:project/services/Localization/applocalization.dart';
->>>>>>> 67841f14d905cedbaf64a582625848dd4aa856a4
 import 'package:splash_screen_view/SplashScreenView.dart';
 
 import 'models/product.dart';
 import 'package:http/http.dart' as http;
-import 'package:dio/dio.dart';
+
+import 'screens/customer/home/homeScreen.dart';
+import 'screens/customer/home/homepage.dart';
 
 
 void main() async {
@@ -66,6 +62,22 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    var splashScreenView = SplashScreenView(
+        // home: TrasnactionScreen(),
+        // home:SellerAddProduct(),
+        // home: Category(),
+        home:MyHomePage() ,
+        // home: NewAddress(),
+        duration: 3000,
+        imageSize: 100,
+        imageSrc: "Images/logo.png",
+        text: "Amazon",
+        textType: TextType.TyperAnimatedText,
+        textStyle: TextStyle(
+          fontSize: 30.0,
+        ),
+        backgroundColor: Colors.white,
+      );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       locale: _locale,
@@ -88,33 +100,10 @@ class _MyAppState extends State<MyApp> {
             return supportedLocale;
           }
         }
-<<<<<<< HEAD
-        return null;
-      },
-      home: SplashScreenView(
-        // home: TrasnactionScreen(),
-        home: MyHomePage(),
-=======
             return locale;
 
       },
-      home: SplashScreenView(
-        // home: TrasnactionScreen(),
-        // home:SellerAddProduct(),
->>>>>>> 67841f14d905cedbaf64a582625848dd4aa856a4
-        // home: Category(),
-        // home: MyHomePage(),
-        home: NewAddress(),
-        duration: 3000,
-        imageSize: 100,
-        imageSrc: "Images/logo.png",
-        text: "Amazon",
-        textType: TextType.TyperAnimatedText,
-        textStyle: TextStyle(
-          fontSize: 30.0,
-        ),
-        backgroundColor: Colors.white,
-      ),
+      home: splashScreenView,
     );
   }
 }

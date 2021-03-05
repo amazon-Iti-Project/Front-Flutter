@@ -100,8 +100,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-<<<<<<< HEAD
-=======
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -114,7 +112,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.6"
->>>>>>> 67841f14d905cedbaf64a582625848dd4aa856a4
   http:
     dependency: "direct main"
     description:
@@ -129,8 +126,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.4"
-<<<<<<< HEAD
-=======
   image_picker:
     dependency: "direct main"
     description:
@@ -145,7 +140,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.6"
->>>>>>> 67841f14d905cedbaf64a582625848dd4aa856a4
   intl:
     dependency: transitive
     description:
@@ -181,8 +175,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.9.2"
-<<<<<<< HEAD
-=======
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -190,7 +182,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
->>>>>>> 67841f14d905cedbaf64a582625848dd4aa856a4
   sky_engine:
     dependency: transitive
     description: flutter
