@@ -19,20 +19,28 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
-
+  
 dependencies:
   flutter:
     sdk: flutter
+  http: ^0.12.2
+  dio: ^3.0.10
   cupertino_icons: ^1.0.0
+  hexcolor: ^1.0.6
   #localization library
+  image_picker: ^0.6.7+22
+
  
   #Animated Splash Screen 
   splash_screen_view: ^1.0.1
+<<<<<<< HEAD
   http: ^0.12.2
 
+=======
+  
+>>>>>>> 67841f14d905cedbaf64a582625848dd4aa856a4
   countdown_flutter: ^0.1.2
   flutter_rating_bar: ^3.2.0+1
-
 
   flutter_localizations:
     sdk: flutter
@@ -74,6 +82,12 @@ flutter:
     - family: DancingScript     
       fonts:
         - asset: fonts/DancingScript-Bold.ttf
+    - family: AmazonFont     
+      fonts:
+        - asset: fonts/Ember/AmazonEmber_Rg.ttf
+        - asset: fonts/Ember/AmazonEmber_Bd.ttf
+          weight: 700
+
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

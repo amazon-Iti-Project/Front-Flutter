@@ -62,5 +62,10 @@
   "remove":"Remove",
   "addNewAddress":"Add a new address",
   "shipToAmazonPickup":"Ship to an Amazon pickup location",
-  "shipToMultiAddress":"Ship to multiple addresses"
+  "shipToMultiAddress":"Ship to multiple addresses",
+  "fName":"Full name (first and last name)",
+  "address":"Address",
+  "addressHint1":"Street address or P.O. Box",
+  "addressHint2":"Apt, Suite, Unit, Building (optional)",
+  "addAddress":"Add Address"
 }
