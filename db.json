@@ -14,13 +14,13 @@
       "image": "https://m.media-amazon.com/images/I/61LHj2XV1wL._AC_UY218_.jpg",
       "discount": 50,
       "ar": {
-        "name": "Acer Swift 3 Intel Evo Thin & Light Laptop",
-        "description": "Acer Swift 3 Intel Evo Thin & Light Laptop, 14' Full HD, Intel Core i7-1165G7, Intel Iris Xe Graphics, 8GB LPDDR4X, 256GB NVMe SSD, Wi-Fi 6, Fingerprint Reader, Back-lit KB, SF314-59-75QC",
-        "about": "This laptop is simply powerful and portable and delivers exceptional performance for everyday com...",
-        "title": "Top Pick Recommendation",
-        "subtitle": "Making your life easier",
-        "size": "medium",
-        "color": "red"
+        "name": "لاب توب ايسر سويفت 3 انتل ايفو رفيع وخفيف الوزن",
+        "description": "لاب توب Acer Swift 3 Intel Evo رفيع وخفيف الوزن ، 14 بوصة Full HD ، Intel Core i7-1165G7 ، رسومات Intel Iris Xe ، 8GB LPDDR4X ، 256GB NVMe SSD ، Wi-Fi 6 ، قارئ بصمات الأصابع ، قاعدة بيانات خلفية مضاءة ، SF314-59- 75QC",
+        "about": "هذا الكمبيوتر المحمول قوي ومحمول ببساطة ويوفر أداءً استثنائيًا للاستخدام اليومي ...",
+        "title": "أفضل اختيار",
+        "subtitle": "اجعل حياتك أسهل",
+        "size": "متوسط",
+        "color": "أحمر"
       },
       "en": {
         "name": "Acer Swift 3 Intel Evo Thin & Light Laptop",
@@ -52,12 +52,12 @@
       "tags": [],
       "id": 1,
       "ar":{
-        "name": "DigitalCamera",
-        "size": "medium",
-      "color": "red"
+        "name": "كاميرا رقمية",
+        "size": "متوسط",
+      "color": "أحمر"
       },
       "en":{
-        "name": "DigitalCamera",
+        "name": "Digital Camera",
         "size": "medium",
       "color": "red"
       },
@@ -82,13 +82,13 @@
       "tags": [],
       "id": 2,
       "ar":{
-        "name": "Tv 24inch",
-        "size": "32 inch",
-      "color": "black"
+        "name": "تلفزيون 24 بوصة",
+        "size": " 24 بوصة",
+      "color": "أسود"
       },
       "en":{
         "name": "Tv 24inch",
-        "size": "32 inch",
+        "size": "24 inch",
       "color": "black"
       },
       "shipping": {
@@ -111,16 +111,16 @@
       "image": "https://m.media-amazon.com/images/I/71lw+9N+7QL._AC_UY218_.jpg",
       "id": 3,
       "ar":{
-        "name": "audio Video Capture Cards",
-        "description": "MeiYin Audio Video Capture Cards HDMI to USB HDMI Video Capture, Full HD 1080P USB 2.0",
-        "size": "asdasd",
-      "color": "asda"
+        "name": "بطاقات التقاط الصوت والفيديو",
+        "description": "بطاقات التقاط الفيديو الصوتية MeiYin من HDMI إلى USB HDMI لالتقاط الفيديو ، Full HD 1080P USB 2.0",
+        "size": "32",
+      "color": "فضي"
       },
       "en":{
         "name": "audio Video Capture Cards",
         "description": "MeiYin Audio Video Capture Cards HDMI to USB HDMI Video Capture, Full HD 1080P USB 2.0",
-        "size": "asdasd",
-      "color": "asda"
+        "size": "32",
+      "color": "silver"
       },
       "shipping": {
         "period": 22,
@@ -142,12 +142,12 @@
       "id": 5,
       "image": "https://www.sathya.in/Media/Default/Thumbs/0038/0038136-vivo-s1-pro-black8gb-ram-128gb-storage-250.jpg",
       "ar":{
-        "name": "C16-80",
-        "size": "small",
-      "color": "red"
+        "name": "هاتف ذكي C16-80",
+        "size": "صغير",
+      "color": "أحمر"
       },
       "en":{
-        "name": "C16-80",
+        "name": "SmartPhone C16-80",
         "size": "small",
       "color": "red"
       },
@@ -171,13 +171,13 @@
       "id": 6,
       "image": "https://mobizil.com/wp-content/uploads/2017/01/j7-2016-800x800.jpg",
       "ar":{
-        "name": "J7 2016",
-        "size": "8 inch",
-        "color": "black",
-      "description": "2gb rams"
+        "name": "هاتف ذكي J7 2016",
+        "size": "8 بوصة",
+        "color": "أسود",
+      "description": "2 جيجا رام"
       },
       "en":{
-        "name": "J7 2016",
+        "name": "Samsung J7 2016",
         "size": "8 inch",
         "color": "black",
       "description": "2gb rams"

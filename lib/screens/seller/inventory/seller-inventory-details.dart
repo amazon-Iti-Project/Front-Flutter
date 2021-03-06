@@ -16,13 +16,14 @@ class SellerInventroyDetails extends StatefulWidget {
 class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
   String localizedParentData = "SellerInventory";
   Future<Product> futureProduct;
-
+  String langCode;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    langCode='en';
     ProductService prodServ = ProductService();
-    futureProduct = prodServ.getProductByID(widget.prodId);
+    futureProduct = prodServ.getProductByID(widget.prodId,langCode);
     // prodServ.getProductsBySellerId(1).then(
     //   (res)=>{
     //     this.productList = res,
@@ -31,6 +32,14 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
     // ).catchError(
     //   (e)=>print(e)
     // );
+  }
+  @override
+  void didChangeDependencies() {
+    Locale myLocale = Localizations.localeOf(context);
+    setState(() {
+      langCode =  myLocale.languageCode;      
+    });
+    super.didChangeDependencies();
   }
 
   num getNetPrice(Product product) {
