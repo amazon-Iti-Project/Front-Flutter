@@ -1,6 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:project/models/user.dart';
 
-import 'package:dio/dio.dart';
 import '../constants.dart';
 
 class UserService {
