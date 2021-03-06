@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project/screens/seller/addProduct/addProduct.dart';
-import 'package:project/screens/seller/inventory/seller-inventory-details.dart';
 import 'package:project/screens/seller/inventory/seller-inventory.dart';
 import 'package:project/screens/seller/orders/seller-orders-home.dart';
 import 'package:project/screens/templatesWidgets/app-text.dart';

@@ -36,10 +36,10 @@ class AppLocalizations {
   String translateNested(String parentkey, String nestedKey) {
 // Returns a localized text
     Map<String, dynamic> json = _localizedObject[parentkey];
-    print("json:$json");
+    // print("json:$json");
     String value = json[nestedKey] as String;
-    print("nestedKey:$nestedKey");
-    print("json$value");
+    // print("nestedKey:$nestedKey");
+    // print("json$value");
     return value;
   }
 
