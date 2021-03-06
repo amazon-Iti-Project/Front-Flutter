@@ -1,7 +1,7 @@
 class Fee {
   num id;
   num fee;
-  String admin;
+  num admin;
   num category;
 
     Fee({this.id,this.admin, this.category,this.fee});

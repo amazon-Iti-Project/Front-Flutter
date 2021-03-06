@@ -1,3 +1,6 @@
+import 'package:project/screens/customer/order/order.dart';
+import 'package:project/screens/seller/addProduct/addProduct.dart';
+
 class Product {
     Product({
         this.id,
@@ -78,16 +81,20 @@ class Fee {
         this.admin,
         this.category,
         this.fee,
+        this.state
     });
 
     int admin;
     int category;
     int fee;
+    Orders state;
 
     factory Fee.fromJson(Map<String, dynamic> json) => Fee(
         admin: json["admin"],
         category: json["category"],
         fee: json["fee"],
+        // state: .getOrderType(json["discount"]),
+
     );
 }
 

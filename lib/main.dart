@@ -3,8 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:project/screens/customer/home/homeScreen.dart';
 import 'package:project/screens/customer/home/homepage.dart';
 import 'package:project/screens/seller/addProduct/addProduct.dart';
+import 'package:project/screens/seller/seller-home-screen.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 
@@ -64,6 +66,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "Iti-amazon",
       debugShowCheckedModeBanner: false,
       locale: _locale,
       supportedLocales: [
@@ -82,15 +85,16 @@ class _MyAppState extends State<MyApp> {
           
           if (supportedLocale.languageCode == locale.languageCode &&
               supportedLocale.countryCode == locale.countryCode) {
-            return supportedLocale;
+            // return supportedLocale;
+            return Locale('ar', 'ME');
+            // return Locale('en', 'US');
           }
         }
-            return locale;
-
+            return supportedLocales.toList()[0];
       },
       home: SplashScreenView(
-        // home: TrasnactionScreen(),
-        home:SellerAddProduct(),
+        home: SellerHomeScreen(),
+        // home:MyHomePage(),
         // home: Category(),
         duration: 3000,
         imageSize: 100,
@@ -104,50 +108,4 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
-}
-
-
-Future<List<Product>> fetchProducts() async {
-  final response = await http.get('http://localhost:3000/products');
-  // final response = await http.get('https://api.androidhive.info/json/movies.json');
-  
-
-  if (response.statusCode == 200) {
-    print("done print");
-    return parseProducts(response.body);
-  } else {
-    print("exception print");
-    throw Exception('Unable to fetch products from the REST API');
-  }
-}
-
-List<Product> parseProducts(String responseBody) {
-  final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
-  return parsed.map<Product>((json) => Product.fromJson(json)).toList();
-}
- const String BASE_URL = "http://localhost:8000/products";
-
- Future<List<Product>> getProducts() async {
-  Response response;
-  Dio dio =  Dio();
-  
-  response = await dio.get(BASE_URL);
-  if (response.statusCode == 200){
-  print("response by kamal : ");
-  // print(response.data.toString());
-  // now data is map objects
-  var data = response.data;
-    return data.map<Product>((prod){
-     return   Product.fromJson(prod);
-    }
-    ).toList();
-
-  // or may get like that to get by query parameters
-  // response =
-  //     await dio.get("/test", queryParameters: {"id": 12, "name": "wendu"});
-  // print(response.data.toString());
-  }else{
-    print("PostService: error in getting data");
-  }
-
 }

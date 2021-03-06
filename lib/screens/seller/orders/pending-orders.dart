@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:project/screens/seller/orders/order-details-pending-card.dart';
 
-import 'order-details-card.dart';
 
-class SellerBendingOrders extends StatefulWidget {
+class SellerPendingOrders extends StatefulWidget {
   @override
-  SellerBendingOrdersState createState() => SellerBendingOrdersState();
+  SellerPendingOrdersState createState() => SellerPendingOrdersState();
 }
 
-class SellerBendingOrdersState extends State<SellerBendingOrders> {
+class SellerPendingOrdersState extends State<SellerPendingOrders> {
   @override
   void initState() {
     // TODO: implement initState
@@ -31,7 +31,7 @@ class SellerBendingOrdersState extends State<SellerBendingOrders> {
                   //     MaterialPageRoute(
                   //         builder: (context) => SellerInventroyDetails()));
                 },
-                child:OrderDetailsCard()
+                child:OrderDetailsPendingCard()
               );
             },
           ),

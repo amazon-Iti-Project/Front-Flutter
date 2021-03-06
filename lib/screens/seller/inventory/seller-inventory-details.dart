@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project/screens/templatesWidgets/app-text.dart';
+import 'package:project/screens/templatesWidgets/localized-text.dart';
 
 class SellerInventroyDetails extends StatefulWidget {
   @override
@@ -9,12 +10,18 @@ class SellerInventroyDetails extends StatefulWidget {
 }
 
 class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
+  String localizedParentData = "SellerInventory";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
-          title: const Text('Inventory'),
+          title: LocalizedText(
+            localizedParentData,
+            'inventory',
+            color: Colors.white,
+            bold: true,
+          ),
           backgroundColor: HexColor("#232F3E"),
         ),
         body: Card(
@@ -32,10 +39,20 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    AppText(
-                      "Brand:iSunful",
-                      color: Colors.lightBlue[700],
-                      subText: true,
+                    Row(
+                      children: [
+                        LocalizedText(
+                          localizedParentData,
+                          "brand",
+                          color: Colors.lightBlue[700],
+                          subText: true,
+                        ),
+                        AppText(
+                          ":iSunful",
+                          color: Colors.lightBlue[700],
+                          subText: true,
+                        ),
+                      ],
                     ),
                     Row(
                       children: [
@@ -119,7 +136,7 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            AppText("Quantity: "),
+                            LocalizedText(localizedParentData, "quantity"),
                             Flexible(
                               fit: FlexFit.loose,
                               child: AppText(
@@ -136,10 +153,12 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                           indent: 25,
                           endIndent: 25,
                         ),
-                        AppText(
-                          "Shippment and Fee Details",
+                        LocalizedText(
+                          localizedParentData,
+                          "offerAndFeeDetails",
                           bold: true,
                         ),
+
                         Card(
                             shape: RoundedRectangleBorder(
                                 borderRadius:
@@ -154,7 +173,8 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      AppText("price:"),
+                                      LocalizedText(
+                                          localizedParentData, "price"),
                                       Row(
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
@@ -201,7 +221,8 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      AppText("Discount"),
+                                      LocalizedText(
+                                          localizedParentData, "discount"),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
@@ -221,7 +242,8 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      AppText("Fees"),
+                                      LocalizedText(
+                                          localizedParentData, "fees"),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
@@ -241,7 +263,8 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      AppText("Return Price"),
+                                      LocalizedText(
+                                          localizedParentData, "returnPrice"),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
@@ -268,8 +291,9 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      AppText(
-                                        "Total Net",
+                                      LocalizedText(
+                                        localizedParentData,
+                                        "netReturn",
                                         color: Colors.lightBlue[700],
                                       ),
                                       Row(
@@ -290,8 +314,124 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                                 ],
                               ),
                             )), //price
-                        AppText(
-                          "Orders Details",
+
+                        LocalizedText(
+                          localizedParentData,
+                          "shipmentDetails",
+                          bold: true,
+                        ),
+
+                        Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5.0)),
+                                side: BorderSide(color: Colors.grey[700])),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      LocalizedText(
+                                          localizedParentData, "shipment"),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Flexible(
+                                              fit: FlexFit.loose,
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  AppText(
+                                                    "\$ ",
+                                                    fontSize: 12,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            right: 8.0),
+                                                    child: AppText(
+                                                      "120 ",
+                                                      subText: true,
+                                                    ),
+                                                  ),
+                                                ],
+                                              )),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      LocalizedText(
+                                          localizedParentData, "period"),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          AppText(
+                                            "%",
+                                            fontSize: 12,
+                                          ),
+                                          AppText("20"),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  Divider(
+                                    height: 10,
+                                    thickness: 1,
+                                    color: Colors.grey,
+                                    indent: 25,
+                                    endIndent: 25,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      LocalizedText(
+                                        localizedParentData,
+                                        "netReturn",
+                                        color: Colors.lightBlue[700],
+                                        bold: true,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          AppText(
+                                            "\$",
+                                            fontSize: 12,
+                                            bold: true,
+                                          ),
+                                          AppText(
+                                            "120",
+                                            bold: true,
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            )), //price
+
+                        LocalizedText(
+                          localizedParentData,
+                          "orderDetails",
                           bold: true,
                         ),
                         Card(
@@ -308,7 +448,8 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    AppText("Orders Number"),
+                                    LocalizedText(
+                                        localizedParentData, "numberOfOrders"),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
@@ -324,11 +465,12 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                                     )
                                   ],
                                 ),
-                                 Row(
+                                Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    AppText("Orders Return"),
+                                    LocalizedText(
+                                        localizedParentData, "ordersReturn"),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
@@ -344,11 +486,12 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                                     )
                                   ],
                                 ),
-                                 Row(
+                                Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    AppText("Shipped"),
+                                    LocalizedText(
+                                        localizedParentData, "shippedOrders"),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
@@ -371,14 +514,15 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                                   indent: 25,
                                   endIndent: 25,
                                 ),
-                                  Row(
+                                Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                     AppText(
-                                  "Total Return",
-                                  color: Colors.lightBlue[700],
-                                ),
+                                    LocalizedText(
+                                      localizedParentData,
+                                      "totalReturn",
+                                      color: Colors.lightBlue[700],
+                                    ),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
@@ -394,7 +538,6 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                                     )
                                   ],
                                 ),
-                              
                               ],
                             ),
                           ),
@@ -410,5 +553,3 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
     //  AppLocalizations.of(context).translate('shopbydep')
   }
 }
-
-

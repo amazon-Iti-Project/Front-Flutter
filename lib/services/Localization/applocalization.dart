@@ -14,6 +14,7 @@ class AppLocalizations {
   }
 
   Map<String, String> _localizedValues;
+  Map<String, dynamic> _localizedObject;
 
   Future load() async {
     String jsonStringValues =
@@ -24,11 +25,22 @@ class AppLocalizations {
     _localizedValues = mappedJson.map((key, value) {
       return MapEntry(key, value.toString());
     });
+        _localizedObject = mappedJson;
     return true;
   }
 
   String translate(String key) {
     return _localizedValues[key];
+  }
+
+  String translateNested(String parentkey, String nestedKey) {
+// Returns a localized text
+    Map<String, dynamic> json = _localizedObject[parentkey];
+    print("json:$json");
+    String value = json[nestedKey] as String;
+    print("nestedKey:$nestedKey");
+    print("json$value");
+    return value;
   }
 
   static const LocalizationsDelegate<AppLocalizations> delegate =

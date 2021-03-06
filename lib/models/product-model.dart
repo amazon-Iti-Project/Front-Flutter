@@ -28,23 +28,18 @@ class Product {
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
-      id: json['id'],
-      name: json['name'],
-      color: json['color'],
-      image:json['image'],
-      description:json['description'],
-      tags:json['tags'],
-      size:json['size'],
-      shipping:json['shipping'],
-      fee:json['fee'],
-      discount:json['discount'],
-      quantity:json['quantity'],
-      brand:json['brand'],
-      category:json['category'],
-      rate:json['rate'],
-      stock:json['stock'],
-      shippingLabel:json['shippingLabel'],
-      seller:json['seller'],
+      id: json['id'], name: json['name'], color: json['color'], image:json['image'],
+      description:json['description'], tags:json['tags'],size:json['size'],
+      shipping:json['shipping'], fee:json['fee'], discount:json['discount'],
+      quantity:json['quantity'], brand:json['brand'], category:json['category'],
+      rate:json['rate'], stock:json['stock'],shippingLabel:json['shippingLabel'], seller:json['seller'],
     );
   }
+
+  @override
+    String toString() {
+      // TODO: implement toString
+      return "name:${this.name},id:${this.id},price:${this.price},category:${this.category},"
+      +"fee:${this.fee},discount:${this.discount},shipping:${this.shipping},color:${this.color},";
+    }
 }

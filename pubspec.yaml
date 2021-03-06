@@ -29,6 +29,7 @@ dependencies:
   hexcolor: ^1.0.6
   #localization library
   image_picker: ^0.6.7+22
+  firebase_storage: ^3.0.3
 
  
   #Animated Splash Screen 
@@ -76,7 +77,7 @@ flutter:
   fonts:
     - family: DancingScript     
       fonts:
-        - asset: fonts/dancingscript-Bold.ttf
+        - asset: fonts/dancingScript-Bold.ttf
     - family: AmazonFont     
       fonts:
         - asset: fonts/Ember/AmazonEmber_Rg.ttf

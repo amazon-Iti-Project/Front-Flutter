@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'bending-orders.dart';
+import 'package:project/screens/seller/orders/pending-orders.dart';
+import 'package:project/screens/templatesWidgets/localized-text.dart';
 import 'deliverd-orders.dart';
+import 'package:project/services/Localization/applocalization.dart';
+
 
 class SellerOrdersHome extends StatefulWidget {
   @override
@@ -10,15 +14,42 @@ class SellerOrdersHome extends StatefulWidget {
 }
 
 class SellerOrdersHomeState extends State<SellerOrdersHome> {
+   final String localizedParentData = "SellerOrders";
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+            supportedLocales: [
+        Locale('en', 'US'),
+        Locale('ar', 'ME'),
+      ],
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      localeResolutionCallback: (locale, supportedLocales) {
+         
+        for (var supportedLocale in supportedLocales) {
+          
+          if (supportedLocale.languageCode == locale.languageCode &&
+              supportedLocale.countryCode == locale.countryCode) {
+            // return supportedLocale;
+            return Locale('ar', 'ME');
+            // return Locale('en', 'US');
+          }
+        }
+            return supportedLocales.toList()[0];
+      },
       home: DefaultTabController(
           length: 2,
           child: Scaffold(
               backgroundColor: Colors.grey[200],
               appBar: AppBar(
-                title: const Text('Orders'),
+                title: LocalizedText(localizedParentData,'orders',color: Colors.white,bold:true,),
+                // title: Text("asd"),
                 backgroundColor: HexColor("#232F3E"),
                 
                 bottom: TabBar(
@@ -38,21 +69,21 @@ class SellerOrdersHomeState extends State<SellerOrdersHome> {
                       //   "Bending",
                       //   color: Colors.white,
                       // ),
-                      text: "Bending",
+                      text: AppLocalizations.of(context).translateNested(localizedParentData,"pending"),
+                    
                     ),
                     Tab(
                       // child: AppText(
                       //   "Delivered",
                       //   color: Colors.white,
                       // ),
-                      text: "Delivered",
-
+                      text: AppLocalizations.of(context).translateNested(localizedParentData,"delivered"),
                     ),
                   ],
                 ),
               ),
               body: TabBarView(children: [
-                SellerBendingOrders(),
+                SellerPendingOrders(),
                 SellerDeliveredOrders(),
               ]))
           //  AppLocalizations.of(context).translate('shopbydep')

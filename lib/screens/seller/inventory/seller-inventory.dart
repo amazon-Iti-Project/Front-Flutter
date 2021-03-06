@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project/screens/seller/inventory/seller-inventory-details.dart';
 import 'package:project/screens/templatesWidgets/app-text.dart';
+import 'package:project/screens/templatesWidgets/localized-text.dart';
 
 class SellerInventroy extends StatefulWidget {
   @override
@@ -10,12 +11,14 @@ class SellerInventroy extends StatefulWidget {
 }
 
 class SellerInventoryState extends State<SellerInventroy> {
+  String localizedParentData = "SellerInventory";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: const Text('Inventory'),
+        title:  LocalizedText(localizedParentData,'inventory',color: Colors.white,bold: true,),
         backgroundColor: HexColor("#232F3E"),
       ),
       body: ListView.builder(
@@ -139,9 +142,18 @@ class SellerInventoryState extends State<SellerInventroy> {
                                   children: [
                                     Flexible(
                                       fit: FlexFit.loose,
-                                      child: AppText(
-                                        "Quantity: 16",
-                                        subText: true,
+                                      child: Row(
+                                        children: [
+                                          LocalizedText(
+                                            localizedParentData,
+                                            "quantity",
+                                            subText: true,
+                                          ),
+                                           AppText(
+                                            " 16",
+                                            subText: true,
+                                          ),
+                                        ],
                                       ),
                                     )
                                   ],
