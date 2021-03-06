@@ -148,6 +148,10 @@
     "expectedDeliveryDate": "تاريخ الوصول المتوقع",
     "shipmentFee":"رسوم الشحن",
     "shipmentVia":"الشحن بواسطة"
-  }
-
+  },
+  "fName":"الإسم كاملا (الإسم الأول والأخير)",
+  "address":"العنوان",
+  "addressHint1":"العنوان",
+  "addressHint2":"رقم المبنى، الشقة، الوحدة (اختياري)",
+  "addAddress":"إضف العنوان"
 }

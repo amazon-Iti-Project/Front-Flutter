@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class OrderCard extends StatefulWidget {
-  String text;
+  final String text;
   OrderCard({this.text});
   @override
   _OrderCardState createState() => _OrderCardState();

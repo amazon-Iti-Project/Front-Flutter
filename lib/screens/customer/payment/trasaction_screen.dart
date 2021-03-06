@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project/services/Localization/applocalization.dart';
 
 class TrasnactionScreen extends StatefulWidget {
   TrasnactionScreen({Key key}) : super(key: key);
@@ -79,7 +80,8 @@ class _TrasnactionScreenState extends State<TrasnactionScreen> {
                                 Padding(
                                   padding: const EdgeInsets.all(10.0),
                                   child: Text(
-                                    "Transactional Type :",
+                                    AppLocalizations.of(context)
+                                        .translate("transactionaltype"),
                                     style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),
@@ -97,7 +99,8 @@ class _TrasnactionScreenState extends State<TrasnactionScreen> {
                                 Padding(
                                   padding: const EdgeInsets.all(10.0),
                                   child: Text(
-                                    "Order Price :",
+                                    AppLocalizations.of(context)
+                                        .translate("orderprice"),
                                     style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),
@@ -113,7 +116,8 @@ class _TrasnactionScreenState extends State<TrasnactionScreen> {
                                     Padding(
                                       padding: const EdgeInsets.all(10.0),
                                       child: Text(
-                                        "Delivered Date:",
+                                        AppLocalizations.of(context)
+                                            .translate("delivereddate"),
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold),
@@ -131,7 +135,8 @@ class _TrasnactionScreenState extends State<TrasnactionScreen> {
                                     Padding(
                                       padding: const EdgeInsets.all(10.0),
                                       child: Text(
-                                        "Shipment Fees:",
+                                        AppLocalizations.of(context)
+                                            .translate("shipmentfees"),
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold),
@@ -149,7 +154,8 @@ class _TrasnactionScreenState extends State<TrasnactionScreen> {
                                     Padding(
                                       padding: const EdgeInsets.all(10.0),
                                       child: Text(
-                                        "Total Trasactional:",
+                                        AppLocalizations.of(context)
+                                            .translate("transactionaltotal"),
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold),

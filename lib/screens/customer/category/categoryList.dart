@@ -1,3 +1,6 @@
+// import 'dart:convert';
+// import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project/models/product.dart';
@@ -6,7 +9,6 @@ import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/productService.dart';
 import 'package:project/widgets/appbar.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
 
 class CategoryList extends StatefulWidget {
   final String catName;
@@ -54,14 +56,15 @@ class _CategoryListState extends State<CategoryList> {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
-                          Text(AppLocalizations.of(context).translate('delivery')),
+                          Text(AppLocalizations.of(context)
+                              .translate('delivery')),
                           Icon(Icons.arrow_drop_down_rounded),
                         ],
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left:8.0),
+                    padding: const EdgeInsets.only(left: 8.0),
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -72,7 +75,8 @@ class _CategoryListState extends State<CategoryList> {
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: [
-                            Text(AppLocalizations.of(context).translate('CompAccessories')),
+                            Text(AppLocalizations.of(context)
+                                .translate('CompAccessories')),
                             Icon(Icons.arrow_drop_down_rounded),
                           ],
                         ),
@@ -80,7 +84,7 @@ class _CategoryListState extends State<CategoryList> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left:8.0),
+                    padding: const EdgeInsets.only(left: 8.0),
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -91,7 +95,8 @@ class _CategoryListState extends State<CategoryList> {
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: [
-                            Text(AppLocalizations.of(context).translate('category')),
+                            Text(AppLocalizations.of(context)
+                                .translate('category')),
                             Icon(Icons.arrow_drop_down_rounded),
                           ],
                         ),
@@ -104,91 +109,97 @@ class _CategoryListState extends State<CategoryList> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left:8.0,top:8.0),
+                  padding: const EdgeInsets.only(left: 8.0, top: 8.0),
                   child: Row(
                     children: [
-                      Text(AppLocalizations.of(context).translate('results')
-                        ,style:TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20
-                      )),
+                      Text(AppLocalizations.of(context).translate('results'),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20)),
                     ],
                   ),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height*0.8,
+                  height: MediaQuery.of(context).size.height * 0.8,
                   child: ListView.builder(
-                    itemCount: productsList.length,
-                    itemBuilder: (context, index) {
-                      final product = productsList[index];
-                      print(product.image);
-                      return InkWell(
-                  onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => ProductDetailsScreen()
-                    ));
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Card(
-                      elevation: 0.0,
-                      semanticContainer: true,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 200,
-                            height: 200,
-                            child: Image.network(product.image),
-                          ),
-                          Container(
-                            child:Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: 100,
-                                  child: Text(product.name,style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                  ),),
-                                ),
-                                RatingBar.builder(
-                                  itemSize: 16,
-                                  initialRating: 4.5,
-                                  minRating: 1,
-                                  direction: Axis.horizontal,
-                                  allowHalfRating: true,
-                                  itemCount: 5,
-                                  itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
-                                  itemBuilder: (context, _) => Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
+                      itemCount: productsList.length,
+                      itemBuilder: (context, index) {
+                        final product = productsList[index];
+                        return InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    ProductDetailsScreen(id: product.id)));
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Card(
+                              elevation: 0.0,
+                              semanticContainer: true,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: 200,
+                                    height: 200,
+                                    child: Image.network(product.image),
                                   ),
-                                  onRatingUpdate: (rating) {
-                                    print(rating);
-                                  },
-                                ),
-                                Row(
-                                  children: [
-                                    Text("\$"+product.price.toString(),style: TextStyle(
-                                      fontSize: 18,
-                                    )),
-                                    Text('\$'+product.oldPrice.toString(),style: TextStyle(
-                                      color: Colors.grey,
-                                      decoration: TextDecoration.lineThrough
-                                    ))
-                                  ],
-                                )
-                              ],
+                                  Container(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          width: 100,
+                                          child: Text(
+                                            product.name,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ),
+                                        RatingBar.builder(
+                                          itemSize: 16,
+                                          initialRating: 4.5,
+                                          minRating: 1,
+                                          direction: Axis.horizontal,
+                                          allowHalfRating: true,
+                                          itemCount: 5,
+                                          itemPadding: EdgeInsets.symmetric(
+                                              horizontal: 0.0),
+                                          itemBuilder: (context, _) => Icon(
+                                            Icons.star,
+                                            color: Colors.amber,
+                                          ),
+                                          onRatingUpdate: (rating) {
+                                            print(rating);
+                                          },
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                                "\$" + product.price.toString(),
+                                                style: TextStyle(
+                                                  fontSize: 18,
+                                                )),
+                                            Text(
+                                                '\$' +
+                                                    product.oldPrice.toString(),
+                                                style: TextStyle(
+                                                    color: Colors.grey,
+                                                    decoration: TextDecoration
+                                                        .lineThrough))
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-                    }
-                  ),
+                          ),
+                        );
+                      }),
                 ),
               ],
             ),
@@ -198,3 +209,19 @@ class _CategoryListState extends State<CategoryList> {
     );
   }
 }
+
+// List<Product> parseProducts(String responseBody) {
+//   final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+//   return parsed.map<Product>((json) => Product.fromJson(json)).toList();
+// }
+
+// Future<List<Product>> fetchProducts() async {
+//   final response =
+//       await http.get("https://fierce-mountain-42224.herokuapp.com/products");
+
+//   if (response.statusCode == 200) {
+//     return parseProducts(response.body);
+//   } else {
+//     throw Exception('Unable to fetch products from the REST API');
+//   }
+// }

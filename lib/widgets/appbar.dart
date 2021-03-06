@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/screens/customer/card/cart.dart';
+import 'package:project/screens/customer/cart/cart.dart';
 import 'package:project/services/Localization/applocalization.dart';
 
 class AmazonAppBar extends StatelessWidget {

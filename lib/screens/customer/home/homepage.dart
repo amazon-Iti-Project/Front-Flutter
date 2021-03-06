@@ -7,6 +7,7 @@ import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/widgets/appbar.dart';
 
 import '../../../main.dart';
+import '../../your_account_screen.dart';
 import 'homeScreen.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -77,11 +78,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              Padding(
+              Container(
                 padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
-                child: Text(
-                  AppLocalizations.of(context).translate('yourlist'),
-                  style: TextStyle(fontSize: 20),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => YourAccountScreen()),
+                    );
+                  },
+                  child: Text(
+                    AppLocalizations.of(context).translate('yourlist'),
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
               ),
               Padding(

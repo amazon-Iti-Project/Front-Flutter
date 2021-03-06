@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:project/screens/customer/card/cart.dart';
+import 'package:project/screens/customer/cart/cart.dart';
 import 'package:project/screens/customer/order/order-card.dart';
 import 'package:project/screens/customer/order/order-details.dart';
 import 'package:project/screens/customer/order/searchbar.dart';

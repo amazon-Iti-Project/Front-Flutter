@@ -1,10 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project/models/product.dart';
 import 'package:project/screens/customer/home/homepage.dart';
 import 'package:project/services/Localization/applocalization.dart';
+import 'package:project/services/productService.dart';
+import 'package:project/widgets/appbar.dart';
+
 
 class ProductDetailsScreen extends StatefulWidget {
-  ProductDetailsScreen({Key key}) : super(key: key);
+  final int id;
+  ProductDetailsScreen({this.id});
+  // ProductDetailsScreen(
+  //   int id, {
+  //   Key key,
+  // }) : super(key: key);
 
   @override
   _ProductDetailsScreenState createState() => _ProductDetailsScreenState();
@@ -12,27 +21,39 @@ class ProductDetailsScreen extends StatefulWidget {
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   final key = GlobalKey<FormState>();
-  // final _emailController = TextEditingController();
-  // final _passwordController = TextEditingController();
+  Product product;
+
+  @override
+  void initState() {
+    super.initState();
+    getProductbyid();
+  }
+
+  getProductbyid() async {
+    var productVal = await ProductService().getProductByID(widget.id);
+    setState(() {
+      product = productVal;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Amazon"),
-      ),
+    if(product != null){
+      return Scaffold(
       body: SafeArea(
         child: Form(
           key: key,
           child: ListView(children: [
             Column(
-              // mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                AmazonAppBar(),
                 Container(
                     margin: EdgeInsets.only(
                         left: 15, top: 15, right: 20, bottom: 0),
                     child: Text(
-                      "ASUS Laptop L210 Ultra Thin Laptop, 11.6” HD Display, Intel Celeron N4020 Processor, 4GB RAM, 64GB Storage, NumberPad, Windows 10 Home in S Mode with One Year of Microsoft 365 Personal, L210MA-DB01",
+                      "lkl",
+                      // widget.product.name,
                       style: TextStyle(fontSize: 20),
                     )),
                 Center(
@@ -44,30 +65,26 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 Container(
                   margin:
                       EdgeInsets.only(left: 10, top: 10, right: 20, bottom: 0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          "Price : ",
-                          style:
-                              TextStyle(color: Colors.grey[600], fontSize: 18),
-                        ),
+                  child: Row(children: [
+                    Expanded(
+                      flex: 1,
+                      child: Text(
+                        "Price : ",
+                        style: TextStyle(color: Colors.grey[600], fontSize: 18),
                       ),
-                      Expanded(
-                        flex: 6,
-                        child: Text(
-                          " 999.99 LE",
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      )
-                    ]
-                  ),
+                    ),
+                    Expanded(
+                      flex: 6,
+                      child: Text(
+                        " 999.99 LE",
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    )
+                  ]),
                 ),
-            
                 Container(
                   height: 1,
                   color: Colors.grey,
@@ -206,14 +223,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 child: Row(
                   children: [
                     Container(
-                        margin: EdgeInsets.fromLTRB(0, 5, 18, 5),
-                        padding: EdgeInsets.all(5),
-                        color: Colors.black54,
-                        child: Icon(
-                          Icons.play_arrow_outlined,
-                          color: Colors.white,
-                        ),
-                        ),
+                      margin: EdgeInsets.fromLTRB(0, 5, 18, 5),
+                      padding: EdgeInsets.all(5),
+                      color: Colors.black54,
+                      child: Icon(
+                        Icons.play_arrow_outlined,
+                        color: Colors.white,
+                      ),
+                    ),
                     Text(AppLocalizations.of(context).translate('buynow'),
                         style: TextStyle(fontSize: 20, color: Colors.black)),
                   ],
@@ -250,5 +267,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
       ),
     );
-  }
+  
+    }
+    else{
+      return Scaffold(
+          backgroundColor: Colors.white,
+          body: Center(
+            child: Container(
+                width: 100, height: 100, child: CircularProgressIndicator()),
+          ));
+    }
+    }
 }
