@@ -207,11 +207,9 @@ class SellerInventoryState extends State<SellerInventroy> {
             }
           );
         }else{
-          Widget w ;
-          snapshot.hasError ? 
-           w =  AppText("error: ${snapshot.error}")
+          Widget w =snapshot.hasError ? AppText("error: ${snapshot.error}")       
           :
-         Center(child: CircularProgressIndicator());
+         Center(child: CircularProgressIndicator());     
          return w;
         }
       },

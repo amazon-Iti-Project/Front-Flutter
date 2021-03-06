@@ -69,10 +69,11 @@ class Product {
       Map<String,dynamic> langObj = json['en'];
       Map<String,dynamic> shippingObj = json["shipping"];
       Map<String,dynamic> feeObj = json['fee'];
-
+      
       //3- set product attributes by lang attributes
       // {id,image,...ar}
       print("in product json parsing");
+      print("period: ${feeObj["fee"]}");
       // print(json.decoded);
       return Product(
         id: json["id"],
@@ -93,8 +94,8 @@ class Product {
         title: langObj["title"] == null ? null : langObj["title"],
         subtitle: langObj["subtitle"] == null ? null : langObj["subtitle"],
         discount: json["discount"],
-        shipping: Shipping.fromJson(json["shipping"]),
-        fee: Fee.fromJson(json["fee"]),
+        shipping: Shipping.fromJson(shippingObj),
+        fee: Fee.fromJson(feeObj),
         size: json["size"],
         color: langObj["color"],
         tags: List<dynamic>.from(json["tags"].map((x) => x)),

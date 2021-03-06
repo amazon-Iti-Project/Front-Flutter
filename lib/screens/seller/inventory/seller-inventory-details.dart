@@ -34,7 +34,7 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
   }
 
   num getNetPrice(Product product) {
-    return product.price * (product.discount / 100) * (product.fee.fee / 100);
+    return product.price * ((100-product.discount) / 100) * ((100-product.fee.fee) / 100);
   }
 
   @override
@@ -269,7 +269,7 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           LocalizedText(localizedParentData,
-                                              "${product?.fee?.fee}"),
+                                              "fees"),
                                           Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
@@ -280,7 +280,8 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                                                 "%",
                                                 fontSize: 12,
                                               ),
-                                              AppText("20"),
+                                              AppText(
+                                              "${product.fee.fee}"),
                                             ],
                                           )
                                         ],
@@ -322,6 +323,7 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                                             localizedParentData,
                                             "netReturn",
                                             color: Colors.lightBlue[700],
+                                            bold: true,
                                           ),
                                           Row(
                                             mainAxisAlignment:
@@ -333,7 +335,10 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                                                 "\$",
                                                 fontSize: 12,
                                               ),
-                                              AppText("120"),
+                                              AppText("${getNetPrice(product)}",
+                                            bold: true,
+                                              
+                                              ),
                                             ],
                                           )
                                         ],
@@ -411,12 +416,13 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              AppText(
-                                                "%",
+                                              LocalizedText(
+                                                localizedParentData,
+                                                "day",
                                                 fontSize: 12,
                                               ),
                                               AppText(
-                                                "${product.shipping.shipPrice}",
+                                                "${product.shipping.period}",
                                               ),
                                             ],
                                           )
@@ -585,8 +591,8 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
             );
           } else {
             Widget w = snapshot.hasError
-                ? Center(child: CircularProgressIndicator())
-                : AppText("error");
+                ? AppText("error")
+                : Center(child: CircularProgressIndicator());
             return w;
           }
         },
