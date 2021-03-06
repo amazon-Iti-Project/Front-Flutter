@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class OrderCard extends StatefulWidget {
-  final String text;
-  OrderCard({this.text});
+  String status;
+  String imgSrc;
+  String orderName;
+  OrderCard({this.status, this.imgSrc, this.orderName});
   @override
   _OrderCardState createState() => _OrderCardState();
 }
@@ -17,28 +19,35 @@ class _OrderCardState extends State<OrderCard> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(9.0),
-                child: Image.network('https://picsum.photos/150/150'),
+                child: Image.network(widget.imgSrc, height: 100, width: 100),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.all(9.0),
-              //   child: Text(widget.text),
-              // ),
-              Row(
+              Column(
                 children: [
-                  // Padding(
-                  //   padding: const EdgeInsets.all(9.0),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.center,
-                  //     children: [Icon(Icons.thumb_up), Text(" Like")],
-                  //   ),
-                  // ),
-                  // Padding(
-                  //   padding: const EdgeInsets.all(9.0),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.center,
-                  //     children: [Icon(Icons.comment), Text(" Comment")],
-                  //   ),
-                  // ),
+                  SizedBox(
+                      width: 200.0,
+                      child: Text(widget.orderName,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 17),
+                          overflow: TextOverflow.ellipsis)),
+                  Padding(
+                    padding: const EdgeInsets.all(9.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(widget.status,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                              color: Colors.green,
+                            ),
+                            overflow: TextOverflow.ellipsis),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
                   Padding(
                       padding: const EdgeInsets.all(9.0),
                       child: Row(
