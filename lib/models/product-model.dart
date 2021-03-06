@@ -8,7 +8,7 @@ import 'dart:convert';
 
 import 'fee-model.dart';
 
-List<Product> productFromJson(String str) => List<Product>.from(json.decode(str).map((x) => Product.fromJson(x)));
+List<Product> productFromJson(String str) => List<Product>.from(json.decode(str).map((x,l) => Product.fromJson(x,l)));
 
 String productToJson(List<Product> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
@@ -62,11 +62,11 @@ class Product {
     List<dynamic> tags;
     num brand;
     num seller; // id
-    factory Product.fromJson(Map<String, dynamic> json,/*String lang*/){
+    factory Product.fromJson(Map<String, dynamic> json,String lang){
       //1- get language
       //String lang = getLang() //shared prefrence ;
       //2- get language object
-      Map<String,dynamic> langObj = json['en'];
+      Map<String,dynamic> langObj = json[lang];
       Map<String,dynamic> shippingObj = json["shipping"];
       Map<String,dynamic> feeObj = json['fee'];
 

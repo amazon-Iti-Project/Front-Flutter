@@ -19,15 +19,26 @@ class CategoryList extends StatefulWidget {
 
 class _CategoryListState extends State<CategoryList> {
   List<Product> productsList = new List();
+  String langCode;
 
   @override
   void initState() {
     super.initState();
+    langCode='en';
     getProducts();
   }
 
+  @override
+  void didChangeDependencies() {
+    Locale myLocale = Localizations.localeOf(context);
+    setState(() {
+      langCode =  myLocale.languageCode;      
+    });
+    super.didChangeDependencies();
+  }
+
   getProducts() async {
-    productsList = await ProductService().getProductsByCatID(widget.catName);
+    productsList = await ProductService().getProductsByCatID(widget.catName,langCode);
     setState(() {});
   }
 
@@ -141,7 +152,10 @@ class _CategoryListState extends State<CategoryList> {
                                   Container(
                                     width: 200,
                                     height: 200,
-                                    child: Image.network(product.image),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Image.network(product.image),
+                                    ),
                                   ),
                                   Container(
                                     child: Column(

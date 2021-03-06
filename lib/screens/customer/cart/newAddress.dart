@@ -38,7 +38,7 @@ class _NewAddressState extends State<NewAddress> {
 
   getUser() async {
     currentUser = await UserService().getUserByToken(userToken);
-    var list = await ProductService().getProductListByID(currentUser.cart);
+    var list = await ProductService().getProductListByID(currentUser.cart,'en');
     for (var i = 0; i < list.length; i++) {
       ship += list[i].shipping.shipPrice;
       total += list[i].price;
@@ -56,7 +56,7 @@ class _NewAddressState extends State<NewAddress> {
     myOrder =  Order(
         address: address,
         canCancelledUntil: DateTime.now().add(new Duration(days: 3)),
-        products: await ProductService().getProductListByID(currentUser.cart),
+        products: await ProductService().getProductListByID(currentUser.cart,'en'),
         customer: currentUser.id,
         status: 1,
         payment: 1,

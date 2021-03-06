@@ -22,15 +22,26 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   final key = GlobalKey<FormState>();
   Product product;
+  String langCode;
 
   @override
   void initState() {
     super.initState();
+    langCode = 'en';
     getProductbyid();
   }
 
+  @override
+  void didChangeDependencies() {
+    Locale myLocale = Localizations.localeOf(context);
+    setState(() {
+      langCode =  myLocale.languageCode;      
+    });
+    super.didChangeDependencies();
+  }
+
   getProductbyid() async {
-    var productVal = await ProductService().getProductByID(widget.id);
+    var productVal = await ProductService().getProductByID(widget.id,langCode);
     setState(() {
       product = productVal;
     });
