@@ -31,7 +31,7 @@ class SellerPendingOrdersState extends State<SellerPendingOrders> {
               children: [
                 Expanded(
                   child: ListView.builder(
-                    itemCount: 5,
+                    itemCount: orders.length,
                     itemBuilder: (BuildContext context, int index) {
                       final order = orders[index];
                       return InkWell(
@@ -49,7 +49,7 @@ class SellerPendingOrdersState extends State<SellerPendingOrders> {
             );
           } else {
             Widget w = snapshot.hasError
-                ? AppText("error")
+                ? Center(child: AppText("error${snapshot.error.toString()}",maxLines:10 ,))
                 : Center(child: CircularProgressIndicator());
             return w;
           }
