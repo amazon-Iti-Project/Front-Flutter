@@ -1,0 +1,40 @@
+{
+    "orders":[
+        {
+            "id":1,
+            "name":"order1",
+            "productId":{
+                "products":[1,2,3]
+            }
+        },
+        {
+            "id":2,
+            "name":"order2",
+            "productId":2
+        }
+    ],
+    "products":[
+        {
+            "id":1,
+            "name":"prod1"
+
+        },
+        {
+            "id":2,
+            "name":"prod2"
+
+        },
+        {
+            "id":3,
+            "name":"prod3"
+
+        }
+
+    ],
+    "productOrderd":[
+        {
+            "id":1,
+            "productsId":[1,2,3]
+        }
+    ]
+}

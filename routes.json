@@ -1,0 +1,3 @@
+{
+    "/products/:id/orders": "/orders?productId=:id"
+  }

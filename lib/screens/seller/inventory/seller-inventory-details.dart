@@ -517,7 +517,7 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             AppText(
-                                              "",
+                                              "\$",
                                               fontSize: 12,
                                             ),
                                             AppText("12"),
@@ -569,7 +569,7 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             AppText(
-                                              "",
+                                              "\$",
                                               fontSize: 12,
                                             ),
                                             AppText("12"),
@@ -589,6 +589,7 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                 ),
               ),
             );
+          
           } else {
             Widget w = snapshot.hasError
                 ? AppText("error")

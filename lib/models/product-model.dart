@@ -1,5 +1,4 @@
 import 'package:project/models/shipping-model.dart';
-import 'package:project/screens/seller/addProduct/addProduct.dart';
 // To parse this JSON data, do
 //
 //     final product = productFromJson(jsonString);

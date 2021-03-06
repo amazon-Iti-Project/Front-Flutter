@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:project/models/order-model.dart';
 import 'package:project/screens/customer/cart/cart.dart';
 import 'package:project/screens/customer/order/order-timeline.dart';
-import 'package:project/screens/customer/order/order.dart';
 // import 'package:project/models/order.dart';
 // import 'package:project/modules/orders/order-timeline.dart';
 
 class OrderDetails extends StatefulWidget {
-  final Order post;
-  OrderDetails({this.post});
+  final Order order;
+  OrderDetails({this.order});
   @override
   _OrderDetailsState createState() => _OrderDetailsState();
 }
