@@ -64,9 +64,9 @@
   "addNewAddress":"إضافة عنوان جديد",
   "shipToAmazonPickup":"الشحن إلى نقطة توصيل Amazon",
   "shipToMultiAddress":"الشحن إلى أماكن متعددة",
-  "fName":"",
+  "fName":"الإسم كاملا (الإسم الأول والأخير)",
   "address":"العنوان",
-  "addressHint1":"",
-  "addressHint2":"Apt, Suite, Unit, Building (optional)",
-  "addAddress":""
+  "addressHint1":"العنوان",
+  "addressHint2":"رقم المبنى، الشقة، الوحدة (اختياري)",
+  "addAddress":"إضف العنوان"
 }
