@@ -121,6 +121,7 @@
     "shipmentDetails":"تفاصيل الشحن",
     "shipment":"قيمة الشحن",
     "period":"المدة",
+    "day":"يوم",
     "orderDetails":"تفاصيل الطلب",
     "numberOfOrders":"عدد مرات الطلب",
     "shippedOrders":"عدد الطلبات المشحونة",

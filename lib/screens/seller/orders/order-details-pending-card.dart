@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:project/models/order-model.dart';
 import 'package:project/screens/templatesWidgets/app-text.dart';
 import 'package:project/screens/templatesWidgets/localized-text.dart';
 
 class OrderDetailsPendingCard extends StatefulWidget {
+  final Order order;
+  OrderDetailsPendingCard({this.order});
   @override
   OrderDetailsPendingCardState createState() => OrderDetailsPendingCardState();
 }
@@ -55,7 +58,7 @@ class OrderDetailsPendingCardState extends State<OrderDetailsPendingCard> {
                                 ),
                               ),
                               AppText(
-                                "1",
+                                "${widget.order.id}",
                                 bold: true,
                                 maxLines: 3,
                               ),
@@ -81,7 +84,7 @@ class OrderDetailsPendingCardState extends State<OrderDetailsPendingCard> {
                                       fontSize: 12,
                                     ),
                                     AppText(
-                                      "120 ",
+                                      "${widget.order.orderPrice}",
                                       subText: true,
                                       bold: true,
                                     ),
@@ -108,7 +111,7 @@ class OrderDetailsPendingCardState extends State<OrderDetailsPendingCard> {
                                       fontSize: 12,
                                     ),
                                     AppText(
-                                      "120 ",
+                                      "${widget.order.shipmentPrice}",
                                       subText: true,
                                       bold: true,
                                     ),
@@ -135,7 +138,7 @@ class OrderDetailsPendingCardState extends State<OrderDetailsPendingCard> {
                                       fontSize: 12,
                                     ),
                                     AppText(
-                                      "120 ",
+                                      "${widget.order.payment}",
                                       subText: true,
                                       bold: true,
                                     ),
