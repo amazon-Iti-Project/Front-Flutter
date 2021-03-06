@@ -28,7 +28,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   void initState() {
     super.initState();
     langCode = 'en';
-    getProductbyid();
   }
 
   @override
@@ -37,6 +36,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     setState(() {
       langCode =  myLocale.languageCode;      
     });
+    getProductbyid();
     super.didChangeDependencies();
   }
 

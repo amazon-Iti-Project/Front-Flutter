@@ -29,7 +29,6 @@ class _CartScreenState extends State<CartScreen> {
     langCode = 'en';
     total = 0;
     _value = 1;
-    getUser();
   }
 
   @override
@@ -38,6 +37,7 @@ class _CartScreenState extends State<CartScreen> {
     setState(() {
       langCode =  myLocale.languageCode;      
     });
+    getUser();
     super.didChangeDependencies();
   }
 

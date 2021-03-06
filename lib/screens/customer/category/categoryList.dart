@@ -25,15 +25,15 @@ class _CategoryListState extends State<CategoryList> {
   void initState() {
     super.initState();
     langCode='en';
-    getProducts();
   }
 
   @override
   void didChangeDependencies() {
     Locale myLocale = Localizations.localeOf(context);
     setState(() {
-      langCode =  myLocale.languageCode;      
+      langCode =  myLocale.languageCode;     
     });
+    getProducts();
     super.didChangeDependencies();
   }
 
