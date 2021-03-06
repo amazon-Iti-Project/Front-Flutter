@@ -15,12 +15,14 @@ class SellerInventroy extends StatefulWidget {
 class SellerInventoryState extends State<SellerInventroy> {
   String localizedParentData = "SellerInventory";
   Future<List<Product>> futureProductList;
+  String langCode;
   @override
     void initState() {
       // TODO: implement initState
       super.initState();
+      langCode = 'en';
       ProductService prodServ = ProductService();
-      futureProductList =prodServ.getProductsBySellerId(1);
+      futureProductList =prodServ.getProductsBySellerId(1,langCode);
       // prodServ.getProductsBySellerId(1).then(
       //   (res)=>{
       //     this.productList = res,
@@ -30,6 +32,14 @@ class SellerInventoryState extends State<SellerInventroy> {
       //   (e)=>print(e)
       // );
     }
+    @override
+  void didChangeDependencies() {
+    Locale myLocale = Localizations.localeOf(context);
+    setState(() {
+      langCode =  myLocale.languageCode;      
+    });
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
