@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'package:project/models/product.dart';
+
+import 'package:project/models/product-model.dart';
 List<Order> orderFromJson(String str) => List<Order>.from(json.decode(str).map((x) => Order.fromJson(x)));
 
 String orderToJson(Order data) => json.encode(data.toJson());

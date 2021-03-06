@@ -4,7 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:project/screens/customer/home/homepage.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
-import 'models/product.dart';
+import 'models/product-model.dart';
 import 'screens/customer/home/homepage.dart';
 
 
@@ -90,12 +90,12 @@ class _MyAppState extends State<MyApp> {
           
           if (supportedLocale.languageCode == locale.languageCode &&
               supportedLocale.countryCode == locale.countryCode) {
-            // return supportedLocale;
-            return Locale('ar', 'ME');
+            return supportedLocale;
+            // return Locale('ar', 'ME');
             // return Locale('en', 'US');
           }
         }
-            return supportedLocales.toList()[0];
+            return locale;
       },
       home: SplashScreenView(
         // home: SellerHomeScreen(),

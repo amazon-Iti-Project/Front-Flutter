@@ -1,18 +1,24 @@
+
 class Fee {
+  Fee({this.id,this.admin, this.category, this.fee,/* this.state*/});
   num id;
-  num fee;
-  num admin;
-  num category;
+  int admin;
+  int category;
+  int fee;
+  // Orders state;
 
-    Fee({this.id,this.admin, this.category,this.fee});
-   
+  factory Fee.fromJson(Map<String, dynamic> json) => Fee(
+        id: json["id"],
+        admin: json["admin"],
+        category: json["category"],
+        fee: json["fee"],
+        // state: .getOrderType(json["discount"]),
+      );
 
-  factory Fee.fromJson(Map<String, dynamic> json) {
-    return Fee(
-      id: json['id'],
-      fee: json['fee'],
-      admin:json['admin'],
-      category:json['category'],
-    );
-  }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "admin": admin,
+        "category": category,
+        "fee": fee,
+      };
 }

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:project/models/categoryCollection.dart';
+import 'package:project/models/categoryCollection-model.dart';
 
 import '../constants.dart';
 

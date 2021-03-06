@@ -1,17 +1,20 @@
+
 class Shipping {
-
+  Shipping({
+    this.period,
+    this.shipPrice,
+  });
   num id;
-  num period;
-  num shipPrice;
+  int period;
+  int shipPrice;
 
-    Shipping({this.id,this.period, this.shipPrice});
-   
+  factory Shipping.fromJson(Map<String, dynamic> json) => Shipping(
+        period: json["period"],
+        shipPrice: json["shipPrice"],
+      );
 
-  factory Shipping.fromJson(Map<String, dynamic> json) {
-    return Shipping(
-      id: json['id'],
-      period: json['period'],
-      shipPrice:json['shipPrice'],
-    );
-  }
+  Map<String, dynamic> toJson() => {
+        "period": period,
+        "shipPrice": shipPrice,
+      };
 }

@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:project/models/brand-model.dart';
-import 'package:project/models/categoryCollection.dart';
 
 import '../constants.dart';
 

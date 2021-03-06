@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project/models/product.dart';
+import 'package:project/models/product-model.dart';
 import 'package:project/screens/customer/home/homepage.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/productService.dart';

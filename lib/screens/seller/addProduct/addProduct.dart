@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project/models/brand-model.dart';
-import 'package:project/models/categoryCollection.dart';
+import 'package:project/models/categoryCollection-model.dart';
 import 'package:project/models/product-model.dart';
 import 'package:project/models/shipping-model.dart';
 import 'package:project/screens/seller/addProduct/picK-Image.dart';
@@ -393,7 +393,7 @@ class SellerAddProductState extends State<SellerAddProduct> {
                                 return null;
                               },
                               onChange: (String value) {
-                                this.shipment.period = double.parse(value);
+                                this.shipment.period = int.parse(value);
                                 print(this.product.size);
                               },
                             ),

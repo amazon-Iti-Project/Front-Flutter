@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:project/models/product.dart';
-import 'package:project/models/user.dart';
+import 'package:project/models/product-model.dart';
+import 'package:project/models/user-model.dart';
 import 'package:project/screens/customer/cart/newAddress.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/productService.dart';

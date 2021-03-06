@@ -1,4 +1,5 @@
-import 'categoryCollection.dart';
+
+import 'categoryCollection-model.dart';
 
 class Brand implements Value{
      @override

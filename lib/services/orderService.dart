@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:project/models/order.dart';
+import 'package:project/models/order-model.dart';
 
 import '../constants.dart';
 

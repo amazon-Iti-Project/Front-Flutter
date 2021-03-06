@@ -4,6 +4,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:project/screens/seller/inventory/seller-inventory-details.dart';
 import 'package:project/screens/templatesWidgets/app-text.dart';
 import 'package:project/screens/templatesWidgets/localized-text.dart';
+import 'package:project/services/productService.dart';
 
 class SellerInventroy extends StatefulWidget {
   @override
@@ -12,6 +13,18 @@ class SellerInventroy extends StatefulWidget {
 
 class SellerInventoryState extends State<SellerInventroy> {
   String localizedParentData = "SellerInventory";
+  // Product
+  @override
+    void initState() {
+      // TODO: implement initState
+      super.initState();
+      ProductService prodServ = ProductService();
+      // prodServ.getProductsBySellerId(1).then(
+      //   (res)=>this.productList = res
+      // ).catchError(
+      //   (e)=>print(e)
+      // )
+    }
 
   @override
   Widget build(BuildContext context) {

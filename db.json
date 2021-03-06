@@ -1,11 +1,20 @@
 {
     "products": [
       {
+        "ar":{
+          "name": "Acer Swift 3 Intel Evo Thin & Light Laptop",
+          "description": "Acer Swift 3 Intel Evo Thin & Light Laptop, 14' Full HD, Intel Core i7-1165G7, Intel Iris Xe Graphics, 8GB LPDDR4X, 256GB NVMe SSD, Wi-Fi 6, Fingerprint Reader, Back-lit KB, SF314-59-75QC"
+
+        },
+        "en":{
+          "name": "Acer Swift 3 Intel Evo Thin & Light Laptop",
+          "description": "Acer Swift 3 Intel Evo Thin & Light Laptop, 14' Full HD, Intel Core i7-1165G7, Intel Iris Xe Graphics, 8GB LPDDR4X, 256GB NVMe SSD, Wi-Fi 6, Fingerprint Reader, Back-lit KB, SF314-59-75QC"
+
+        },
         "id": 10,
         "categoryName": "laptops",
-        "name": "Acer Swift 3 Intel Evo Thin & Light Laptop",
+        
         "rating": 30,
-        "description": "Acer Swift 3 Intel Evo Thin & Light Laptop, 14' Full HD, Intel Core i7-1165G7, Intel Iris Xe Graphics, 8GB LPDDR4X, 256GB NVMe SSD, Wi-Fi 6, Fingerprint Reader, Back-lit KB, SF314-59-75QC",
         "price": 148,
         "cents": 99,
         "oldPrice": 12.77,
@@ -1072,3 +1081,4 @@
       }
     ]
   }
+
