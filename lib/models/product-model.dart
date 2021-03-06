@@ -69,6 +69,8 @@ class Product {
       // Map<String,dynamic> langJson = json[/*lang*/].json.decoded; 
       //3- set product attributes by lang attributes
       // {id,image,...ar}
+      print("in product json parsing");
+      // print(json.decoded);
       return Product(
         id: json["id"],
         categoryName: json["categoryName"] == null ? null : json["categoryName"],

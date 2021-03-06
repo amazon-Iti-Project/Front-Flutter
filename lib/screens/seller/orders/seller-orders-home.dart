@@ -36,9 +36,7 @@ class SellerOrdersHomeState extends State<SellerOrdersHome> {
           
           if (supportedLocale.languageCode == locale.languageCode &&
               supportedLocale.countryCode == locale.countryCode) {
-            // return supportedLocale;
-            return Locale('ar', 'ME');
-            // return Locale('en', 'US');
+            return supportedLocale;
           }
         }
             return supportedLocales.toList()[0];
