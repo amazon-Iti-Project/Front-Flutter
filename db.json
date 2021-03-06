@@ -45,7 +45,7 @@
         "price": 120,
         "quantity": 80,
         "category": 3,
-        "brand": "2",
+        "brand": 2,
         "discount": 50,
         "shipping": {
           "period": 2,
@@ -68,7 +68,7 @@
         "price": 100,
         "quantity": 15,
         "category": 1,
-        "brand": "5",
+        "brand": 5,
         "discount": 20,
         "shipping": {
           "period": 3,
@@ -90,7 +90,7 @@
         "price": 250,
         "quantity": 15,
         "category": 4,
-        "brand": "3",
+        "brand": 3,
         "discount": 22,
         "description": "MeiYin Audio Video Capture Cards HDMI to USB HDMI Video Capture, Full HD 1080P USB 2.0",
         "shipping": {
@@ -113,7 +113,7 @@
         "price": 130,
         "quantity": 15,
         "category": 2,
-        "brand": "2",
+        "brand": 2,
         "discount": 20,
         "shipping": {
           "period": 3,
@@ -135,7 +135,7 @@
         "price": 1200,
         "quantity": 25,
         "category": 1,
-        "brand": "1",
+        "brand": 1,
         "discount": 5,
         "shipping": {
           "period": 3,
