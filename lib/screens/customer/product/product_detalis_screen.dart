@@ -9,12 +9,11 @@ import 'package:project/widgets/appbar.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   int id;
-  Product product;
-
-  ProductDetailsScreen(
-    int id, {
-    Key key,
-  }) : super(key: key);
+  ProductDetailsScreen({this.id});
+  // ProductDetailsScreen(
+  //   int id, {
+  //   Key key,
+  // }) : super(key: key);
 
   @override
   _ProductDetailsScreenState createState() => _ProductDetailsScreenState();
@@ -22,21 +21,25 @@ class ProductDetailsScreen extends StatefulWidget {
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   final key = GlobalKey<FormState>();
+  Product product;
+
   @override
   void initState() {
     super.initState();
     getProductbyid();
-    print(widget.id);
   }
 
   getProductbyid() async {
-    widget.product = await ProductService().getProductByID(widget.id);
-    setState(() {});
+    var productVal = await ProductService().getProductByID(widget.id);
+    setState(() {
+      product = productVal;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    if(product != null){
+      return Scaffold(
       body: SafeArea(
         child: Form(
           key: key,
@@ -264,5 +267,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
       ),
     );
-  }
+  
+    }
+    else{
+      return Scaffold(
+          backgroundColor: Colors.white,
+          body: Center(
+            child: Container(
+                width: 100, height: 100, child: CircularProgressIndicator()),
+          ));
+    }
+    }
 }

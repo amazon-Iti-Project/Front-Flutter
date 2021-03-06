@@ -1,5 +1,5 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+// import 'dart:convert';
+// import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -124,14 +124,11 @@ class _CategoryListState extends State<CategoryList> {
                       itemCount: productsList.length,
                       itemBuilder: (context, index) {
                         final product = productsList[index];
-                        print("id ${product.id}");
                         return InkWell(
                           onTap: () {
-                            print("kkk ${productsList[index].id}");
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    ProductDetailsScreen(
-                                        productsList[index].id)));
+                                    ProductDetailsScreen(id: product.id)));
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
@@ -213,18 +210,18 @@ class _CategoryListState extends State<CategoryList> {
   }
 }
 
-List<Product> parseProducts(String responseBody) {
-  final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
-  return parsed.map<Product>((json) => Product.fromJson(json)).toList();
-}
+// List<Product> parseProducts(String responseBody) {
+//   final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+//   return parsed.map<Product>((json) => Product.fromJson(json)).toList();
+// }
 
-Future<List<Product>> fetchProducts() async {
-  final response =
-      await http.get("https://fierce-mountain-42224.herokuapp.com/products");
+// Future<List<Product>> fetchProducts() async {
+//   final response =
+//       await http.get("https://fierce-mountain-42224.herokuapp.com/products");
 
-  if (response.statusCode == 200) {
-    return parseProducts(response.body);
-  } else {
-    throw Exception('Unable to fetch products from the REST API');
-  }
-}
+//   if (response.statusCode == 200) {
+//     return parseProducts(response.body);
+//   } else {
+//     throw Exception('Unable to fetch products from the REST API');
+//   }
+// }
