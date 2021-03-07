@@ -95,7 +95,7 @@ class Product {
         discount: json["discount"],
         shipping: Shipping.fromJson(shippingObj),
         fee: Fee.fromJson(feeObj),
-        size: json["size"],
+        size: langObj["size"],
         color: langObj["color"],
         tags: List<dynamic>.from(json["tags"].map((x) => x)),
         brand: json["brand"] == null ? null : json["brand"],
