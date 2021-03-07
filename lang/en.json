@@ -151,6 +151,9 @@
     "shipmentFee":"Shipment Fee",
     "shipmentVia":"Shipment Via"
   },
+  "OrdersDetails":{
+    "title":"Orders Details"
+  },
   "fName":"Full name (first and last name)",
   "address":"Address",
   "addressHint1":"Street address or P.O. Box",
