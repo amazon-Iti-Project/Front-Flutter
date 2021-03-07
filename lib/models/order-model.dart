@@ -1,7 +1,12 @@
+import 'dart:convert';
 
 import 'package:project/enums/status-enum.dart';
 import 'package:project/models/payment-model.dart';
 import 'package:project/models/product-model.dart';
+import 'package:project/models/product-model.dart';
+List<Order> orderFromJson(String str) => List<Order>.from(json.decode(str).map((x) => Order.fromJson(x)));
+String orderToJson(Order data) => json.encode(data.toJson());
+
 class Order {
   Order({
     this.id,
@@ -26,7 +31,7 @@ class Order {
   Payment payment;
   String address;
   int orderShip;
-  int orderPrice;
+  double orderPrice;
   DateTime dueDate;
   DateTime canCancelledUntil;
   DateTime orderDate;
@@ -54,6 +59,21 @@ class Order {
           List<Product>.from(json["products"].map((x) => Product.fromJson(x,))),
     );
   }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "customer": customer,
+        "status": status,
+        "shipmentPrice": shipmentPrice == null ? null : shipmentPrice,
+        "payment": payment,
+        "address": address,
+        "orderShip": orderShip,
+        "orderPrice": orderPrice,
+        "dueDate": "${dueDate.year.toString().padLeft(4, '0')}-${dueDate.month.toString().padLeft(2, '0')}-${dueDate.day.toString().padLeft(2, '0')}",
+        "canCancelledUntil": "${canCancelledUntil.year.toString().padLeft(4, '0')}-${canCancelledUntil.month.toString().padLeft(2, '0')}-${canCancelledUntil.day.toString().padLeft(2, '0')}",
+        "orderDate": "${orderDate.year.toString().padLeft(4, '0')}-${orderDate.month.toString().padLeft(2, '0')}-${orderDate.day.toString().padLeft(2, '0')}",
+        // "deliveredDate": "${deliveredDate.year.toString().padLeft(4, '0')}-${deliveredDate.month.toString().padLeft(2, '0')}-${deliveredDate.day.toString().padLeft(2, '0')}",
+        "products": List<dynamic>.from(products.map((x) => x.toJson())),
+    };
 }
 
 // class Product {
@@ -82,12 +102,8 @@ class Order {
 
 // file of salma
 
-// import 'dart:convert';
 
-// import 'package:project/models/product-model.dart';
-// List<Order> orderFromJson(String str) => List<Order>.from(json.decode(str).map((x) => Order.fromJson(x)));
 
-// String orderToJson(Order data) => json.encode(data.toJson());
 
 // class Order {
 //     Order({
@@ -135,21 +151,6 @@ class Order {
 //         // deliveredDate: DateTime.parse(json["deliveredDate"]),
 //         products: List<Product>.from(json["products"].map((x) => Product.fromJson(x,'en'))),
 //     );
-//     Map<String, dynamic> toJson() => {
-//         "id": id,
-//         "customer": customer,
-//         "status": status,
-//         "shipmentPrice": shipmentPrice == null ? null : shipmentPrice,
-//         "payment": payment,
-//         "address": address,
-//         "orderShip": orderShip,
-//         "orderPrice": orderPrice,
-//         "dueDate": "${dueDate.year.toString().padLeft(4, '0')}-${dueDate.month.toString().padLeft(2, '0')}-${dueDate.day.toString().padLeft(2, '0')}",
-//         "canCancelledUntil": "${canCancelledUntil.year.toString().padLeft(4, '0')}-${canCancelledUntil.month.toString().padLeft(2, '0')}-${canCancelledUntil.day.toString().padLeft(2, '0')}",
-//         "orderDate": "${orderDate.year.toString().padLeft(4, '0')}-${orderDate.month.toString().padLeft(2, '0')}-${orderDate.day.toString().padLeft(2, '0')}",
-//         // "deliveredDate": "${deliveredDate.year.toString().padLeft(4, '0')}-${deliveredDate.month.toString().padLeft(2, '0')}-${deliveredDate.day.toString().padLeft(2, '0')}",
-//         "products": List<dynamic>.from(products.map((x) => x.toJson())),
-//     };
 // }
 
 

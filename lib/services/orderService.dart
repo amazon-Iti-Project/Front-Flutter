@@ -14,7 +14,8 @@ class OrderService {
           options: Options(headers: {
             HttpHeaders.contentTypeHeader: "application/json",
           }),
-          data: jsonEncode(myOrder),
+          // data: jsonEncode(myOrder),
+          data: myOrder.toJson()
         );
   }
   Future<List<Order>> getOrders() async {
