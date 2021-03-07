@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:project/models/order-model.dart';
 import 'package:project/screens/customer/cart/cart.dart';
 import 'package:project/screens/customer/order/order-timeline.dart';
-import 'package:project/models/orderlist-model.dart';
+import 'package:project/enums/status-enum.dart';
 
 class OrderDetails extends StatefulWidget {
   Order order;

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:project/models/orderlist-model.dart';
+import 'package:project/models/order-model.dart';
 import '../constants.dart';
+import 'package:project/enums/status-enum.dart';
 
 class OrderListService {
   String url = (API_URL + "/orders");

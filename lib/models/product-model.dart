@@ -1,4 +1,5 @@
 import 'package:project/models/shipping-model.dart';
+import 'package:project/services/localizationService.dart';
 // To parse this JSON data, do
 //
 //     final product = productFromJson(jsonString);
@@ -7,7 +8,7 @@ import 'dart:convert';
 
 import 'fee-model.dart';
 
-List<Product> productFromJson(String str) => List<Product>.from(json.decode(str).map((x,l) => Product.fromJson(x,l)));
+List<Product> productFromJson(String str) => List<Product>.from(json.decode(str).map((x,l) => Product.fromJson(x)));
 
 String productToJson(List<Product> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
@@ -61,7 +62,8 @@ class Product {
     List<dynamic> tags;
     num brand;
     num seller; // id
-    factory Product.fromJson(Map<String, dynamic> json,String lang){
+    factory Product.fromJson(Map<String, dynamic> json,){
+      String lang = LocalizationService().lang;
       //1- get language
       //String lang = getLang() //shared prefrence ;
       //2- get language object

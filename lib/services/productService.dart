@@ -12,7 +12,7 @@ class ProductService {
         await dio.get(API_URL + "/products?categoryName=" + name.toLowerCase());
     var data = response.data;
     for (var i = 0; i < data.length; i++) {
-      products.add(Product.fromJson(data[i],code));
+      products.add(Product.fromJson(data[i]));
     }
     return products;
   }
@@ -27,19 +27,19 @@ class ProductService {
     response = await dio.get(API_URL + "/products?" + query);
     var data = response.data;
     for (var i = 0; i < data.length; i++) {
-      products.add(Product.fromJson(data[i],code));
+      products.add(Product.fromJson(data[i]));
     }
     return products;
   }
 
-  Future<Product> getProductByID(int id,String code) async {
+  Future<Product> getProductByID(int id) async {
     Product product;
     Response response;
     Dio dio = new Dio();
 
     response = await dio.get(API_URL + "/products/" + id.toString());
     var data = response.data;
-    product = Product.fromJson(data,code);
+    product = Product.fromJson(data);
 
     return product;
   }
@@ -49,7 +49,7 @@ class ProductService {
     Response res = await dio.get(API_URL+"/products?seller=$id");
     var list = (res.data as List<dynamic>);
     return list.map<Product>(
-      (prod)=>Product.fromJson(prod,code)
+      (prod)=>Product.fromJson(prod)
     ).toList(); 
   }
 

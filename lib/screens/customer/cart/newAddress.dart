@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:project/enums/payment-state-enum.dart';
+import 'package:project/enums/payment-type-enum.dart';
+import 'package:project/enums/status-enum.dart';
 import 'package:project/models/order-model.dart';
+import 'package:project/models/payment-model.dart';
 import 'package:project/models/user-model.dart';
 import 'package:project/screens/customer/order/ordersList_Screen.dart';
 import 'package:project/services/orderService.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/productService.dart';
 import 'package:project/services/userService.dart';
+import 'package:project/models/product-model.dart';
+
 
 class NewAddress extends StatefulWidget {
   @override
@@ -53,13 +59,15 @@ class _NewAddressState extends State<NewAddress> {
 
   submitOrder() async {
     setState(() {});
+    List<Product> products =await ProductService().getProductListByID(currentUser.cart,'en');
     myOrder =  Order(
         address: address,
         canCancelledUntil: DateTime.now().add(new Duration(days: 3)),
         products: await ProductService().getProductListByID(currentUser.cart,'en'),
         customer: currentUser.id,
-        status: 1,
-        payment: 1,
+        status: Status.pending,
+        // Payment value must be come from total products price * discount  + sum shipping 
+        payment: Payment(type: PAYMENT_TYPE.cash,state: PAYMENT_STATE.pending,payment: 200),
         orderShip: ship,
         orderPrice: total,
         dueDate: DateTime.now().add(new Duration (days: maxDuration)),

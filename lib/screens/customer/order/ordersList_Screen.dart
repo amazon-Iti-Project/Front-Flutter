@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:project/models/orderlist-model.dart';
+import 'package:project/models/order-model.dart';
 import 'package:project/screens/customer/cart/cart.dart';
 import 'package:project/screens/customer/order/order-card.dart';
 import 'package:project/screens/customer/order/order-details.dart';
 import 'package:project/screens/customer/order/searchbar.dart';
 import 'package:project/services/orderlistService.dart';
-
+import 'package:project/enums/status-enum.dart';
 // import '../applocalization.dart';
 
 class OrderList extends StatefulWidget {
