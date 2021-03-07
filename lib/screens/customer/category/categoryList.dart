@@ -1,9 +1,9 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+// import 'dart:convert';
+// import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:project/models/product.dart';
+import 'package:project/models/product-model.dart';
 import 'package:project/screens/customer/product/product_detalis_screen.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/productService.dart';
@@ -124,14 +124,11 @@ class _CategoryListState extends State<CategoryList> {
                       itemCount: productsList.length,
                       itemBuilder: (context, index) {
                         final product = productsList[index];
-                        print("id ${product.id}");
                         return InkWell(
                           onTap: () {
-                            print("kkk ${productsList[index].id}");
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    ProductDetailsScreen(
-                                        productsList[index].id)));
+                                    ProductDetailsScreen(id: product.id)));
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
@@ -212,5 +209,4 @@ class _CategoryListState extends State<CategoryList> {
     );
   }
 }
-
 

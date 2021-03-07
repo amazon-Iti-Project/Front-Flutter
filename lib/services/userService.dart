@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:project/models/user.dart';
+import 'package:project/models/user-model.dart';
 
 import '../constants.dart';
 

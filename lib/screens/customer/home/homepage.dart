@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project/modules/language.dart';
 import 'package:project/screens/customer/category/allDepartments.dart';
 import 'package:project/screens/customer/order/ordersList_Screen.dart';
+import 'package:project/screens/seller/seller-home-screen.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/widgets/appbar.dart';
 
@@ -105,6 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => AllDepartments()));
                 },
+
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -112,6 +114,29 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
                       child: Text(
                         AppLocalizations.of(context).translate('shopbydep'),
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 24.0, right: 8.0),
+                      child: Icon(Icons.arrow_forward_ios),
+                    )
+                  ],
+                ),
+              ),
+               InkWell(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => SellerHomeScreen()));
+                },
+
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
+                      child: Text(
+                        AppLocalizations.of(context).translate('sell'),
                         style: TextStyle(fontSize: 20),
                       ),
                     ),

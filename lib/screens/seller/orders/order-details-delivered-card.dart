@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project/screens/templatesWidgets/app-text.dart';
+import 'package:project/screens/templatesWidgets/localized-text.dart';
 
 class OrderDetailsDeliveredCard extends StatefulWidget {
   @override
@@ -10,6 +11,7 @@ class OrderDetailsDeliveredCard extends StatefulWidget {
 
 class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
   bool isDetailsShown = false;
+  final String localizedParentData = "SellerOrders";
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -44,8 +46,9 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                             children: [
                               Flexible(
                                 fit: FlexFit.loose,
-                                child: AppText(
-                                  "Order Id",
+                                child: LocalizedText(
+                                  localizedParentData,
+                                  "orderId",
                                   bold: true,
                                   maxLines: 3,
                                 ),
@@ -61,8 +64,9 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            AppText(
-                              "Total Paid",
+                            LocalizedText(
+                              localizedParentData,
+                              "totalPaid",
                               subText: true,
                             ),
                             Flexible(
@@ -84,11 +88,12 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                 )),
                           ],
                         ),
-                         Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            AppText(
-                              "Amazon Fee",
+                            LocalizedText(
+                              localizedParentData,
+                              "amazonFee",
                               subText: true,
                             ),
                             Flexible(
@@ -110,11 +115,12 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                 )),
                           ],
                         ),
-                         Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            AppText(
-                              "Shipment",
+                            LocalizedText(
+                              localizedParentData,
+                              "shipment",
                               subText: true,
                             ),
                             Flexible(
@@ -135,11 +141,13 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                   ],
                                 )),
                           ],
-                        ), Row(
+                        ),
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            AppText(
-                              "Total Net",
+                            LocalizedText(
+                              localizedParentData,
+                              "totalNet",
                               subText: true,
                             ),
                             Flexible(
@@ -171,8 +179,9 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                   //     MaterialPageRoute(
                                   //         builder: (context) => OrderDetails()));
                                 },
-                                child: AppText(
-                                  "Show Order Details",
+                                child: LocalizedText(
+                                  localizedParentData,
+                                  "goToOrder",
                                   subText: true,
                                   color: Colors.cyan[800],
                                 )),
@@ -189,8 +198,9 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      AppText(
-                                        "Order date",
+                                      LocalizedText(
+                                        localizedParentData,
+                                        "orderDate",
                                         subText: true,
                                       ),
                                       Flexible(
@@ -213,8 +223,9 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      AppText(
-                                        "Payment Type",
+                                      LocalizedText(
+                                        localizedParentData,
+                                        "paymentType",
                                         subText: true,
                                       ),
                                       Flexible(
@@ -272,8 +283,9 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      AppText(
-                                        "Payment Details",
+                                      LocalizedText(
+                                        localizedParentData,
+                                        "paymentDetails",
                                         bold: true,
                                       ),
                                     ],
@@ -282,8 +294,9 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      AppText(
-                                        "Payment Date",
+                                      LocalizedText(
+                                        localizedParentData,
+                                        "paymentDate",
                                         subText: true,
                                       ),
                                       AppText(
@@ -297,8 +310,9 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      AppText(
-                                        "Payment",
+                                      LocalizedText(
+                                        localizedParentData,
+                                        "payment",
                                         subText: true,
                                       ),
                                       Row(
@@ -331,8 +345,9 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                           isDetailsShown = !isDetailsShown;
                                           setState(() {});
                                         },
-                                        child: AppText(
-                                          "hide",
+                                        child: LocalizedText(
+                                          localizedParentData,
+                                          "showLess",
                                           color: Colors.cyan[800],
                                           subText: true,
                                         ),
@@ -349,8 +364,9 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                       isDetailsShown = !isDetailsShown;
                                       setState(() {});
                                     },
-                                    child: AppText(
-                                      "show more",
+                                    child: LocalizedText(
+                                      localizedParentData,
+                                      "showMore",
                                       color: Colors.cyan[800],
                                       subText: true,
                                     ),

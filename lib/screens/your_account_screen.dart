@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:project/widgets/appbar.dart';
 
 class YourAccountScreen extends StatefulWidget {
   YourAccountScreen({Key key}) : super(key: key);
@@ -13,15 +13,13 @@ class _YourAccountScreenState extends State<YourAccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Amazon"),
-      ),
       body: SafeArea(
         child: ListView(children: [
           Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              AmazonAppBar(),
               Padding(
                 padding: const EdgeInsets.fromLTRB(10, 15, 10, 5),
                 child: Text(

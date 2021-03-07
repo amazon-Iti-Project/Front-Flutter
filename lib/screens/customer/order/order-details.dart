@@ -6,7 +6,7 @@ import 'package:project/screens/customer/order/order.dart';
 // import 'package:project/modules/orders/order-timeline.dart';
 
 class OrderDetails extends StatefulWidget {
-  Order post;
+  final Order post;
   OrderDetails({this.post});
   @override
   _OrderDetailsState createState() => _OrderDetailsState();

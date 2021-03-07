@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:project/models/product.dart';
-import 'package:project/models/user.dart';
+import 'package:project/models/product-model.dart';
+import 'package:project/models/user-model.dart';
 import 'package:project/screens/customer/cart/newAddress.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/productService.dart';
 import 'package:project/services/userService.dart';
 
-import 'checkout.dart';
 
 class CartScreen extends StatefulWidget {
   @override
@@ -33,7 +32,7 @@ class _CartScreenState extends State<CartScreen> {
 
   getUser() async {
     currentUser = await UserService().getUserByToken(userToken);
-    var cartIDs = await currentUser.cart;
+    var cartIDs =  currentUser.cart;
     cartProducts = await ProductService().getProductListByID(cartIDs);
     getTotalPrice();
     setState(() {});

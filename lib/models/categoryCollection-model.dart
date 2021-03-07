@@ -13,12 +13,14 @@ class CategoryCollection {
     );
 }
 
-class Datum {
+class Datum implements Value {
+    @override
+  String value;
     Datum({
         this.id,
         this.name,
         this.image,
-    });
+    }):this.value =name;
 
     int id;
     String name;
@@ -29,4 +31,17 @@ class Datum {
         name: json["name"],
         image: json["image"],
     );
+
+     @override
+    String toString() {
+      // TODO: implement toString
+      return "name:${this.name},id:${this.id},image:${this.image},";
+    }
+
+
+}
+
+class Value {
+  String value;
+  Value(this.value);
 }

@@ -1,5 +1,5 @@
-import '../models/product.dart';
 import 'package:dio/dio.dart';
+import 'package:project/models/product-model.dart';
 import '../constants.dart';
 
 class ProductService {
@@ -43,4 +43,20 @@ class ProductService {
 
     return product;
   }
+
+  Future<List<Product>> getProductsBySellerId(num id) async{
+    Dio dio = Dio();
+    Response res = await dio.get(API_URL+"/products?seller=$id");
+    var list = (res.data as List<dynamic>);
+    return list.map<Product>(
+      (prod)=>Product.fromJson(prod)
+    ).toList(); 
+  }
+
+      fromJson(Map<String, dynamic> json) {
+        var name= json["name"];
+        var desc= json["name"];
+      }
+
+   //   object.decode
 }
