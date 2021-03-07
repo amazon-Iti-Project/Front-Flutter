@@ -25,11 +25,15 @@ static final LocalizationService  _localServiceInstance = LocalizationService._i
 
 // private constructor
   LocalizationService._internal(){
-    
+    getSharedPreferences();
   }
 
 
-  setLanguage(String lang) {
+  setLanguage(String lang) async{
+      if(prefs == null){
+        prefs = await SharedPreferences.getInstance();
+      prefs.setString('lang', lang);
+      }else
       prefs.setString('lang', lang);
   }
 
@@ -38,18 +42,23 @@ static final LocalizationService  _localServiceInstance = LocalizationService._i
   }
 
    Future<String> getLanguage() async {
-     await getSharedPreferences();
+     String storedLang;
+           if(prefs == null){
+        prefs = await SharedPreferences.getInstance();
+            storedLang= prefs.getString('lang');
+      }else
+            storedLang= prefs.getString('lang');
+  
   //  SharedPreferences prefs = await SharedPreferences.getInstance();
     // SharedPreferences.getInstance().then((prefs) { } );
-     String storedLang= prefs.getString('lang');
      lang = storedLang != null? storedLang : 'en';
-    print("Sharedlang: $lang");
+    // print("Sharedlang: $lang");
      return lang;
   }
 
   Locale getLocale(Locale defLocale,Iterable<Locale> supportedLocales) {
-    print("defLocal:${defLocale}");
-    print("lang:${lang}");
+    // print("defLocal:${defLocale}");
+    // print("lang:${lang}");
     Locale locale =defLocale; 
     if(lang == 'ar') locale = Locale('ar', 'ME');
     return locale;

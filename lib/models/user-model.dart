@@ -26,4 +26,8 @@ class User {
         cart: json["cart"] == null ? null : List<int>.from(json["cart"].map((x) => x)),
         repassword: json["repassword"] == null ? null : json["repassword"],
     );
+
+    Map<String,dynamic> toJson()=> {
+      "name":this.name ,"username":this.username,"password":this.password,"token":this.token
+      };
 }

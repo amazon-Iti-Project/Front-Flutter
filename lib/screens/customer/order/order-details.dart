@@ -3,15 +3,47 @@ import 'package:project/models/order-model.dart';
 import 'package:project/screens/customer/cart/cart.dart';
 import 'package:project/screens/customer/order/order-timeline.dart';
 import 'package:project/enums/status-enum.dart';
+import 'package:project/screens/templatesWidgets/localized-text.dart';
 
 class OrderDetails extends StatefulWidget {
   Order order;
+//   var json = {
+// "id": 1,
+// "customer": 1,
+// "status": 1,
+// "shipmentPrice": 5,
+// "payment": 1,
+// "address": "123 test street USA",
+// "orderShip": 10,
+// "orderPrice": 500,
+// "dueDate": "2021-01-07",
+// "canCancelledUntil": "2021-01-09",
+// "orderDate": "2021-01-01",
+// "deliveredDate": "2021-01-10",
+// "products": [
+// {
+// "id": 100,
+// "name": "USB Switcher Box",
+// "price": 250,
+// "description": "USB Switcher Box 2 Computers Sharing 4 USB Devices USB 2.0 KVM Switch Selector for Keyboard Mouse U-Disk Card Reader Printer Scanner",
+// "image": "https://m.media-amazon.com/images/I/51-GC+EkzBL._AC_UY218_.jpg"
+// }
+// ]
+// };
+
   OrderDetails({this.order});
   @override
   _OrderDetailsState createState() => _OrderDetailsState();
 }
 
 class _OrderDetailsState extends State<OrderDetails> {
+  final String pageName = "OrdersDetails";
+  @override
+    void initState() {
+      // TODO: implement initState
+      super.initState();
+      // widget.order = Order.fromJson(widget.json);
+    }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +100,18 @@ class _OrderDetailsState extends State<OrderDetails> {
                         Padding(
                           padding:
                               const EdgeInsets.fromLTRB(3, 1.0, 10.0, 10.0),
-                          child: Text(
+                          child:
+                        // LocalizedText(
+                        //   pageName,"title",
+                        //   bold: true,
+                        //   textAlign: TextAlign.start,
+                        //   color: Colors.red,
+                        //   maxLines: 3,
+                        //   subText: true,
+                          
+
+                        // ),
+                           Text(
                             widget.order.products[0].name,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 25),
