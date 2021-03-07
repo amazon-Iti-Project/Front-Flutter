@@ -2,6 +2,7 @@
 import 'package:project/enums/status-enum.dart';
 import 'package:project/models/payment-model.dart';
 import 'package:project/models/product-model.dart';
+import 'package:project/services/localizationService.dart';
 class Order {
   Order({
     this.id,
@@ -35,7 +36,10 @@ class Order {
 
   factory Order.fromJson(Map<String, dynamic> json) {
     Status st;
-
+    String lang = LocalizationService().lang;
+    // var arJson = json[lang];
+    // var enJson = json[lang];
+    // var 
     return Order(
       id: json["id"],
       customer: json["customer"],
