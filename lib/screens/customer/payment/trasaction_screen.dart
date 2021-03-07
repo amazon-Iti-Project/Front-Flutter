@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/services/Localization/applocalization.dart';
+import 'package:project/widgets/appbar.dart';
 
 class TrasnactionScreen extends StatefulWidget {
   TrasnactionScreen({Key key}) : super(key: key);
@@ -14,15 +15,13 @@ class _TrasnactionScreenState extends State<TrasnactionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Amazon"),
-      ),
       body: SafeArea(
         child: ListView(children: [
           Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              AmazonAppBar(),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Text(

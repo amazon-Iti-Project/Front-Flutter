@@ -224,18 +224,3 @@ class _CategoryListState extends State<CategoryList> {
   }
 }
 
-// List<Product> parseProducts(String responseBody) {
-//   final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
-//   return parsed.map<Product>((json) => Product.fromJson(json)).toList();
-// }
-
-// Future<List<Product>> fetchProducts() async {
-//   final response =
-//       await http.get("https://fierce-mountain-42224.herokuapp.com/products");
-
-//   if (response.statusCode == 200) {
-//     return parseProducts(response.body);
-//   } else {
-//     throw Exception('Unable to fetch products from the REST API');
-//   }
-// }
