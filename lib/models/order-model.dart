@@ -49,7 +49,7 @@ class Order {
         canCancelledUntil: DateTime.parse(json["canCancelledUntil"]),
         orderDate: DateTime.parse(json["orderDate"]),
         // deliveredDate: DateTime.parse(json["deliveredDate"]),
-        products: List<Product>.from(json["products"].map((x) => Product.fromJson(x))),
+        products: List<Product>.from(json["products"].map((x) => Product.fromJson(x,'en'))),
     );
     Map<String, dynamic> toJson() => {
         "id": id,

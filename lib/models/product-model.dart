@@ -7,7 +7,7 @@ import 'dart:convert';
 
 import 'fee-model.dart';
 
-List<Product> productFromJson(String str) => List<Product>.from(json.decode(str).map((x) => Product.fromJson(x)));
+List<Product> productFromJson(String str) => List<Product>.from(json.decode(str).map((x,l) => Product.fromJson(x,l)));
 
 String productToJson(List<Product> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
@@ -61,21 +61,27 @@ class Product {
     List<dynamic> tags;
     num brand;
     num seller; // id
-    factory Product.fromJson(Map<String, dynamic> json,/*String lang*/){
+    factory Product.fromJson(Map<String, dynamic> json,String lang){
       //1- get language
       //String lang = getLang() //shared prefrence ;
       //2- get language object
-      // Map<String,dynamic> langJson = json[/*lang*/].json.decoded; 
+      Map<String,dynamic> langObj = json[lang];
+      Map<String,dynamic> shippingObj = json["shipping"];
+      Map<String,dynamic> feeObj = json['fee'];
+      
       //3- set product attributes by lang attributes
       // {id,image,...ar}
+      print("in product json parsing");
+      print("period: ${feeObj["fee"]}");
+      // print(json.decoded);
       return Product(
         id: json["id"],
         categoryName: json["categoryName"] == null ? null : json["categoryName"],
-        name: json["name"],
+        name: langObj["name"],
         rate: json["rate"] == null ? null : json["rate"],
         // as follow
         // description: langJson["description"] == null ? null : langJson["description"],
-        description: json["description"] == null ? null : json["description"],
+        description: langObj["description"] == null ? null : langObj["description"],
         price: json["price"],
         cents: json["cents"] == null ? null : json["cents"],
         oldPrice: json["oldPrice"] == null ? null : json["oldPrice"].toDouble(),
@@ -83,14 +89,14 @@ class Product {
         category: json["category"],
         shippingLabel: json["shippingLabel"] == null ? null : json["shippingLabel"],
         image: json["image"],
-        about: json["about"] == null ? null : json["about"],
-        title: json["title"] == null ? null : json["title"],
-        subtitle: json["subtitle"] == null ? null : json["subtitle"],
+        about: langObj["about"] == null ? null : langObj["about"],
+        title: langObj["title"] == null ? null : langObj["title"],
+        subtitle: langObj["subtitle"] == null ? null : langObj["subtitle"],
         discount: json["discount"],
-        shipping: Shipping.fromJson(json["shipping"]),
-        fee: Fee.fromJson(json["fee"]),
+        shipping: Shipping.fromJson(shippingObj),
+        fee: Fee.fromJson(feeObj),
         size: json["size"],
-        color: json["color"],
+        color: langObj["color"],
         tags: List<dynamic>.from(json["tags"].map((x) => x)),
         brand: json["brand"] == null ? null : json["brand"],
     );

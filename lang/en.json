@@ -121,6 +121,7 @@
     "shipmentDetails":"Shipment Details",
     "shipment":"Shipment",
     "period":"Period",
+    "day":"day",
     "orderDetails":"Order Details",
     "numberOfOrders":"Number of Orders",
     "shippedOrders":"Shipped Orders",

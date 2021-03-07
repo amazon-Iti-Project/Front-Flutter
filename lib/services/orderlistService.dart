@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:project/screens/customer/order/order.dart';
+import 'package:project/models/orderlist-model.dart';
+import '../constants.dart';
 
-class OrderService {
-  String url = "https://jsonplaceholder.typicode.com/posts";
+class OrderListService {
+  String url = (API_URL + "/orders");
 
   Future<List<Order>> getOrders() async {
     List<Order> orders = new List();
@@ -10,7 +11,7 @@ class OrderService {
     Dio dio = new Dio();
     resopnse = await dio.get(url);
     var data = resopnse.data;
-    // print(data);
+    print(data);
     data.forEach((value) {
       orders.add(Order.fromJson(value));
     });

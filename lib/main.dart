@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
     //     backgroundColor: Colors.white,
     //   );
     return MaterialApp(
-      title: "Iti-amazon",
+      title: "ITI-Amazon",
       debugShowCheckedModeBanner: false,
       locale: _locale,
       supportedLocales: [

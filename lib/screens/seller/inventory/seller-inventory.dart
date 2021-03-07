@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:project/models/product-model.dart';
 import 'package:project/screens/seller/inventory/seller-inventory-details.dart';
 import 'package:project/screens/templatesWidgets/app-text.dart';
 import 'package:project/screens/templatesWidgets/localized-text.dart';
@@ -13,18 +14,32 @@ class SellerInventroy extends StatefulWidget {
 
 class SellerInventoryState extends State<SellerInventroy> {
   String localizedParentData = "SellerInventory";
-  // Product
+  Future<List<Product>> futureProductList;
+  String langCode;
   @override
     void initState() {
       // TODO: implement initState
       super.initState();
+      langCode = 'en';
       ProductService prodServ = ProductService();
+      futureProductList =prodServ.getProductsBySellerId(1,langCode);
       // prodServ.getProductsBySellerId(1).then(
-      //   (res)=>this.productList = res
+      //   (res)=>{
+      //     this.productList = res,
+      //     print("testedProd: ${res[0].toString()}")
+      //     }
       // ).catchError(
       //   (e)=>print(e)
-      // )
+      // );
     }
+    @override
+  void didChangeDependencies() {
+    Locale myLocale = Localizations.localeOf(context);
+    setState(() {
+      langCode =  myLocale.languageCode;      
+    });
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +49,25 @@ class SellerInventoryState extends State<SellerInventroy> {
         title:  LocalizedText(localizedParentData,'inventory',color: Colors.white,bold: true,),
         backgroundColor: HexColor("#232F3E"),
       ),
-      body: ListView.builder(
-        itemCount: 5,
-        itemBuilder: (BuildContext context, int index) {
+      body: FutureBuilder<List<Product>>(
+      future: futureProductList,
+      builder: (context,snapshot){
+          print('snapshot1:${snapshot.toString()}');
+          print('snapshot2Has Data :${snapshot.hasData}');
+          print('snapshot3 Data :${snapshot.data}');
+        if(snapshot.hasData){
+          final productList = snapshot.data;
+          print("app works${productList[0].toString()}");
+          return ListView.builder(
+            itemCount:productList.length,
+            itemBuilder:(context,index){
+              final product = productList[index];
+           
           return InkWell(
             onTap: (){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context)=>SellerInventroyDetails())
+                MaterialPageRoute(builder: (context)=>SellerInventroyDetails(prodId:product.id))
               );
             },
             child: Card(
@@ -70,7 +96,7 @@ class SellerInventoryState extends State<SellerInventroy> {
                             child: FittedBox(
                               fit: BoxFit.fitWidth,
                               child: Image.network(
-                                "https://picsum.photos/200/800",
+                                product.image,
                               ),
                             ),
                           ),
@@ -105,7 +131,7 @@ class SellerInventoryState extends State<SellerInventroy> {
                                       Flexible(
                                         fit: FlexFit.loose,
                                         child: AppText(
-                                          "Camera 1 that it`s brand is huawaui and it`s size is 2.3 in. x 3.4 in.",
+                                          "${product.description}",
                                           bold: true,
                                           maxLines: 3,
                                         ),
@@ -127,19 +153,19 @@ class SellerInventoryState extends State<SellerInventroy> {
                                               fontSize:12,
                                             ),
                                             AppText(
-                                              "120 ",
+                                              product.price.toString(),
                                               subText: true,
                                             ),
                                           ],
                                         )),
-                                    (true
+                                    (product.discount !=null
                                         ? Flexible(
                                             fit: FlexFit.loose,
                                             child: Padding(
                                               padding: const EdgeInsets.symmetric(
                                                   horizontal: 8.0),
                                               child: AppText(
-                                                "\$130 ",
+                                                "\$${product.price*(product.discount/100)}",
                                                 color: Colors.grey,
                                                 lineThrough: true,
                                                 subText: true,
@@ -163,7 +189,7 @@ class SellerInventoryState extends State<SellerInventroy> {
                                             subText: true,
                                           ),
                                            AppText(
-                                            " 16",
+                                            "${product.quantity}",
                                             subText: true,
                                           ),
                                         ],
@@ -189,7 +215,17 @@ class SellerInventoryState extends State<SellerInventroy> {
               ),
             ),
           );
-        },
+                
+            }
+          );
+       
+        }else{
+          Widget w =snapshot.hasError ? AppText("error: ${snapshot.error}")       
+          :
+         Center(child: CircularProgressIndicator());     
+         return w;
+        }
+      },
       ),
     );
     //  AppLocalizations.of(context).translate('shopbydep')

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class ScreenProgress extends StatelessWidget {
   final int ticks;
-
   ScreenProgress({@required this.ticks});
 
   @override
@@ -24,69 +23,6 @@ class ScreenProgress extends StatelessWidget {
             new RotatedBox(quarterTurns: 1, child: line()),
             spacer(),
             tick4(),
-          ],
-        ),
-        Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      left: 1, top: 25, bottom: 25, right: 5),
-                  child: Text(
-                    'Ordered',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                ),
-                Text("22 MAY 2020")
-              ],
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      left: 1, top: 25, bottom: 25, right: 5),
-                  child: Text(
-                    'Shipped',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                ),
-                Text("22 MAY 2020")
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      left: 50, top: 25, bottom: 25, right: 5),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Out For Delivery',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
-                      ),
-                    ],
-                  ),
-                ),
-                Text(" 22 MAY 2020")
-              ],
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      left: 1, top: 25, bottom: 25, right: 5),
-                  child: Text(
-                    ' Arriving By',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                ),
-                Text("22 MAY 2020")
-              ],
-            )
           ],
         ),
       ],

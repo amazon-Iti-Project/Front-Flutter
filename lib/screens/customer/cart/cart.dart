@@ -21,19 +21,30 @@ class _CartScreenState extends State<CartScreen> {
   var total;
   int _value;
   User currentUser;
+  String langCode;
 
   @override
   void initState() {
     super.initState();
+    langCode = 'en';
     total = 0;
     _value = 1;
+  }
+
+  @override
+  void didChangeDependencies() {
+    Locale myLocale = Localizations.localeOf(context);
+    setState(() {
+      langCode =  myLocale.languageCode;      
+    });
     getUser();
+    super.didChangeDependencies();
   }
 
   getUser() async {
     currentUser = await UserService().getUserByToken(userToken);
     var cartIDs =  currentUser.cart;
-    cartProducts = await ProductService().getProductListByID(cartIDs);
+    cartProducts = await ProductService().getProductListByID(cartIDs,langCode);
     getTotalPrice();
     setState(() {});
   }
