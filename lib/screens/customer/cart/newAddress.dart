@@ -47,7 +47,7 @@ class _NewAddressState extends State<NewAddress> {
     var list = await ProductService().getProductListByID(currentUser.cart,'en');
     for (var i = 0; i < list.length; i++) {
       ship += list[i].shipping.shipPrice;
-      total += list[i].price;
+      total += list[i].price *(list[i].discount/100);
       if (list[i].shipping.period > maxDuration)
         maxDuration = list[i].shipping.period;
     }
@@ -67,7 +67,11 @@ class _NewAddressState extends State<NewAddress> {
         customer: currentUser.id,
         status: Status.pending,
         // Payment value must be come from total products price * discount  + sum shipping 
-        payment: Payment(type: PAYMENT_TYPE.cash,state: PAYMENT_STATE.pending,payment: 200),
+        payment: Payment(
+          type: PAYMENT_TYPE.cash,
+          state: PAYMENT_STATE.pending,
+          payment: total+ship
+          ),
         orderShip: ship,
         orderPrice: total,
         dueDate: DateTime.now().add(new Duration (days: maxDuration)),

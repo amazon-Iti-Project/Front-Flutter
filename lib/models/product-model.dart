@@ -94,7 +94,7 @@ class Product {
         about: langObj["about"] == null ? null : langObj["about"],
         title: langObj["title"] == null ? null : langObj["title"],
         subtitle: langObj["subtitle"] == null ? null : langObj["subtitle"],
-        discount: json["discount"],
+        discount: json["discount"] == null ? 5 : json["discount"],
         shipping: Shipping.fromJson(shippingObj),
         fee: Fee.fromJson(feeObj),
         size: langObj["size"],
