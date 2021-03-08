@@ -47,6 +47,8 @@ class AppLocalizations {
       _AppLocalizationsDelegate();
 }
 
+
+// delegate
 class _AppLocalizationsDelegate
     extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();

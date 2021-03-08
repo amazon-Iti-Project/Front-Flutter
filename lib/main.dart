@@ -1,21 +1,20 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:project/screens/customer/home/homepage.dart';
 import 'package:project/services/Localization/applocalization.dart';
+import 'package:project/services/localizationService.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 import 'models/product-model.dart';
 import 'screens/customer/home/homepage.dart';
-
 
 void main() async {
   runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  
-  MyApp({Key key, }) : super(key: key);
-  
+  MyApp({
+    Key key,
+  }) : super(key: key);
 
   static void setLocale(BuildContext context, Locale locale) {
     _MyAppState state = context.findRootAncestorStateOfType<_MyAppState>();
@@ -27,20 +26,23 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-   Future<List<Product>> products;
-
-  _MyAppState({this.products});
   Locale _locale;
+  _MyAppState();
+
   void setLocale(Locale locale) {
-    setState(() {
-      _locale = locale;
-    });
+    // setState(() {
+    //   _locale = locale;
+    // });
+    initLange();
   }
 
   @override
-    void initState() {
-     
-      super.initState();
+  void initState() {
+    super.initState();
+
+    initLange();
+
+    // LocalizationService().getLanguage().then((res) => print("langMain:$res"));
     //    getProducts()
     //     .then((res) => {
     //    this.products ==res,
@@ -48,9 +50,18 @@ class _MyAppState extends State<MyApp> {
     //    print(this.products),
     //    setState(() { })
     //   //  print(myList.toString())
-    //    } ) 
+    //    } )
     //  .catchError((err)=>print(err));
-    }
+  }
+
+  void initLange() async {
+    LocalizationService serv = await LocalizationService();
+    await serv.getLanguage();
+    setState(() {
+      String lang = serv.lang;
+      _locale = lang == 'ar' ? Locale('ar', 'ME') : Locale('en', 'US');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,32 +85,17 @@ class _MyAppState extends State<MyApp> {
       title: "ITI-Amazon",
       debugShowCheckedModeBanner: false,
       locale: _locale,
-      supportedLocales: [
-        Locale('en', 'US'),
-        Locale('ar', 'ME'),
-      ],
+      supportedLocales: LocalizationService().supportedLocales,
       localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      localeResolutionCallback: (locale, supportedLocales) {
-         
-        for (var supportedLocale in supportedLocales) {
-          
-          if (supportedLocale.languageCode == locale.languageCode &&
-              supportedLocale.countryCode == locale.countryCode) {
-            return supportedLocale;
-            // return Locale('ar', 'ME');
-            // return Locale('en', 'US');
-          }
-        }
-            return locale;
-      },
+      localeResolutionCallback: LocalizationService().getLocale,
       home: SplashScreenView(
         // home: SellerHomeScreen(),
-        home:MyHomePage(),
+        home: MyHomePage(),
         // home: Category(),
         duration: 3000,
         imageSize: 100,

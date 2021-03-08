@@ -5,6 +5,7 @@ import 'package:project/screens/customer/category/allDepartments.dart';
 import 'package:project/screens/customer/order/ordersList_Screen.dart';
 import 'package:project/screens/seller/seller-home-screen.dart';
 import 'package:project/services/Localization/applocalization.dart';
+import 'package:project/services/localizationService.dart';
 import 'package:project/widgets/appbar.dart';
 
 import '../../../main.dart';
@@ -32,7 +33,10 @@ class _MyHomePageState extends State<MyHomePage> {
         _temp = Locale(language.languageCode, 'MS');
         break;
     }
+    LocalizationService().setLanguage(language.languageCode);
     MyApp.setLocale(context, _temp);
+    // LocalizationService().getLanguage();
+
   }
 
   @override

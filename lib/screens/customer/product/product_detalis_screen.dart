@@ -40,7 +40,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   }
 
   getProductbyid() async {
+<<<<<<< HEAD
     var productVal = await ProductService().getProductByID(widget.id, langCode);
+=======
+    var productVal = await ProductService().getProductByID(widget.id);
+>>>>>>> 9f09ffe1eb312eb4abd7096f0a9bf7b879a53d83
     setState(() {
       product = productVal;
       print(product.name);
