@@ -7,7 +7,7 @@ class OrderListService {
   String url = (API_URL + "/orders");
 
   Future<List<Order>> getOrders() async {
-    List<Order> orders = new List();
+    List<Order> orders = [];
     Response resopnse;
     Dio dio = new Dio();
     resopnse = await dio.get(url);

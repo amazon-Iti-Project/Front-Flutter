@@ -1,11 +1,10 @@
-import 'dart:convert';
 
 import 'package:project/enums/status-enum.dart';
 import 'package:project/models/payment-model.dart';
 import 'package:project/models/product-model.dart';
-import 'package:project/models/product-model.dart';
-List<Order> orderFromJson(String str) => List<Order>.from(json.decode(str).map((x) => Order.fromJson(x)));
-String orderToJson(Order data) => json.encode(data.toJson());
+import 'package:project/services/localizationService.dart';
+import 'dart:convert';
+// String orderTojsonOrder(Order data) => jsonOrder.encode(data.tojsonOrder());
 
 class Order {
   Order({
@@ -31,32 +30,42 @@ class Order {
   Payment payment;
   String address;
   int orderShip;
-  double orderPrice;
+  num orderPrice;
   DateTime dueDate;
   DateTime canCancelledUntil;
   DateTime orderDate;
   DateTime deliveredDate;
   List<Product> products;
 
-  factory Order.fromJson(Map<String, dynamic> json) {
+  factory Order.fromJson(Map<String, dynamic> jsonOrder) {
     Status st;
-
+    String lang = LocalizationService().lang;
+    var arjsonOrder = jsonOrder[lang];
+    var enjsonOrder = jsonOrder[lang];
+    List<dynamic> prodList = jsonOrder["products"] as List<dynamic>;
+    // print("en:$enjsonOrder");
+    print("prodList: $prodList");
+    print("dueDate: ${jsonOrder["dueDate"]}");
+    print("canCancelledUntil: ${jsonOrder["canCancelledUntil"]}");
+    // var 
     return Order(
-      id: json["id"],
-      customer: json["customer"],
-      status: st.getStateType(json["status"]),
+      id: jsonOrder["id"],
+      customer: jsonOrder["customer"],
+      status: st.getStateType(jsonOrder["status"]),
       shipmentPrice:
-          json["shipmentPrice"] == null ? null : json["shipmentPrice"],
-      payment:Payment.fromJson(json["payment"]),
-      address: json["address"],
-      orderShip: json["orderShip"],
-      orderPrice: json["orderPrice"],
-      dueDate: DateTime.parse(json["dueDate"]),
-      canCancelledUntil: DateTime.parse(json["canCancelledUntil"]),
-      orderDate: DateTime.parse(json["orderDate"]),
-      deliveredDate: DateTime.parse(json["deliveredDate"]),
-      products:
-          List<Product>.from(json["products"].map((x) => Product.fromJson(x,))),
+          jsonOrder["shipmentPrice"] == null ? null : jsonOrder["shipmentPrice"],
+      payment:Payment.fromJson(jsonOrder["payment"]),
+      address: jsonOrder["address"],
+      orderShip: jsonOrder["orderShip"],
+      orderPrice: jsonOrder["orderPrice"],
+      dueDate: DateTime.parse(jsonOrder["dueDate"]),
+      canCancelledUntil: DateTime.parse(jsonOrder["canCancelledUntil"]),
+      orderDate: DateTime.parse((jsonOrder["orderDate"]as String).toLowerCase().trim()),
+      deliveredDate: DateTime.parse((jsonOrder["deliveredDate"] as String).toLowerCase().trim()),
+      products: 
+          prodList.map<Product>((prod) => Product.fromJson(prod)).toList(),
+          // List<Product>.from(prodList).map<Product>((prod) => Product.fromJson(prod)).toList(),
+          // .map<Product>((prod) => Product.fromJson(prod)).toList(),
     );
   }
   Map<String, dynamic> toJson() => {
@@ -91,12 +100,12 @@ class Order {
 //   String description;
 //   String image;
 
-//   factory Product.fromJson(Map<String, dynamic> json) => Product(
-//         id: json["id"],
-//         name: json["name"],
-//         price: json["price"],
-//         description: json["description"],
-//         image: json["image"],
+//   factory Product.fromjsonOrder(Map<String, dynamic> jsonOrder) => Product(
+//         id: jsonOrder["id"],
+//         name: jsonOrder["name"],
+//         price: jsonOrder["price"],
+//         description: jsonOrder["description"],
+//         image: jsonOrder["image"],
 //       );
 // }
 
@@ -136,20 +145,20 @@ class Order {
 //     // DateTime deliveredDate;
 //     List<Product> products;
 
-//     factory Order.fromJson(Map<String, dynamic> json) => Order(
-//         id: json["id"],
-//         customer: json["customer"],
-//         status: json["status"],
-//         shipmentPrice: json["shipmentPrice"] == null ? null : json["shipmentPrice"],
-//         payment: json["payment"],
-//         address: json["address"],
-//         orderShip: json["orderShip"],
-//         orderPrice: json["orderPrice"],
-//         dueDate: DateTime.parse(json["dueDate"]),
-//         canCancelledUntil: DateTime.parse(json["canCancelledUntil"]),
-//         orderDate: DateTime.parse(json["orderDate"]),
-//         // deliveredDate: DateTime.parse(json["deliveredDate"]),
-//         products: List<Product>.from(json["products"].map((x) => Product.fromJson(x,'en'))),
+//     factory Order.fromjsonOrder(Map<String, dynamic> jsonOrder) => Order(
+//         id: jsonOrder["id"],
+//         customer: jsonOrder["customer"],
+//         status: jsonOrder["status"],
+//         shipmentPrice: jsonOrder["shipmentPrice"] == null ? null : jsonOrder["shipmentPrice"],
+//         payment: jsonOrder["payment"],
+//         address: jsonOrder["address"],
+//         orderShip: jsonOrder["orderShip"],
+//         orderPrice: jsonOrder["orderPrice"],
+//         dueDate: DateTime.parse(jsonOrder["dueDate"]),
+//         canCancelledUntil: DateTime.parse(jsonOrder["canCancelledUntil"]),
+//         orderDate: DateTime.parse(jsonOrder["orderDate"]),
+//         // deliveredDate: DateTime.parse(jsonOrder["deliveredDate"]),
+//         products: List<Product>.from(jsonOrder["products"].map((x) => Product.fromjsonOrder(x,'en'))),
 //     );
 // }
 
