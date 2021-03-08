@@ -33,21 +33,23 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   void didChangeDependencies() {
     Locale myLocale = Localizations.localeOf(context);
     setState(() {
-      langCode =  myLocale.languageCode;      
+      langCode = myLocale.languageCode;
     });
     getProductbyid();
     super.didChangeDependencies();
   }
 
   getProductbyid() async {
-    var productVal = await ProductService().getProductByID(widget.id,langCode);
+    var productVal = await ProductService().getProductByID(widget.id, langCode);
     setState(() {
       product = productVal;
+      print(product.name);
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    print(product.name);
     if (product != null) {
       return Scaffold(
         body: SafeArea(
@@ -63,7 +65,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           left: 15, top: 15, right: 20, bottom: 0),
                       child: Text(
                         product.name,
-                        // widget.product.name,
                         style: TextStyle(fontSize: 20),
                       )),
                   Center(
@@ -87,7 +88,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       Expanded(
                         flex: 6,
                         child: Text(
-                        product.price.toString(),
+                          product.price.toString(),
                           style: TextStyle(
                               fontSize: 18,
                               color: Colors.red,
@@ -251,7 +252,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(15, 2, 15, 7),
                 child: RaisedButton(
-                  color: Color(0xFFe69027),
+                  color: Color.fromRGBO(242, 196, 89, 1),
                   onPressed: () {
                     Navigator.push(
                       context,
