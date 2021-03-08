@@ -14,7 +14,6 @@ class SellerPendingOrdersState extends State<SellerPendingOrders> {
   Future<List<Order>> futureOrders;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     OrderService orderServ = OrderService();
     futureOrders = orderServ.getPendingOrders();
@@ -27,6 +26,7 @@ class SellerPendingOrdersState extends State<SellerPendingOrders> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final orders = snapshot.data;
+            print("success data gotten");
             return Column(
               children: [
                 Expanded(

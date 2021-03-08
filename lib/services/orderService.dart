@@ -14,7 +14,8 @@ class OrderService {
           options: Options(headers: {
             HttpHeaders.contentTypeHeader: "application/json",
           }),
-          data: jsonEncode(myOrder),
+          // data: jsonEncode(myOrder),
+          data: myOrder.toJson()
         );
   }
   Future<List<Order>> getOrders() async {
@@ -33,8 +34,11 @@ class OrderService {
   Future<List<Order>> getPendingOrders() async{
       Dio dio = Dio();
       Response res = await dio.get(API_URL + "/orders?status=1",);
+      print("fetching in order service");
       if(res.statusCode == 200){
+        print("success request");
         var list = res.data  as  List<dynamic>;
+        print(list[0]["products"][0] is Map);
         return list.map(
           (order)=>Order.fromJson(order)
         ).toList();
