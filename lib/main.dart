@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:project/screens/customer/home/homepage.dart';
+import 'package:project/screens/seller/orders/pending-orders.dart';
+import 'package:project/screens/seller/orders/seller-orders-home.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/localizationService.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
@@ -89,8 +91,14 @@ class _MyAppState extends State<MyApp> {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+<<<<<<< HEAD
        home: SplashScreenView(
         // home: SellerHomeScreen(),
+=======
+      localeResolutionCallback: LocalizationService().getLocale,
+      home: SplashScreenView(
+        // home: SellerOrdersHome(),
+>>>>>>> 79912da58f1d036f6d84021581038acde4e6bd4d
         home: MyHomePage(),
         // home: Category(),
         duration: 3000,

@@ -10,7 +10,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+<<<<<<< HEAD
   shared_preferences: ^0.5.12+4
+=======
+  shared_preferences: ^2.0.3
+  flutter_guid: ^0.1.0
+>>>>>>> 79912da58f1d036f6d84021581038acde4e6bd4d
   http: ^0.12.2
   dio: ^3.0.10
   cupertino_icons: ^1.0.0

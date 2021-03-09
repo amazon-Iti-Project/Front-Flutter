@@ -17,34 +17,23 @@ class _CartScreenState extends State<CartScreen> {
 
   // replace it with if the user logged in and get token
   String userToken = "684a359c-da5b-1c01-8c51-1991fc8c2fb6";
-  List<Product> cartProducts = new List();
+  List<Product> cartProducts = [];
   var total;
   int _value;
   User currentUser;
-  String langCode;
 
   @override
   void initState() {
     super.initState();
-    langCode = 'en';
     total = 0;
     _value = 1;
-  }
-
-  @override
-  void didChangeDependencies() {
-    Locale myLocale = Localizations.localeOf(context);
-    setState(() {
-      langCode =  myLocale.languageCode;      
-    });
     getUser();
-    super.didChangeDependencies();
   }
 
   getUser() async {
     currentUser = await UserService().getUserByToken(userToken);
     var cartIDs =  currentUser.cart;
-    cartProducts = await ProductService().getProductListByID(cartIDs,langCode);
+    cartProducts = await ProductService().getProductListByID(cartIDs);
     getTotalPrice();
     setState(() {});
   }
@@ -60,6 +49,7 @@ class _CartScreenState extends State<CartScreen> {
   }
   @override
   Widget build(BuildContext context) {
+    print(currentUser);
     return Scaffold(
       appBar: AppBar(
         leading: Icon(
@@ -98,175 +88,176 @@ class _CartScreenState extends State<CartScreen> {
         children: [
           Column(children: [
             Padding(padding: const EdgeInsets.only(top: 125.0)),
-            Expanded(
-              // height: MediaQuery.of(context).size.height*0.67,
-              child: ListView.builder(
-                itemCount: cartProducts.length,
-                itemBuilder: (context, index) {
-                  final cartItem = cartProducts[index];
-                  return Container(
-                    height: 350,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border(
-                        bottom: BorderSide(color: Colors.grey[300]),
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              width: 200,
-                              height: 200,
-                              child: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Image.network(cartItem.image),
-                              ),
-                            ),
-                            Container(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: 150,
-                                    child: Text(
-                                      cartItem.name,
-                                      style: TextStyle(
-                                        fontSize: 22,
-                                      ),
-                                    ),
-                                  ),
-                                  Text("\$" + cartItem.price.toString(),
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.red[900])),
-                                  Text(
-                                      AppLocalizations.of(context)
-                                          .translate('inStock'),
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.green[700])),
-                                  Row(
-                                    children: [
-                                      Text(
-                                          AppLocalizations.of(context)
-                                                  .translate('color') +
-                                              ": ",
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold)),
-                                      Text(cartItem.color,
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                          )),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Row(children: [
-                            ElevatedButton(
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.grey[400]),
-                                elevation:
-                                    MaterialStateProperty.all<double>(0.0),
-                              ),
-                              onPressed: () {
-                                // Respond to button press
-                                setState(() {
-                                  _value -= 1;
-                                });
-                              },
-                              child: Text('-'),
-                            ),
-                            Container(
-                              width: 70,
-                              height: 35,
-                              child: Center(child: Text(_value.toString())),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(color: Colors.grey)),
-                            ),
-                            ElevatedButton(
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.grey[400]),
-                                elevation:
-                                    MaterialStateProperty.all<double>(0.0),
-                              ),
-                              onPressed: () {
-                                // Respond to button press
-                                setState(() {
-                                  _value += 1;
-                                });
-                              },
-                              child: Text('+'),
-                            ),
-                          ]),
-                        ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 8.0, right: 8.0),
-                              child: ElevatedButton(
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.grey[400]),
-                                  elevation:
-                                      MaterialStateProperty.all<double>(0.0),
-                                ),
-                                onPressed: () {
-                                  // Respond to button press
-                                },
-                                child: Text(AppLocalizations.of(context)
-                                    .translate('delete')),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 8.0, right: 8.0),
-                              child: ElevatedButton(
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.grey[400]),
-                                  elevation:
-                                      MaterialStateProperty.all<double>(0.0),
-                                ),
-                                onPressed: () {
-                                  // Respond to button press
-                                },
-                                child: Text(AppLocalizations.of(context)
-                                    .translate('saveForLater')),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            TextButton(
-                              onPressed: () {},
-                              child: Text(AppLocalizations.of(context)
-                                  .translate('compareSimilarItems')),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
+          //   Expanded(
+          //     // height: MediaQuery.of(context).size.height*0.67,
+          //     child: ListView.builder(
+          //       itemCount: cartProducts.length,
+          //       itemBuilder: (context, index) {
+          //         final cartItem = cartProducts[index];
+          //         print(cartItem);
+          //         return Container(
+          //           height: 350,
+          //           decoration: BoxDecoration(
+          //             color: Colors.white,
+          //             border: Border(
+          //               bottom: BorderSide(color: Colors.grey[300]),
+          //             ),
+          //           ),
+          //           child: Column(
+          //             children: [
+          //               Row(
+          //                 children: [
+          //                   Container(
+          //                     width: 200,
+          //                     height: 200,
+          //                     child: Padding(
+          //                       padding: const EdgeInsets.all(12.0),
+          //                       child: Image.network(cartItem.image),
+          //                     ),
+          //                   ),
+          //                   Container(
+          //                     child: Column(
+          //                       crossAxisAlignment: CrossAxisAlignment.start,
+          //                       children: [
+          //                         Container(
+          //                           width: 150,
+          //                           child: Text(
+          //                             cartItem.name,
+          //                             style: TextStyle(
+          //                               fontSize: 22,
+          //                             ),
+          //                           ),
+          //                         ),
+          //                         Text("\$" + cartItem.price.toString(),
+          //                             style: TextStyle(
+          //                                 fontSize: 18,
+          //                                 color: Colors.red[900])),
+          //                         Text(
+          //                             AppLocalizations.of(context)
+          //                                 .translate('inStock'),
+          //                             style: TextStyle(
+          //                                 fontSize: 18,
+          //                                 color: Colors.green[700])),
+          //                         Row(
+          //                           children: [
+          //                             Text(
+          //                                 AppLocalizations.of(context)
+          //                                         .translate('color') +
+          //                                     ": ",
+          //                                 style: TextStyle(
+          //                                     fontSize: 18,
+          //                                     fontWeight: FontWeight.bold)),
+          //                             Text(cartItem.color,
+          //                                 style: TextStyle(
+          //                                   fontSize: 18,
+          //                                 )),
+          //                           ],
+          //                         ),
+          //                       ],
+          //                     ),
+          //                   )
+          //                 ],
+          //               ),
+          //               Padding(
+          //                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          //                 child: Row(children: [
+          //                   ElevatedButton(
+          //                     style: ButtonStyle(
+          //                       backgroundColor:
+          //                           MaterialStateProperty.all<Color>(
+          //                               Colors.grey[400]),
+          //                       elevation:
+          //                           MaterialStateProperty.all<double>(0.0),
+          //                     ),
+          //                     onPressed: () {
+          //                       // Respond to button press
+          //                       setState(() {
+          //                         _value -= 1;
+          //                       });
+          //                     },
+          //                     child: Text('-'),
+          //                   ),
+          //                   Container(
+          //                     width: 70,
+          //                     height: 35,
+          //                     child: Center(child: Text(_value.toString())),
+          //                     decoration: BoxDecoration(
+          //                         color: Colors.white,
+          //                         border: Border.all(color: Colors.grey)),
+          //                   ),
+          //                   ElevatedButton(
+          //                     style: ButtonStyle(
+          //                       backgroundColor:
+          //                           MaterialStateProperty.all<Color>(
+          //                               Colors.grey[400]),
+          //                       elevation:
+          //                           MaterialStateProperty.all<double>(0.0),
+          //                     ),
+          //                     onPressed: () {
+          //                       // Respond to button press
+          //                       setState(() {
+          //                         _value += 1;
+          //                       });
+          //                     },
+          //                     child: Text('+'),
+          //                   ),
+          //                 ]),
+          //               ),
+          //               Row(
+          //                 children: [
+          //                   Padding(
+          //                     padding:
+          //                         const EdgeInsets.only(left: 8.0, right: 8.0),
+          //                     child: ElevatedButton(
+          //                       style: ButtonStyle(
+          //                         backgroundColor:
+          //                             MaterialStateProperty.all<Color>(
+          //                                 Colors.grey[400]),
+          //                         elevation:
+          //                             MaterialStateProperty.all<double>(0.0),
+          //                       ),
+          //                       onPressed: () {
+          //                         // Respond to button press
+          //                       },
+          //                       child: Text(AppLocalizations.of(context)
+          //                           .translate('delete')),
+          //                     ),
+          //                   ),
+          //                   Padding(
+          //                     padding:
+          //                         const EdgeInsets.only(left: 8.0, right: 8.0),
+          //                     child: ElevatedButton(
+          //                       style: ButtonStyle(
+          //                         backgroundColor:
+          //                             MaterialStateProperty.all<Color>(
+          //                                 Colors.grey[400]),
+          //                         elevation:
+          //                             MaterialStateProperty.all<double>(0.0),
+          //                       ),
+          //                       onPressed: () {
+          //                         // Respond to button press
+          //                       },
+          //                       child: Text(AppLocalizations.of(context)
+          //                           .translate('saveForLater')),
+          //                     ),
+          //                   ),
+          //                 ],
+          //               ),
+          //               Row(
+          //                 children: [
+          //                   TextButton(
+          //                     onPressed: () {},
+          //                     child: Text(AppLocalizations.of(context)
+          //                         .translate('compareSimilarItems')),
+          //                   ),
+          //                 ],
+          //               ),
+          //             ],
+          //           ),
+          //         );
+          //       },
+          //     ),
+          //   ),
           ]),
           Container(
             height: 150,

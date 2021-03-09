@@ -44,7 +44,7 @@ class _NewAddressState extends State<NewAddress> {
 
   getUser() async {
     currentUser = await UserService().getUserByToken(userToken);
-    var list = await ProductService().getProductListByID(currentUser.cart,'en');
+    var list = await ProductService().getProductListByID(currentUser.cart);
     for (var i = 0; i < list.length; i++) {
       ship += list[i].shipping.shipPrice;
       total += list[i].price *(list[i].discount/100);
@@ -59,11 +59,11 @@ class _NewAddressState extends State<NewAddress> {
 
   submitOrder() async {
     setState(() {});
-    List<Product> products =await ProductService().getProductListByID(currentUser.cart,'en');
+    List<Product> products =await ProductService().getProductListByID(currentUser.cart);
     myOrder =  Order(
         address: address,
         canCancelledUntil: DateTime.now().add(new Duration(days: 3)),
-        products: await ProductService().getProductListByID(currentUser.cart,'en'),
+        products: await ProductService().getProductListByID(currentUser.cart),
         customer: currentUser.id,
         status: Status.pending,
         // Payment value must be come from total products price * discount  + sum shipping 

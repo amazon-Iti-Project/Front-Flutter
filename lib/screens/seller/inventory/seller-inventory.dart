@@ -22,7 +22,7 @@ class SellerInventoryState extends State<SellerInventroy> {
       super.initState();
       langCode = 'en';
       ProductService prodServ = ProductService();
-      futureProductList =prodServ.getProductsBySellerId(1,langCode);
+      futureProductList =prodServ.getProductsBySellerId(1);
       // prodServ.getProductsBySellerId(1).then(
       //   (res)=>{
       //     this.productList = res,

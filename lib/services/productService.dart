@@ -3,7 +3,7 @@ import 'package:project/models/product-model.dart';
 import '../constants.dart';
 
 class ProductService {
-  Future<List<Product>> getProductsByCatID(String name,String code) async {
+  Future<List<Product>> getProductsByCatID(String name) async {
     List<Product> products = new List();
     Response response;
     Dio dio = new Dio();
@@ -17,7 +17,7 @@ class ProductService {
     return products;
   }
 
-  Future<List<Product>> getProductListByID(List<int> items,String code) async {
+  Future<List<Product>> getProductListByID(List<int> items) async {
     List<Product> products = new List();
     var strItems = items.map((id) => "id=" + id.toString());
     var query = strItems.join('&');
@@ -44,7 +44,7 @@ class ProductService {
     return product;
   }
 
-  Future<List<Product>> getProductsBySellerId(num id,String code) async{
+  Future<List<Product>> getProductsBySellerId(num id) async{
     Dio dio = Dio();
     Response res = await dio.get(API_URL+"/products?seller=$id");
     var list = (res.data as List<dynamic>);
