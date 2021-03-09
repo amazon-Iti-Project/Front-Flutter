@@ -30,9 +30,6 @@ class _MyAppState extends State<MyApp> {
   _MyAppState();
 
   void setLocale(Locale locale) {
-    // setState(() {
-    //   _locale = locale;
-    // });
     initLange();
   }
 
@@ -92,8 +89,7 @@ class _MyAppState extends State<MyApp> {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      localeResolutionCallback: LocalizationService().getLocale,
-      home: SplashScreenView(
+       home: SplashScreenView(
         // home: SellerHomeScreen(),
         home: MyHomePage(),
         // home: Category(),

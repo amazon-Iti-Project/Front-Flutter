@@ -9,10 +9,6 @@ import 'package:project/widgets/appbar.dart';
 class ProductDetailsScreen extends StatefulWidget {
   final int id;
   ProductDetailsScreen({this.id});
-  // ProductDetailsScreen(
-  //   int id, {
-  //   Key key,
-  // }) : super(key: key);
 
   @override
   _ProductDetailsScreenState createState() => _ProductDetailsScreenState();
@@ -22,12 +18,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   final key = GlobalKey<FormState>();
   Product product;
   String langCode;
-
-  @override
-  void initState() {
-    super.initState();
-    langCode = 'en';
-  }
+  var future;
 
   @override
   void didChangeDependencies() {
@@ -39,257 +30,277 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     super.didChangeDependencies();
   }
 
-  getProductbyid() async {
-<<<<<<< HEAD
-    var productVal = await ProductService().getProductByID(widget.id, langCode);
-=======
+  Future<void> getProductbyid() async {
     var productVal = await ProductService().getProductByID(widget.id);
->>>>>>> 9f09ffe1eb312eb4abd7096f0a9bf7b879a53d83
     setState(() {
       product = productVal;
-      print(product.name);
     });
   }
 
   @override
+  void initState() {
+    super.initState();
+    langCode = 'en';
+    future = getProductbyid();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    print(product.name);
-    if (product != null) {
-      return Scaffold(
-        body: SafeArea(
-          child: Form(
-            key: key,
-            child: ListView(children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AmazonAppBar(),
-                  Container(
-                      margin: EdgeInsets.only(
-                          left: 15, top: 15, right: 20, bottom: 0),
-                      child: Text(
-                        product.name,
-                        style: TextStyle(fontSize: 20),
-                      )),
-                  Center(
-                    child: Container(
-                        padding: const EdgeInsets.all(20),
-                        // height: 200,
-                        child: Image.network(product.image)),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                        left: 10, top: 10, right: 20, bottom: 0),
-                    child: Row(children: [
-                      Expanded(
-                        flex: 1,
+    return FutureBuilder(
+      future: future,
+      builder: (c, s) {
+        if (s.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        } else
+          return Scaffold(
+            body: SafeArea(
+              child: Form(
+                key: key,
+                child: ListView(children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AmazonAppBar(),
+                      Padding(
+                        padding: const EdgeInsets.all(10),
                         child: Text(
-                          "Price : ",
-                          style:
-                              TextStyle(color: Colors.grey[600], fontSize: 18),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 6,
-                        child: Text(
-                          product.price.toString(),
+                          product.name,
                           style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      )
-                    ]),
-                  ),
-                  Container(
-                    height: 1,
-                    color: Colors.grey,
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                        left: 10, top: 10, right: 20, bottom: 0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Text(
-                            "Brand",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 4,
-                          child: Text(
-                            product.brand.toString(),
-                            style: TextStyle(fontSize: 18),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                        left: 10, top: 10, right: 20, bottom: 0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Text(
-                            "Screen Size	",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 4,
-                          child: Text(
-                            product.size,
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                        left: 10, top: 10, right: 20, bottom: 0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Text(
-                            "Operating System",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: Text(
-                            "Windows 10 Home",
-                            style: TextStyle(fontSize: 18),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                        left: 10, top: 10, right: 20, bottom: 0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Text(
-                            "CPU Manufacturer	",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: Text(
-                            "Intel",
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                        left: 10, top: 10, right: 20, bottom: 10),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Text(
-                            "Computer Memory Size",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 4,
-                          child: Text(
-                            "16 GB",
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 1,
-                    color: Colors.grey,
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: RaisedButton(
-                  color: Color(0xFFf1c65d),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MyHomePage()),
-                    );
-                  },
-                  child: Row(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 5, 18, 5),
-                        padding: EdgeInsets.all(5),
-                        color: Colors.black54,
-                        child: Icon(
-                          Icons.play_arrow_outlined,
-                          color: Colors.white,
+                              fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       ),
-                      Text(AppLocalizations.of(context).translate('buynow'),
-                          style: TextStyle(fontSize: 20, color: Colors.black)),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(15, 2, 15, 7),
-                child: RaisedButton(
-                  color: Color.fromRGBO(242, 196, 89, 1),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MyHomePage()),
-                    );
-                  },
-                  child: Row(
-                    children: [
+                      Center(
+                        child: Container(
+                            padding: const EdgeInsets.all(20),
+                            // height: 200,
+                            child: Image.network(product.image)),
+                      ),
                       Container(
-                          margin: EdgeInsets.fromLTRB(0, 5, 18, 5),
-                          padding: EdgeInsets.all(5),
-                          color: Colors.black54,
-                          child: Icon(
-                            Icons.shopping_cart_sharp,
-                            color: Colors.white,
-                          )),
-                      Text(AppLocalizations.of(context).translate('addtocart'),
-                          style: TextStyle(fontSize: 20, color: Colors.black)),
+                        margin: EdgeInsets.only(
+                            left: 10, top: 10, right: 20, bottom: 0),
+                        child: Row(children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              "Description ",
+                              style: TextStyle(
+                                  color: Colors.grey[600], fontSize: 18),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              product.description,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.black,
+                              ),
+                            ),
+                          )
+                        ]),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          elevation: 10,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Column(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(
+                                      left: 10, top: 10, right: 20, bottom: 0),
+                                  child: Row(children: [
+                                    Expanded(
+                                      flex: 1,
+                                      child: Text(
+                                        "Seller :",
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 2,
+                                      child: Text(
+                                        product.seller.toString(),
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    )
+                                  ]),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(
+                                      left: 10, top: 10, right: 20, bottom: 0),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        flex: 1,
+                                        child: Text(
+                                          "Price :",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          " ${product.price.toString()} EGP",
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.green,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(
+                                      left: 10, top: 10, right: 20, bottom: 0),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        flex: 1,
+                                        child: Text(
+                                          "Rate :",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              product.rate.toString(),
+                                              style: TextStyle(fontSize: 18),
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      8, 0, 0, 0),
+                                              child: Icon(
+                                                Icons.star_rate,
+                                                color: Colors.amber,
+                                              ),
+                                            ),
+                                            Icon(
+                                              Icons.star_rate,
+                                              color: Colors.amber,
+                                            ),
+                                            Icon(
+                                              Icons.star_half_sharp,
+                                              color: Colors.amber,
+                                            ),
+                                            Icon(
+                                                Icons
+                                                    .star_border_purple500_sharp,
+                                                color: Colors.amber)
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(
+                                      left: 10, top: 10, right: 20, bottom: 0),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        flex: 1,
+                                        child: Text(
+                                          "Brand :",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          product.brand.toString(),
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(
+                                      left: 10, top: 10, right: 20, bottom: 10),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        flex: 1,
+                                        child: Text(
+                                          "Screen Size :",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          product.size,
+                                          style: TextStyle(fontSize: 16),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: RaisedButton(
+                      color: Color(0xFFf1c65d),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => MyHomePage()),
+                        );
+                      },
+                      child: Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0, 5, 18, 5),
+                            padding: EdgeInsets.all(5),
+                            color: Colors.black54,
+                            child: Icon(
+                              Icons.play_arrow_outlined,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(AppLocalizations.of(context).translate('buynow'),
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.black)),
+                        ],
+                      ),
+                    ),
+                  ),
+                ]),
               ),
-            ]),
-          ),
-        ),
-      );
-    } else {
-      return Scaffold(
-          backgroundColor: Colors.white,
-          body: Center(
-            child: Container(
-                width: 100, height: 100, child: CircularProgressIndicator()),
-          ));
-    }
+            ),
+          );
+      },
+    );
   }
 }

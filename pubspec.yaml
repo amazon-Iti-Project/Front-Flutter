@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  shared_preferences: ^2.0.3
+  shared_preferences: ^0.5.12+4
   http: ^0.12.2
   dio: ^3.0.10
   cupertino_icons: ^1.0.0
@@ -18,8 +18,7 @@ dependencies:
   #localization library
   image_picker: ^0.6.7+22
   firebase_storage: ^3.0.3
-
- 
+  flutter_guid: ^0.1.0
   #Animated Splash Screen 
   splash_screen_view: ^1.0.1
 
