@@ -80,7 +80,7 @@ class Order {
         "dueDate": "${dueDate.year.toString().padLeft(4, '0')}-${dueDate.month.toString().padLeft(2, '0')}-${dueDate.day.toString().padLeft(2, '0')}",
         "canCancelledUntil": "${canCancelledUntil.year.toString().padLeft(4, '0')}-${canCancelledUntil.month.toString().padLeft(2, '0')}-${canCancelledUntil.day.toString().padLeft(2, '0')}",
         "orderDate": "${orderDate.year.toString().padLeft(4, '0')}-${orderDate.month.toString().padLeft(2, '0')}-${orderDate.day.toString().padLeft(2, '0')}",
-        // "deliveredDate": "${deliveredDate.year.toString().padLeft(4, '0')}-${deliveredDate.month.toString().padLeft(2, '0')}-${deliveredDate.day.toString().padLeft(2, '0')}",
+        "deliveredDate": "${deliveredDate.year.toString().padLeft(4, '0')}-${deliveredDate.month.toString().padLeft(2, '0')}-${deliveredDate.day.toString().padLeft(2, '0')}",
         "products": List<dynamic>.from(products.map((x) => x.toJson())),
     };
 }
