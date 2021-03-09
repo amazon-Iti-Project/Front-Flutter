@@ -38,7 +38,7 @@ class _CategoryListState extends State<CategoryList> {
   }
 
   getProducts() async {
-    productsList = await ProductService().getProductsByCatID(widget.catName,langCode);
+    productsList = await ProductService().getProductsByCatID(widget.catName);
     setState(() {});
   }
 
