@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_guid/flutter_guid.dart';
+import "package:flutter_guid/flutter_guid.dart";
 import 'package:project/models/user-model.dart';
 import 'package:project/screens/templatesWidgets/app-text.dart';
 import 'package:project/services/localizationService.dart';
