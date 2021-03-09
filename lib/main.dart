@@ -91,14 +91,9 @@ class _MyAppState extends State<MyApp> {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-<<<<<<< HEAD
-       home: SplashScreenView(
-        // home: SellerHomeScreen(),
-=======
       localeResolutionCallback: LocalizationService().getLocale,
       home: SplashScreenView(
         // home: SellerOrdersHome(),
->>>>>>> 79912da58f1d036f6d84021581038acde4e6bd4d
         home: MyHomePage(),
         // home: Category(),
         duration: 3000,
