@@ -6,7 +6,7 @@ import 'package:project/models/order-model.dart';
 import '../constants.dart';
 
 class OrderService {
-  Future CreateNewOrder(Order myOrder) async {
+  Future<Order> CreateNewOrder(Order myOrder) async {
     Dio dio = new Dio();
     dio.options.headers['content-Type'] = 'application/json';
     // print(myOrder.address);
@@ -23,7 +23,11 @@ class OrderService {
     // print(myOrder.customer);
     // print(myOrder.canCancelledUntil);
 
-    print('before request');
+    // print('before request');
+       Response<Order> res = await dio.post<Order>(API_URL + "/orders", data: myOrder.toJson());
+    // print('after request');
+    print(res.statusCode);
+    print("data${res.data}");
     // print(jsonDecode(myOrder.toString()));
     // var json = jsonEncode(myOrder.toJson());
     // print(json);

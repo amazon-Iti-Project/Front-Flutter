@@ -107,8 +107,10 @@ class UserService {
   //4- to get user token //1- in any page to get current user use this method first
   Future<String> isUserSignedIn() async {
     SharedPreferences prefs =
-        await LocalizationService().getSharedPreferences();
-    String token = prefs.getString('UserToken');
+        await SharedPreferences.getInstance();
+    print("pref:$prefs");
+    String token =  prefs.getString('UserToken');
+    print("token:$token");
     return token;
   }
 

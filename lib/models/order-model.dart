@@ -71,9 +71,9 @@ class Order {
   Map<String, dynamic> toJson() => {
         "id": id,
         "customer": customer,
-        "status": status,
+        "status": status.value,
         "shipmentPrice": shipmentPrice == null ? null : shipmentPrice,
-        "payment": payment,
+        "payment": payment.toJson(),
         "address": address,
         "orderShip": orderShip,
         "orderPrice": orderPrice,

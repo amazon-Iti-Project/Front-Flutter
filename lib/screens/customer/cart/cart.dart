@@ -7,16 +7,14 @@ import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/productService.dart';
 import 'package:project/services/userService.dart';
 
-
 class CartScreen extends StatefulWidget {
   @override
   _CartScreenState createState() => _CartScreenState();
 }
 
 class _CartScreenState extends State<CartScreen> {
-
   // replace it with if the user logged in and get token
-  String userToken = "684a359c-da5b-1c01-8c51-1991fc8c2fb6";
+  String userToken;
   List<Product> cartProducts = [];
   var total;
   int _value;
@@ -30,22 +28,31 @@ class _CartScreenState extends State<CartScreen> {
     getUser();
   }
 
-  getUser() async {
-    currentUser = await UserService().getUserByToken(userToken);
-    var cartIDs =  currentUser.cart;
+
+  void getUser() async {
+    UserService userServ = UserService();
+    userToken = await userServ.isUserSignedIn();
+    userToken = "aea407a0-7f44-fcd0-c325-b1b3cbbe7711";
+    if(userToken != null){
+      currentUser = await userServ.getUserByToken(userToken);
+    var cartIDs = currentUser.cart;
     cartProducts = await ProductService().getProductListByID(cartIDs);
     getTotalPrice();
     setState(() {});
+    }else{
+    }
   }
-  getTotalPrice(){
-    var newTotal=0;
-    for(var i=0;i<cartProducts.length;i++){
+
+  getTotalPrice() {
+    var newTotal = 0;
+    for (var i = 0; i < cartProducts.length; i++) {
       newTotal += cartProducts[i].price;
     }
     setState(() {
       total = newTotal;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -252,7 +259,6 @@ class _CartScreenState extends State<CartScreen> {
                       ],
                     ),
                   );
-                  
                 },
               ),
             ),
@@ -275,7 +281,8 @@ class _CartScreenState extends State<CartScreen> {
                           cartProducts.length.toString() +
                           AppLocalizations.of(context).translate('items') +
                           ") "),
-                      Text( "\$" + total.toString() ,
+                      Text(
+                        "\$" + total.toString(),
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.red[900]),
@@ -304,8 +311,7 @@ class _CartScreenState extends State<CartScreen> {
                     child: RaisedButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                NewAddress()));
+                            builder: (BuildContext context) => NewAddress()));
                       },
                       color: Color.fromRGBO(242, 196, 89, 1),
                       child: Text(AppLocalizations.of(context)

@@ -57,7 +57,7 @@ class _NewAddressState extends State<NewAddress> {
   }
 
   submitOrder() async {
-    setState(() {});
+    // setState(() {});
     List<Product> products =
         await ProductService().getProductListByID(currentUser.cart);
     print("first product:${products[0]}");
@@ -84,7 +84,7 @@ class _NewAddressState extends State<NewAddress> {
         deliveredDate: DateTime.now().add(new Duration(days: maxDuration)),
         );
     var response = await OrderService().CreateNewOrder(myOrder);
-    print(response);
+    print("this is response$response");
     if(response != null)
       Navigator.of(context).push(
         MaterialPageRoute(builder: (BuildContext context) => OrderList()));
@@ -208,6 +208,7 @@ class _NewAddressState extends State<NewAddress> {
                               setState(() {
                                 address = myController.text;
                               });
+                              print("submitting");
                               submitOrder();
                             },
                             style: ButtonStyle(

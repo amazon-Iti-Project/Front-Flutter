@@ -20,4 +20,11 @@ class Payment {
       payment: json['payment'],
     );
   }
+
+  Map<String, dynamic> toJson()=> {
+        "id": id,
+        "type": type.value,
+        "state": state.value,
+        "payment": payment,
+  };
 }
