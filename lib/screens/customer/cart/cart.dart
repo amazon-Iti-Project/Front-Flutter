@@ -32,7 +32,6 @@ class _CartScreenState extends State<CartScreen> {
 
   getUser() async {
     currentUser = await UserService().getUserByToken(userToken);
-    print(currentUser);
     var cartIDs =  currentUser.cart;
     cartProducts = await ProductService().getProductListByID(cartIDs);
     getTotalPrice();
@@ -43,14 +42,12 @@ class _CartScreenState extends State<CartScreen> {
     for(var i=0;i<cartProducts.length;i++){
       newTotal += cartProducts[i].price;
     }
-    print(newTotal);
     setState(() {
       total = newTotal;
     });
   }
   @override
   Widget build(BuildContext context) {
-    print(currentUser);
     return Scaffold(
       appBar: AppBar(
         leading: Icon(
@@ -95,7 +92,6 @@ class _CartScreenState extends State<CartScreen> {
                 itemCount: cartProducts.length,
                 itemBuilder: (context, index) {
                   final cartItem = cartProducts[index];
-                  print(cartItem);
                   return Container(
                     height: 350,
                     decoration: BoxDecoration(
@@ -256,6 +252,7 @@ class _CartScreenState extends State<CartScreen> {
                       ],
                     ),
                   );
+                  
                 },
               ),
             ),

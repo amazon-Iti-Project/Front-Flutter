@@ -5,12 +5,14 @@ import 'package:project/services/Localization/applocalization.dart';
 class AmazonAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        height: 100,
+    return Container(
+        height: 125,
         width: MediaQuery.of(context).size.width,
         child: Column(
           children: [
+            Padding(
+              padding: EdgeInsets.only(top:30.0),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -72,7 +74,6 @@ class AmazonAppBar extends StatelessWidget {
               Color.fromRGBO(133, 217, 225, 1),
               Color.fromRGBO(165, 230, 206, 1)
             ])),
-      ),
-    );
+      );
   }
 }
