@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project/models/product-model.dart';
 import 'package:project/models/user-model.dart';
+import 'package:project/screens/customer/Auth/login_screen.dart';
 import 'package:project/screens/customer/cart/newAddress.dart';
 import 'package:project/services/Localization/applocalization.dart';
+import 'package:project/services/localizationService.dart';
 import 'package:project/services/productService.dart';
 import 'package:project/services/userService.dart';
 
@@ -23,6 +25,7 @@ class _CartScreenState extends State<CartScreen> {
   @override
   void initState() {
     super.initState();
+    String lang = LocalizationService().lang;
     total = 0;
     _value = 1;
     getUser();
@@ -32,14 +35,15 @@ class _CartScreenState extends State<CartScreen> {
   void getUser() async {
     UserService userServ = UserService();
     userToken = await userServ.isUserSignedIn();
-    userToken = "aea407a0-7f44-fcd0-c325-b1b3cbbe7711";
     if(userToken != null){
       currentUser = await userServ.getUserByToken(userToken);
-    var cartIDs = currentUser.cart;
-    cartProducts = await ProductService().getProductListByID(cartIDs);
-    getTotalPrice();
-    setState(() {});
+      var cartIDs = currentUser.cart;
+      cartProducts = await ProductService().getProductListByID(cartIDs);
+      getTotalPrice();
+      setState(() {});
     }else{
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext context) => LoginScreen()));
     }
   }
 
@@ -92,7 +96,7 @@ class _CartScreenState extends State<CartScreen> {
       body: Stack(
         children: [
           Column(children: [
-            Padding(padding: const EdgeInsets.only(top: 125.0)),
+            Padding(padding: const EdgeInsets.only(top: 150.0)),
             Expanded(
               // height: MediaQuery.of(context).size.height*0.67,
               child: ListView.builder(
@@ -100,7 +104,7 @@ class _CartScreenState extends State<CartScreen> {
                 itemBuilder: (context, index) {
                   final cartItem = cartProducts[index];
                   return Container(
-                    height: 350,
+                    // height: 350,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border(

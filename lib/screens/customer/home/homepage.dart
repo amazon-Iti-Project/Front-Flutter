@@ -87,10 +87,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
                 child: InkWell(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => YourAccountScreen()),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => YourAccountScreen()),
+                    // );
                   },
                   child: Text(
                     AppLocalizations.of(context).translate('yourlist'),
@@ -98,13 +98,28 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              Padding(
+              Container(
                 padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
-                child: Text(
-                  AppLocalizations.of(context).translate('youraccount'),
-                  style: TextStyle(fontSize: 20),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => YourAccountScreen()),
+                    );
+                  },
+                  child: Text(
+                    AppLocalizations.of(context).translate('youraccount'),
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
               ),
+              // Padding(
+              //   padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
+              //   child: Text(
+              //     AppLocalizations.of(context).translate('youraccount'),
+              //     style: TextStyle(fontSize: 20),
+              //   ),
+              // ),
               InkWell(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(

@@ -6,14 +6,14 @@ import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/payment_services.dart';
 import 'package:project/widgets/appbar.dart';
 
-class TrasnactionScreen extends StatefulWidget {
-  TrasnactionScreen({Key key}) : super(key: key);
+class TrasactionScreen extends StatefulWidget {
+  TrasactionScreen({Key key}) : super(key: key);
 
   @override
   _TrasnactionScreenState createState() => _TrasnactionScreenState();
 }
 
-class _TrasnactionScreenState extends State<TrasnactionScreen> {
+class _TrasnactionScreenState extends State<TrasactionScreen> {
   final key = GlobalKey<FormState>();
   var future;
   List<Order> paymentlist = [];

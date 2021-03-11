@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project/models/order-model.dart';
+import 'package:project/models/user-model.dart';
+import 'package:project/screens/customer/Auth/login_screen.dart';
 import 'package:project/screens/customer/cart/cart.dart';
 import 'package:project/screens/customer/order/order-card.dart';
 import 'package:project/screens/customer/order/order-details.dart';
 import 'package:project/screens/customer/order/searchbar.dart';
 import 'package:project/services/orderlistService.dart';
 import 'package:project/enums/status-enum.dart';
+import 'package:project/services/userService.dart';
 // import '../applocalization.dart';
 
 class OrderList extends StatefulWidget {
@@ -16,7 +19,7 @@ class OrderList extends StatefulWidget {
 
 class _OrderListState extends State<OrderList> {
   String _chosenValue;
-  List<Order> orderList = new List();
+  List<Order> orderList = [];
 
   @override
   void initState() {
@@ -25,8 +28,18 @@ class _OrderListState extends State<OrderList> {
   }
 
   getOrderFromServer() async {
-    orderList = await OrderListService().getOrders();
-    setState(() {});
+    var token = await UserService().isUserSignedIn();
+    print(token);
+    if(token != null){
+      User user = await UserService().getUserByToken(token);
+      print(user);
+      orderList = await OrderListService().getOrdersByUserID(user.id);
+      orderList = await OrderListService().getOrders();
+      setState(() {});
+    }else{
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext context) => LoginScreen()));
+    }
   }
 
   Widget build(BuildContext context) {

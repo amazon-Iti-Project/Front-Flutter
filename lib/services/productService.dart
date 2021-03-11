@@ -18,7 +18,7 @@ class ProductService {
   }
 
   Future<List<Product>> getProductListByID(List<int> items) async {
-    List<Product> products = new List();
+    List<Product> products = [];
     var strItems = items.map((id) => "id=" + id.toString());
     var query = strItems.join('&');
     Response response;

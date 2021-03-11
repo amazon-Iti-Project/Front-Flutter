@@ -18,7 +18,7 @@ class CategoryList extends StatefulWidget {
 }
 
 class _CategoryListState extends State<CategoryList> {
-  List<Product> productsList = new List();
+  List<Product> productsList = [];
   String langCode;
 
   @override
@@ -45,9 +45,41 @@ class _CategoryListState extends State<CategoryList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: Icon(
+          Icons.menu,
+          color: Colors.black,
+        ),
+        title: Container(
+            width: 100,
+            height: 40,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Image.asset('Images/amazon-black.png'),
+            )),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.search, color: Colors.black, size: 30),
+              onPressed: () {}),
+          IconButton(
+              icon: Icon(Icons.shopping_cart_outlined,
+                  color: Colors.black, size: 28),
+              onPressed: () {}),
+        ],
+        elevation: 0.0,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                Color.fromRGBO(133, 217, 225, 1),
+                Color.fromRGBO(165, 230, 206, 1)
+              ])),
+        ),
+      ),
       body: ListView(
         children: [
-          AmazonAppBar(),
           Container(
             height: 50,
             decoration: BoxDecoration(

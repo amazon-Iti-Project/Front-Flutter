@@ -19,7 +19,6 @@ class NewAddress extends StatefulWidget {
 }
 
 class _NewAddressState extends State<NewAddress> {
-  String userToken = "aea407a0-7f44-fcd0-c325-b1b3cbbe7711";
   final myController = TextEditingController();
   User currentUser;
   String userName;
@@ -42,7 +41,8 @@ class _NewAddressState extends State<NewAddress> {
   }
 
   getUser() async {
-    currentUser = await UserService().getUserByToken(userToken);
+    String token = await UserService().isUserSignedIn();
+    currentUser = await UserService().getUserByToken(token);
     var list = await ProductService().getProductListByID(currentUser.cart);
     for (var i = 0; i < list.length; i++) {
       ship += list[i].shipping.shipPrice;
@@ -57,15 +57,12 @@ class _NewAddressState extends State<NewAddress> {
   }
 
   submitOrder() async {
-    // setState(() {});
     List<Product> products =
         await ProductService().getProductListByID(currentUser.cart);
-    print("first product:${products[0]}");
-    print("address:${address}");
-    print("id:${currentUser.id}");
-    print("status:${Status.pending}");
-    print("first product:${products[0]}");
-
+        print("this is products ${products}");
+        print(products[0].enObj);
+        print(products[0].arObj);
+    products.forEach((element) { element.quantity = 1;});
     myOrder = Order(
         address: address,
         canCancelledUntil: DateTime.now().add(new Duration(days: 2)),
@@ -84,7 +81,6 @@ class _NewAddressState extends State<NewAddress> {
         deliveredDate: DateTime.now().add(new Duration(days: maxDuration)),
         );
     var response = await OrderService().CreateNewOrder(myOrder);
-    print("this is response$response");
     if(response != null)
       Navigator.of(context).push(
         MaterialPageRoute(builder: (BuildContext context) => OrderList()));

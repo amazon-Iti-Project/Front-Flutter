@@ -9,63 +9,13 @@ class OrderService {
   Future<Order> CreateNewOrder(Order myOrder) async {
     Dio dio = new Dio();
     dio.options.headers['content-Type'] = 'application/json';
-    // print(myOrder.address);
-    // print(myOrder.status);
-    // print(myOrder.shipmentPrice);
-    // print(myOrder.products);
-    // print(myOrder.payment);
-    // print(myOrder.orderShip);
-    // print(myOrder.orderPrice);
-    // print(myOrder.orderDate);
-    // print(myOrder.id);
-    // print(myOrder.dueDate);
-    // print(myOrder.deliveredDate);
-    // print(myOrder.customer);
-    // print(myOrder.canCancelledUntil);
-
-    // print('before request');
-       Response<Order> res = await dio.post<Order>(API_URL + "/orders", data: myOrder.toJson());
+    Response res = await dio.post(API_URL + "/orders", data: myOrder.toJson());
     // print('after request');
-    print(res.statusCode);
-    print("data${res.data}");
-    // print(jsonDecode(myOrder.toString()));
-    // var json = jsonEncode(myOrder.toJson());
-    // print(json);
-    // Map<String, dynamic> map = myOrder.toJson();
-    // String rawJson = jsonEncode(map);
-    // print(rawJson);
-    // try{
-    //   var first = myOrder.toJson();
-    //   var second = jsonDecode(myOrder.toJson().toString());
-    //   print(second);
-    // }catch(e){
-    //   print('not working');
-    // }
-
-////////////////////////////////
-    // Response res = await dio.post(API_URL + "/orders", data: myOrder.toJson());
-    // print('after request');
-    // print(res);
-    // print(res.data);
-    // if (res.statusCode == 200) {
-    //   return Order.fromJson(res.data);
-    // } else {
-    //   print('error!');
-    //   return null;
-    // }
-//////////////////////////////////////////////////////////////
-
-    // response =
-    //     await dio.post(API_URL + "/orders",
-    //       options: Options(headers: {
-    //         HttpHeaders.contentTypeHeader: "application/json",
-    //       }),
-    //       // data: jsonEncode(myOrder),
-    //       data: myOrder.toJson()
-    //     );
-    // return response;
-    // Response res = await dio.post(API_URL + "/users", data: user.toJson());
-    
+    // print(res); // as json object
+    // print(res.data); // an object
+    // print(Order.fromJson(res.data));
+    return(Order.fromJson(res.data));
+    // return Order.fromJson(res.data);
   }
   Future<List<Order>> getOrders() async {
     List<Order> orders = new List();
