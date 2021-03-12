@@ -53,11 +53,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     if (token != null) {
       User user = await UserService().getUserByToken(token);
       var res = await UserService().addToCart(user, widget.id);
-      if(res != null){
+      if (res != null) {
         Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => CartScreen()),
-      );
+          context,
+          MaterialPageRoute(builder: (context) => CartScreen()),
+        );
       }
     } else {
       Navigator.push(
@@ -74,12 +74,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       builder: (c, s) {
         if (s.connectionState == ConnectionState.waiting) {
           return Scaffold(
-            backgroundColor: Colors.white,
-            body: Center(child: Container(
-              width: 100,
-              height: 100,
-              child: CircularProgressIndicator())
-            ));
+              backgroundColor: Colors.white,
+              body: Center(
+                  child: Container(
+                      width: 100,
+                      height: 100,
+                      child: CircularProgressIndicator())));
         } else
           return Scaffold(
             appBar: AppBar(
@@ -143,7 +143,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           Expanded(
                             flex: 1,
                             child: Text(
-                              "Description ",
+                              AppLocalizations.of(context)
+                                  .translate('description'),
                               style: TextStyle(
                                   color: Colors.grey[600], fontSize: 18),
                             ),
@@ -179,7 +180,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     Expanded(
                                       flex: 1,
                                       child: Text(
-                                        "Seller :",
+                                        AppLocalizations.of(context)
+                                            .translate('seller'),
                                         style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 16,
@@ -206,7 +208,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       Expanded(
                                         flex: 1,
                                         child: Text(
-                                          "Price :",
+                                          AppLocalizations.of(context)
+                                              .translate('price'),
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16),
@@ -233,7 +236,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       Expanded(
                                         flex: 1,
                                         child: Text(
-                                          "Rate :",
+                                          AppLocalizations.of(context)
+                                              .translate('rate'),
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16),
@@ -282,7 +286,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       Expanded(
                                         flex: 1,
                                         child: Text(
-                                          "Brand :",
+                                          AppLocalizations.of(context)
+                                              .translate('brand'),
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16),
@@ -306,7 +311,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       Expanded(
                                         flex: 1,
                                         child: Text(
-                                          "Screen Size :",
+                                          AppLocalizations.of(context)
+                                              .translate('size'),
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16),
@@ -342,7 +348,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       child: Row(
                         children: [
                           Container(
-                            margin: EdgeInsets.fromLTRB(0, 5, 18, 5),
+                            margin: EdgeInsets.fromLTRB(15, 5, 18, 5),
                             padding: EdgeInsets.all(5),
                             color: Colors.black54,
                             child: Icon(
