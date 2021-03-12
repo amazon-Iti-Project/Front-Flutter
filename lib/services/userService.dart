@@ -120,7 +120,6 @@ class UserService {
   Future<User> getUserByToken(String token) async {
     Dio dio = Dio();
     Response res = await dio.get(API_URL + "/users?token=$token");
-    print(res);
     if (res.statusCode == 200) {
       var users = res.data as List<dynamic>;
       User matchedUser =
@@ -139,7 +138,15 @@ class UserService {
   // 1- get the user and on click add to cart send user and productId tp addTpCart method
   Future<User> addToCart(User user, num productId) async {
     var cart = user.cart;
+    if(cart == null ){
+      user.cart = [];
+      cart = user.cart;
+    }try{
     cart.add(productId);
+    }catch (e){
+      print("can't add this product to this cart");
+      return null;
+    }
     Dio dio = Dio();
     dio.options.headers['content-Type'] = 'application/json';
     Response res =

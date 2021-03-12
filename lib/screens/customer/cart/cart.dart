@@ -21,11 +21,13 @@ class _CartScreenState extends State<CartScreen> {
   var total;
   int _value;
   User currentUser;
+  bool _isBtnDisabled;
 
   @override
   void initState() {
     super.initState();
     String lang = LocalizationService().lang;
+    _isBtnDisabled = false;
     total = 0;
     _value = 1;
     getUser();
@@ -38,6 +40,8 @@ class _CartScreenState extends State<CartScreen> {
     if(userToken != null){
       currentUser = await userServ.getUserByToken(userToken);
       var cartIDs = currentUser.cart;
+      if(cartIDs == null)
+        _isBtnDisabled = true;
       cartProducts = await ProductService().getProductListByID(cartIDs);
       getTotalPrice();
       setState(() {});
@@ -312,12 +316,17 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.8,
-                    child: RaisedButton(
-                      onPressed: () {
+                    child: ElevatedButton(
+                      onPressed: _isBtnDisabled ? null :
+                      () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (BuildContext context) => NewAddress()));
                       },
-                      color: Color.fromRGBO(242, 196, 89, 1),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          Color.fromRGBO(242, 196, 89, 1)
+                        )
+                      ),
                       child: Text(AppLocalizations.of(context)
                           .translate('proceedToCheckout')),
                     ),

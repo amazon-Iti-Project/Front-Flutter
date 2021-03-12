@@ -29,12 +29,10 @@ class _OrderListState extends State<OrderList> {
 
   getOrderFromServer() async {
     var token = await UserService().isUserSignedIn();
-    print(token);
     if(token != null){
       User user = await UserService().getUserByToken(token);
-      print(user);
       orderList = await OrderListService().getOrdersByUserID(user.id);
-      orderList = await OrderListService().getOrders();
+      // orderList = await OrderListService().getOrders();
       setState(() {});
     }else{
       Navigator.of(context).push(MaterialPageRoute(
