@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/modules/language.dart';
+import 'package:project/screens/customer/Auth/login_screen.dart';
 import 'package:project/screens/customer/category/allDepartments.dart';
 import 'package:project/screens/customer/order/ordersList_Screen.dart';
 import 'package:project/screens/seller/seller-home-screen.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/localizationService.dart';
+import 'package:project/services/userService.dart';
 import 'package:project/widgets/appbar.dart';
 
 import '../../../main.dart';
@@ -21,6 +23,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool _isSignedIn;
   void _changeLanguage(Language language) {
     print(language.languageCode);
     Locale _temp;
@@ -37,6 +40,31 @@ class _MyHomePageState extends State<MyHomePage> {
     MyApp.setLocale(context, _temp);
     // LocalizationService().getLanguage();
 
+  }
+
+  @override
+  void initState() { 
+    super.initState();
+    _isSignedIn = false;
+    getUser();
+  }
+  getUser() async {
+    String token = await UserService().isUserSignedIn();
+    if(token != null){
+      _isSignedIn = true;
+    }
+    setState(() {});
+  }
+  logOut() async {
+    var res = await UserService().logOutUser();
+    if(res == true){
+      _isSignedIn = false;
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(AppLocalizations.of(context).translate('youLoggedOut')))
+      );
+    }
+    setState(() {});
   }
 
   @override
@@ -85,18 +113,10 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Container(
                 padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
-                child: InkWell(
-                  onTap: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => YourAccountScreen()),
-                    // );
-                  },
-                  child: Text(
+                child: Text(
                     AppLocalizations.of(context).translate('yourlist'),
                     style: TextStyle(fontSize: 20),
                   ),
-                ),
               ),
               Container(
                 padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
@@ -113,13 +133,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
-              //   child: Text(
-              //     AppLocalizations.of(context).translate('youraccount'),
-              //     style: TextStyle(fontSize: 20),
-              //   ),
-              // ),
               InkWell(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -143,7 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
-               InkWell(
+              InkWell(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => SellerHomeScreen()));
@@ -195,6 +208,27 @@ class _MyHomePageState extends State<MyHomePage> {
                   onChanged: (Language language) {
                     _changeLanguage(language);
                   },
+                ),
+              ),
+              InkWell(
+                onTap: 
+                _isSignedIn ?
+                () {
+                  print(_isSignedIn); 
+                  logOut();
+                  print(_isSignedIn);
+                  } : () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => LoginScreen()));
+                },
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
+                  child: Text(
+                    _isSignedIn ?
+                      AppLocalizations.of(context).translate('logout')
+                    : AppLocalizations.of(context).translate('signIn'),
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
               ),
             ],

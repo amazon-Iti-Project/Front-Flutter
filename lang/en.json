@@ -13,6 +13,8 @@
     "login":"Login",
     "addtocart":"Add To Cart",
     "buynow":"Buy Now ",
+    "logout":"Log out",
+    "youLoggedOut":"you logged out successfully",
 
   "orderdate":"Order Date",
   "transactiontype":"Trasaction Type",

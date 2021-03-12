@@ -25,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
     var res = await UserService().getUserByNameAndPassword(user);
     if (res != null) {
+      await UserService().setToken(res.token);
       Navigator.of(context).push(
           MaterialPageRoute(builder: (BuildContext context) => MyHomePage()));
     } else {

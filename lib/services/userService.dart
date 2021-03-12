@@ -90,6 +90,11 @@ class UserService {
     return token.value;
   }
 
+  Future<String> setToken(String token) async {
+    await LocalizationService().prefs.setString("UserToken", token);
+    return token;
+  }
+
   //3- add token to user in db
   Future<User> updateUserToken(User user, String token) async {
     Dio dio = Dio();
@@ -194,8 +199,6 @@ class UserService {
 
   // reomve from local storage
   Future<bool> logOutUser() async {
-    SharedPreferences prefs =
-        await LocalizationService().getSharedPreferences();
-    return await prefs.remove('UserToken');
+    return await LocalizationService().prefs.remove('UserToken');
   }
 }
