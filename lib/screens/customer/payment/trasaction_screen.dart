@@ -4,6 +4,7 @@ import 'package:project/models/order-model.dart';
 import 'package:project/models/user-model.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/payment_services.dart';
+import 'package:project/services/userService.dart';
 import 'package:project/widgets/appbar.dart';
 
 class TrasactionScreen extends StatefulWidget {
@@ -31,7 +32,7 @@ class _TrasnactionScreenState extends State<TrasactionScreen> {
   }
 
   Future<void> getPaymentbycId() async {
-    var paymentval = await PaymentService().getPaymentByUserID(user.id);
+     var paymentval = await PaymentService().getPaymentByUserID(user.id);
     setState(() {
       paymentlist = paymentval;
     });
@@ -42,6 +43,8 @@ class _TrasnactionScreenState extends State<TrasactionScreen> {
     super.initState();
     langCode = 'en';
     future = getPaymentbycId();
+    var token = UserService().isUserSignedIn();
+    print(token);
   }
 
   @override
@@ -106,7 +109,7 @@ class _TrasnactionScreenState extends State<TrasactionScreen> {
                                       Row(
                                         children: [
                                           Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                            padding: const EdgeInsets.all(10.0),
                                             child: Text(
                                               "Date :",
                                               style: TextStyle(
