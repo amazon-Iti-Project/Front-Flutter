@@ -13,14 +13,12 @@ import 'package:project/services/productService.dart';
 import 'package:project/services/userService.dart';
 import 'package:project/models/product-model.dart';
 
-
 class NewAddress extends StatefulWidget {
   @override
   _NewAddressState createState() => _NewAddressState();
 }
 
 class _NewAddressState extends State<NewAddress> {
-  String userToken = "aea407a0-7f44-fcd0-c325-b1b3cbbe7711";
   final myController = TextEditingController();
   User currentUser;
   String userName;
@@ -35,19 +33,20 @@ class _NewAddressState extends State<NewAddress> {
     super.initState();
     userName = '';
     ship = 0;
-    total =0;
-    maxDuration =0;
+    total = 0;
+    maxDuration = 0;
     myOrder = new Order();
-    address= myController.text;
+    address = myController.text;
     getUser();
   }
 
   getUser() async {
-    currentUser = await UserService().getUserByToken(userToken);
+    String token = await UserService().isUserSignedIn();
+    currentUser = await UserService().getUserByToken(token);
     var list = await ProductService().getProductListByID(currentUser.cart);
     for (var i = 0; i < list.length; i++) {
       ship += list[i].shipping.shipPrice;
-      total += list[i].price *(list[i].discount/100);
+      total += list[i].price * (list[i].discount / 100);
       if (list[i].shipping.period > maxDuration)
         maxDuration = list[i].shipping.period;
     }
@@ -58,29 +57,33 @@ class _NewAddressState extends State<NewAddress> {
   }
 
   submitOrder() async {
-    setState(() {});
-    List<Product> products =await ProductService().getProductListByID(currentUser.cart);
-    myOrder =  Order(
+    List<Product> products =
+        await ProductService().getProductListByID(currentUser.cart);
+        print("this is products ${products}");
+        print(products[0].enObj);
+        print(products[0].arObj);
+    products.forEach((element) { element.quantity = 1;});
+    myOrder = Order(
         address: address,
-        canCancelledUntil: DateTime.now().add(new Duration(days: 3)),
-        products: await ProductService().getProductListByID(currentUser.cart),
+        canCancelledUntil: DateTime.now().add(new Duration(days: 2)),
+        products: products,
         customer: currentUser.id,
         status: Status.pending,
-        // Payment value must be come from total products price * discount  + sum shipping 
+        shipmentPrice: ship,
         payment: Payment(
-          type: PAYMENT_TYPE.cash,
-          state: PAYMENT_STATE.pending,
-          payment: total+ship
-          ),
+            type: PAYMENT_TYPE.cash,
+            state: PAYMENT_STATE.pending,
+            payment: total + ship),
         orderShip: ship,
         orderPrice: total,
-        dueDate: DateTime.now().add(new Duration (days: maxDuration)),
-        orderDate: DateTime.now()
-    );
-    await OrderService().CreateNewOrder(myOrder);
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (BuildContext context) =>
-        OrderList()));
+        dueDate: DateTime.now().add(new Duration(days: maxDuration)),
+        orderDate: DateTime.now(),
+        deliveredDate: DateTime.now().add(new Duration(days: maxDuration)),
+        );
+    var response = await OrderService().CreateNewOrder(myOrder);
+    if(response != null)
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (BuildContext context) => OrderList()));
   }
 
   @override
@@ -195,16 +198,23 @@ class _NewAddressState extends State<NewAddress> {
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.95,
                           height: 50,
-                          child: RaisedButton(
+                          child: ElevatedButton(
                             onPressed: () {
+                              print('btn pressed');
                               setState(() {
                                 address = myController.text;
                               });
+                              print("submitting");
                               submitOrder();
                             },
-                            color: Color.fromRGBO(242, 196, 89, 1),
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Color.fromRGBO(242, 196, 89, 1))),
                             child: Text(AppLocalizations.of(context)
-                                .translate('addAddress')),
+                                .translate('addAddress'),style: TextStyle(
+                                  color: Colors.black
+                                ),),
                           ),
                         ),
                       ),

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project/models/user-model.dart';
 import 'package:project/screens/customer/home/homepage.dart';
+import 'package:project/services/userService.dart';
 
 class SignUpScreen extends StatefulWidget {
   SignUpScreen({Key key}) : super(key: key);
@@ -13,6 +15,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool _isHidden = true;
   final _formKey = GlobalKey<FormState>();
   final key = GlobalKey<FormState>();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final pwController = TextEditingController();
+
+  createNewAccount() async {
+    String token = await UserService().createToken();
+    User newUser = new User(
+      name: nameController.text,
+      password: pwController.text,
+      username: emailController.text,
+      cart: [],
+      token: token,
+    );
+    var user = await UserService().addNewUser(newUser);
+    if (user != null){
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (BuildContext context) => MyHomePage()));
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,10 +96,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: TextFormField(
+                                controller: nameController,
                                 validator: (value) {
                                   if (value.isEmpty) {
                                     return 'Please enter your name';
                                   }
+                                  // else if(value.length < 6){
+                                  //   return 'Please enter your full name(6 characters)';
+                                  // }
                                   return null;
                                 },
                                 decoration: InputDecoration(labelText: 'Name'),
@@ -87,22 +112,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: TextFormField(
+                                controller: emailController,
                                 validator: (value) {
                                   if (value.isEmpty) {
-                                    return 'Please enter your email or mobile number';
+                                    return 'Please enter your email';
+                                  }else if(!value.endsWith('.com') || !value.contains('@')){
+                                    return 'Please enter vaild mail';
                                   }
                                   return null;
                                 },
                                 decoration: InputDecoration(
-                                    labelText: 'Mobile number or email'),
+                                    labelText: 'E-mail'),
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: TextFormField(
+                                controller: pwController,
                                 validator: (value) {
                                   if (value.isEmpty) {
                                     return 'Please enter a Password';
+                                  }else if(value.length < 6 ){
+                                    return 'Your password must be at least 6 characters';
                                   }
                                   return null;
                                 },
@@ -120,25 +151,37 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ),
                             ),
-                            FlatButton(
+                            Padding(
                               padding: const EdgeInsets.all(15.0),
-                              onPressed: () {
-                                if (_formKey.currentState.validate()) {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          MyHomePage()));
-                                }
-                              },
-                              child: Container(
-                                padding: EdgeInsets.all(15.0),
-                                width: 400,
-                                decoration: BoxDecoration(
-                                  color: Colors.yellow[600],
-                                  borderRadius: BorderRadius.circular(8.0),
+                              child: ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all<Color>(
+                                    Colors.yellow[600]
+                                  ),
                                 ),
-                                child: Center(
-                                    child: const Text('Verify email',
-                                        style: TextStyle(fontSize: 20))),
+                                onPressed: () {
+                                  if (_formKey.currentState.validate()) {
+                                    // Navigator.of(context).push(MaterialPageRoute(
+                                    //     builder: (BuildContext context) =>
+                                    //         MyHomePage()));
+                                    print('form is valid');
+                                    createNewAccount();
+                                  }
+                                  else{
+                                    print('form is not vaild');
+                                  }
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.all(15.0),
+                                  width: 400,
+                                  decoration: BoxDecoration(
+                                    color: Colors.yellow[600],
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Center(
+                                      child: const Text('Verify email',
+                                          style: TextStyle(fontSize: 20))),
+                                ),
                               ),
                             ),
                             Padding(

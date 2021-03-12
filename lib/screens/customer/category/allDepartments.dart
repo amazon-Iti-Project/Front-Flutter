@@ -10,10 +10,8 @@ import '../../../constants.dart';
 import 'category.dart';
 
 Future<List<CategoryCollection>> fetchCategories() async {
-  print('entered!');
   final response = await http.get(API_URL + "/categoriesCollection");
   if (response.statusCode == 200) {
-    print('data');
     return List<CategoryCollection>.from((jsonDecode(response.body) as List)
         .map((e) => CategoryCollection.fromJson((e)))).toList();
   } else {

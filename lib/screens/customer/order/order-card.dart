@@ -24,7 +24,7 @@ class _OrderCardState extends State<OrderCard> {
               Column(
                 children: [
                   SizedBox(
-                      width: 200.0,
+                      width: 150.0,
                       child: Text(widget.orderName,
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 17),

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/widgets/appbar.dart';
 
+import 'customer/payment/trasaction_screen.dart';
+
 class YourAccountScreen extends StatefulWidget {
   YourAccountScreen({Key key}) : super(key: key);
 
@@ -194,12 +196,19 @@ class _YourAccountScreenState extends State<YourAccountScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Text(
-                                "Your Transaction",
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
+                            InkWell(
+                              onTap: (){
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (BuildContext context) => TrasactionScreen())
+                                );
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text(
+                                  "Your Transaction",
+                                  style: TextStyle(
+                                      fontSize: 18, fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
                             Padding(

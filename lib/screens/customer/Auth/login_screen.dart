@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project/models/user-model.dart';
 import 'package:project/screens/customer/home/homepage.dart';
+import 'package:project/services/userService.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key key}) : super(key: key);
@@ -13,6 +15,26 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isHidden = true;
   final _formKey = GlobalKey<FormState>();
   final key = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final pwController = TextEditingController();
+
+  signUserIn() async {
+    User user = User(
+      username: emailController.text,
+      password: pwController.text,
+    );
+    var res = await UserService().getUserByNameAndPassword(user);
+    if (res != null) {
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (BuildContext context) => MyHomePage()));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('This username or password may be incorrect!'))
+      );
+      pwController.text='';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,18 +97,21 @@ class _LoginScreenState extends State<LoginScreen> {
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: TextFormField(
+                                controller: emailController,
                                 validator: (value) {
                                   if (value.isEmpty) {
-                                    return '(Email(phone for mobile accounts))';
+                                    return 'Email or phone for mobile accounts';
                                   }
                                   return null;
                                 },
-                                decoration: InputDecoration(labelText: 'Name'),
+                                decoration:
+                                    InputDecoration(labelText: 'UserName'),
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: TextFormField(
+                                controller: pwController,
                                 validator: (value) {
                                   if (value.isEmpty) {
                                     return 'Please enter your Password';
@@ -107,25 +132,29 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                             ),
-                            FlatButton(
+                            Padding(
                               padding: const EdgeInsets.all(15.0),
-                              onPressed: () {
-                                if (_formKey.currentState.validate()) {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          MyHomePage()));
-                                }
-                              },
-                              child: Container(
-                                padding: EdgeInsets.all(15.0),
-                                width: 400,
-                                decoration: BoxDecoration(
-                                  color: Colors.yellow[600],
-                                  borderRadius: BorderRadius.circular(8.0),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  if (_formKey.currentState.validate()) {
+                                    signUserIn();
+                                  }
+                                },
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.yellow[600])),
+                                child: Container(
+                                  padding: EdgeInsets.all(15.0),
+                                  width: 400,
+                                  decoration: BoxDecoration(
+                                    color: Colors.yellow[600],
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Center(
+                                      child: const Text('Sign in',
+                                          style: TextStyle(fontSize: 20))),
                                 ),
-                                child: Center(
-                                    child: const Text('Sign in',
-                                        style: TextStyle(fontSize: 20))),
                               ),
                             ),
                             Padding(
