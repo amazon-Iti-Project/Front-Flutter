@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:project/screens/customer/home/homepage.dart';
-import 'package:project/screens/seller/orders/pending-orders.dart';
-import 'package:project/screens/seller/orders/seller-orders-home.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/localizationService.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';

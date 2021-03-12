@@ -7,12 +7,11 @@ import '../constants.dart';
 
 class PaymentService {
   User user;
-  Future<List<Order>> getPaymentByUserID(int id) async {
+  Future<List<Order>> getPaymentByUserID(String token) async {
     Response response;
     Dio dio = new Dio();
 
-    response =
-        await dio.get(API_URL + "/orders?customer=" + user.id.toString());
+    response = await dio.get(API_URL + "/orders?customer=" + token.toString());
     var list = (response.data as List<dynamic>);
     return list.map<Order>((orde) => Order.fromJson(orde)).toList();
   }

@@ -8,8 +8,29 @@
     "shopbydep":"تسوق حسب القسم",
     "sell":"كن بائعا",
     "changelang":"تغير اللغه",
+<<<<<<< HEAD
     "logout":"تسجيل الخروج",
     "youLoggedOut":"قمت بتسجيل الخروج بنجاح",
+=======
+    "profile":"الصفحه الشخصيه",
+    "yourtransaction":"العمليات الحسابيه",
+    "youraddress":"عنوانك",
+    "shopwithpoint":"تسوق عن طريق نقاطك",
+    "productc":"كود خصم علي المنتجات",
+    "payment":"حساباتك",
+    "personalc":"معلوماتك الشخصيه",
+    "description":" نفاصيل المنتج",
+    "seller":"البائغ :",
+    "price":"السعر :",
+    "brand":"الماركه :",
+    "rate":" التقيم :",
+    "size":" الحجم :",
+     "date":"التاريخ : ",
+    "deliverdate":"تاريخ الوصول :",
+    "paymentstates":"حاله المدفوعات :",
+    "paymenttype":"طريقه الدفع :",
+
+>>>>>>> 4d5fe6727b635bcae64780c463fa9e3374906a54
     
     "email":"ادخل البريد الالكتروني",
     "password":"ادخل كلمه المرور",

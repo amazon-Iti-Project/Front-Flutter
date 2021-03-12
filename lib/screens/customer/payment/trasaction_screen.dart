@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/models/order-model.dart';
 import 'package:project/models/user-model.dart';
+import 'package:project/screens/customer/Auth/login_screen.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/payment_services.dart';
+import 'package:project/services/userService.dart';
 import 'package:project/widgets/appbar.dart';
 
 class TrasactionScreen extends StatefulWidget {
@@ -19,6 +21,8 @@ class _TrasnactionScreenState extends State<TrasactionScreen> {
   List<Order> paymentlist = [];
   User user;
   String langCode;
+  String userToken;
+  User currentUser;
 
   @override
   void didChangeDependencies() {
@@ -26,224 +30,146 @@ class _TrasnactionScreenState extends State<TrasactionScreen> {
     setState(() {
       langCode = myLocale.languageCode;
     });
-    getPaymentbycId();
+    getUser();
     super.didChangeDependencies();
-  }
-
-  Future<void> getPaymentbycId() async {
-    var paymentval = await PaymentService().getPaymentByUserID(user.id);
-    setState(() {
-      paymentlist = paymentval;
-    });
   }
 
   @override
   void initState() {
     super.initState();
     langCode = 'en';
-    future = getPaymentbycId();
+    future = getUser();
+  }
+
+  Future<void> getUser() async {
+    UserService userServ = UserService();
+    userToken = await userServ.isUserSignedIn();
+    if (userToken != null) {
+      currentUser = await userServ.getUserByToken(userToken);
+      print("cu ${userToken}");
+      var paymentval = await PaymentService().getPaymentByUserID(userToken);
+      setState(() {
+        paymentlist = paymentval;
+      });
+
+      setState(() {});
+    } else {
+      print("no user");
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: ListView(children: [
-          Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AmazonAppBar(),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text(
-                  "Your Payments",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Container(
-                color: Colors.grey,
-                height: 1,
-              ),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 10.0),
-                  child: Text(
-                    "Transaction",
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFFf1c65d),
-                    ),
-                  ),
-                ),
-              ),
-              FutureBuilder(
-                  future: future,
-                  builder: (c, s) {
-                    if (s.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
-                    } else {
-                      return ListView.builder(
-                          itemCount: paymentlist.length,
-                          itemBuilder: (ctx, index) {
-                            final payment = paymentlist[index];
-
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15)),
-                                elevation: 10,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: Color(0xFFf1c65d)),
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(15)),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Text(
-                                              "Date :",
-                                              style: TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                          Text(payment.payment.date),
-                                        ],
-                                      ),
-                                      Column(
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.all(10.0),
-                                                child: Text(
-                                                  AppLocalizations.of(context)
-                                                      .translate(
-                                                          "transactionaltype"),
-                                                  style: TextStyle(
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ),
-                                              Text("12/5/2020"),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      Column(
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.all(10.0),
-                                                child: Text(
-                                                  AppLocalizations.of(context)
-                                                      .translate("orderprice"),
-                                                  style: TextStyle(
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ),
-                                              Text("12/5/2020"),
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            10.0),
-                                                    child: Text(
-                                                      AppLocalizations.of(
-                                                              context)
-                                                          .translate(
-                                                              "delivereddate"),
-                                                      style: TextStyle(
-                                                          fontSize: 18,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                  ),
-                                                  Text("12/5/2020"),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            10.0),
-                                                    child: Text(
-                                                      AppLocalizations.of(
-                                                              context)
-                                                          .translate(
-                                                              "shipmentfees"),
-                                                      style: TextStyle(
-                                                          fontSize: 18,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                  ),
-                                                  Text("12/5/2020"),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                          Column(
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            10.0),
-                                                    child: Text(
-                                                      AppLocalizations.of(
-                                                              context)
-                                                          .translate(
-                                                              "transactionaltotal"),
-                                                      style: TextStyle(
-                                                          fontSize: 18,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                  ),
-                                                  Text("300 LE"),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            );
-                          });
-                    }
-                    ;
-                  }),
-            ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          leading: Icon(
+            Icons.menu,
+            color: Colors.black,
           ),
-        ]),
+          title: Container(
+              width: 100,
+              height: 40,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Image.asset('Images/amazon-black.png'),
+              )),
+          actions: [
+            IconButton(
+                icon: Icon(Icons.search, color: Colors.black, size: 30),
+                onPressed: () {}),
+            IconButton(
+                icon: Icon(Icons.shopping_cart_outlined,
+                    color: Colors.black, size: 28),
+                onPressed: () {}),
+          ],
+          elevation: 0.0,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                  Color.fromRGBO(133, 217, 225, 1),
+                  Color.fromRGBO(165, 230, 206, 1)
+                ])),
+          ),
+        ),
+        body: FutureBuilder(
+            future: future,
+            builder: (c, s) {
+              if (s.connectionState == ConnectionState.waiting &&
+                  paymentlist.length == 0) {
+                return Center(child: CircularProgressIndicator());
+              }
+              if (paymentlist.length == 0) {
+                return Center(
+                    child: Text(
+                  "No Transaction yet",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                ));
+              } else
+                return ListView.builder(
+                    itemCount: paymentlist.length,
+                    itemBuilder: (ctx, index) {
+                      final payment = paymentlist[index];
+                      return Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        elevation: 10,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15)),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    AppLocalizations.of(context)
+                                        .translate('date'),
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(payment.payment.date)
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                      AppLocalizations.of(context)
+                                          .translate('paymentstates'),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold)),
+                                  Text(payment.payment.state.toString())
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                      AppLocalizations.of(context)
+                                          .translate('paymenttype'),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold)),
+                                  Text(payment.payment.type.toString())
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                      AppLocalizations.of(context)
+                                          .translate('deliverdate'),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold)),
+                                  Text(payment.deliveredDate.toString())
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    });
+            }),
       ),
     );
   }
