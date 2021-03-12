@@ -4,6 +4,7 @@ import 'package:project/models/categoryCollection-model.dart';
 import 'package:project/services/Localization/applocalization.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:project/services/localizationService.dart';
 import 'dart:convert';
 
 import '../../../constants.dart';
@@ -99,6 +100,7 @@ class _AllDepartmentsState extends State<AllDepartments> {
                         itemCount: categories.length,
                         itemBuilder: (context, index) {
                           final category = categories[index];
+                          String lang = LocalizationService().lang;
                           return Container(
                               child: ListTile(
                                 onTap: () {
