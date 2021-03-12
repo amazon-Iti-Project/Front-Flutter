@@ -103,7 +103,11 @@ class _TrasnactionScreenState extends State<TrasactionScreen> {
                 return Center(child: CircularProgressIndicator());
               }
               if (paymentlist.length == 0) {
-                return Center(child: Text("No Transaction yet"));
+                return Center(
+                    child: Text(
+                  "No Transaction yet",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                ));
               } else
                 return ListView.builder(
                     itemCount: paymentlist.length,
