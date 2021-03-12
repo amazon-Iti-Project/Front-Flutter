@@ -106,7 +106,7 @@ class _TrasnactionScreenState extends State<TrasnactionScreen> {
                                       Row(
                                         children: [
                                           Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                              padding: const EdgeInsets.all(10.0),
                                             child: Text(
                                               "Date :",
                                               style: TextStyle(
