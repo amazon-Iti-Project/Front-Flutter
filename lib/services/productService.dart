@@ -3,13 +3,13 @@ import 'package:project/models/product-model.dart';
 import '../constants.dart';
 
 class ProductService {
-  Future<List<Product>> getProductsByCatID(String name) async {
-    List<Product> products = new List();
+  Future<List<Product>> getProductsByCatID(int id) async {
+    List<Product> products = [];
     Response response;
     Dio dio = new Dio();
 
     response =
-        await dio.get(API_URL + "/products?categoryName=" + name.toLowerCase());
+        await dio.get(API_URL + "/products?category=" + id.toString());
     var data = response.data;
     for (var i = 0; i < data.length; i++) {
       products.add(Product.fromJson(data[i]));

@@ -11,34 +11,35 @@ import 'package:project/widgets/appbar.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class CategoryList extends StatefulWidget {
-  final String catName;
-  CategoryList({this.catName});
+  final int catId;
+  CategoryList({this.catId});
   @override
   _CategoryListState createState() => _CategoryListState();
 }
 
 class _CategoryListState extends State<CategoryList> {
   List<Product> productsList = [];
-  String langCode;
+  // String langCode;
 
   @override
   void initState() {
     super.initState();
-    langCode='en';
+    // langCode='en';
+    getProducts();
   }
 
-  @override
-  void didChangeDependencies() {
-    Locale myLocale = Localizations.localeOf(context);
-    setState(() {
-      langCode =  myLocale.languageCode;     
-    });
-    getProducts();
-    super.didChangeDependencies();
-  }
+  // @override
+  // void didChangeDependencies() {
+  //   Locale myLocale = Localizations.localeOf(context);
+  //   setState(() {
+  //     langCode =  myLocale.languageCode;     
+  //   });
+  //   getProducts();
+  //   super.didChangeDependencies();
+  // }
 
   getProducts() async {
-    productsList = await ProductService().getProductsByCatID(widget.catName);
+    productsList = await ProductService().getProductsByCatID(widget.catId);
     setState(() {});
   }
 

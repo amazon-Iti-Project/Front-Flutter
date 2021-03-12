@@ -14,9 +14,9 @@ class CategoryCollection {
 
     factory CategoryCollection.fromJson(Map<String, dynamic> json){
       String lang = LocalizationService().lang; //en
-      Map<String,dynamic> langObj = json[lang];
+      Map<String,dynamic> titleObj = json["title"];
       return CategoryCollection(
-        title: json[langObj["title"]],
+        title: titleObj[lang],
         data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x)))
       );
     }

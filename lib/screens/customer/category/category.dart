@@ -118,7 +118,7 @@ class _CategoryState extends State<Category> {
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    CategoryList(catName: singleCategory.name)
+                                    CategoryList(catId: singleCategory.id)
                                     ));
                           },
                           child: SingleItem(
