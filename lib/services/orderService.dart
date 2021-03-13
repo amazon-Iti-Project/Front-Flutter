@@ -10,20 +10,14 @@ class OrderService {
     Dio dio = new Dio();
     dio.options.headers['content-Type'] = 'application/json';
     Response res = await dio.post(API_URL + "/orders", data: myOrder.toJson());
-    // print('after request');
-    // print(res); // as json object
-    // print(res.data); // an object
-    // print(Order.fromJson(res.data));
     return(Order.fromJson(res.data));
-    // return Order.fromJson(res.data);
   }
   Future<List<Order>> getOrders() async {
-    List<Order> orders = new List();
+    List<Order> orders = [];
     Response resopnse;
     Dio dio = new Dio();
     resopnse = await dio.get(API_URL+"/orders");
     var data = resopnse.data;
-    // print(data);
     data.forEach((value) {
       orders.add(Order.fromJson(value));
     });

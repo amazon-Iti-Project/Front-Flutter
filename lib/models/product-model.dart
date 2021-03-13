@@ -87,7 +87,7 @@ class Product {
         id: json["id"],
         categoryName: json["categoryName"] == null ? null : json["categoryName"],
         name: langObj["name"],
-        rate: json["rate"] == null ? null : json["rate"],
+        rate: json["rating"] == null ? null : json["rating"],
         enObj: json['en'],
         arObj: json['ar'],
         // as follow
@@ -110,6 +110,7 @@ class Product {
         color: langObj["color"],
         tags: List<dynamic>.from(json["tags"].map((x) => x)),
         brand: json["brand"] == null ? null : json["brand"],
+        seller: json['seller']
     );
     }
     Map<String, dynamic> toJson() => {

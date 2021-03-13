@@ -45,6 +45,7 @@ class Datum implements Value{
   @override
   String value;
 }
+
 class Value {
   String value;
   Value(this.value);

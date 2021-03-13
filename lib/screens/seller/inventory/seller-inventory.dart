@@ -52,12 +52,8 @@ class SellerInventoryState extends State<SellerInventroy> {
       body: FutureBuilder<List<Product>>(
       future: futureProductList,
       builder: (context,snapshot){
-          print('snapshot1:${snapshot.toString()}');
-          print('snapshot2Has Data :${snapshot.hasData}');
-          print('snapshot3 Data :${snapshot.data}');
         if(snapshot.hasData){
           final productList = snapshot.data;
-          print("app works${productList[0].toString()}");
           return ListView.builder(
             itemCount:productList.length,
             itemBuilder:(context,index){
