@@ -15,6 +15,7 @@ class Payment {
 
     return Payment(
       id: json['id'],
+      date: json['date'],
       type: t.getPaymentType(json['type']),
       state: s.getStateType(json['state']),
       payment: json['payment'],

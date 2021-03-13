@@ -59,9 +59,6 @@ class _NewAddressState extends State<NewAddress> {
   submitOrder() async {
     List<Product> products =
         await ProductService().getProductListByID(currentUser.cart);
-        print("this is products ${products}");
-        print(products[0].enObj);
-        print(products[0].arObj);
     products.forEach((element) { element.quantity = 1;});
     myOrder = Order(
         address: address,
@@ -82,6 +79,9 @@ class _NewAddressState extends State<NewAddress> {
         orderDate: DateTime.now(),
         deliveredDate: DateTime.now().add(new Duration(days: maxDuration)),
         );
+        print('in creating order');
+        print(DateTime.now().toString());
+        print(myOrder.payment.date);
     var response = await OrderService().CreateNewOrder(myOrder);
     if(response != null)
       Navigator.of(context).push(
