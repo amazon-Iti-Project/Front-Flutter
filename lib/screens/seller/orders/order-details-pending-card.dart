@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project/models/order-model.dart';
+import 'package:project/screens/customer/order/order-details.dart';
 import 'package:project/screens/templatesWidgets/app-text.dart';
 import 'package:project/screens/templatesWidgets/localized-text.dart';
 
@@ -151,10 +152,11 @@ class OrderDetailsPendingCardState extends State<OrderDetailsPendingCard> {
                             padding: const EdgeInsets.all(8.0),
                             child: InkWell(
                                 onTap: () {
-                                  // Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //         builder: (context) => OrderDetails()));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => 
+                                          OrderDetails(order: widget.order)));
                                 },
                                 child: LocalizedText(
                                   localizedParentData,
@@ -188,7 +190,7 @@ class OrderDetailsPendingCardState extends State<OrderDetailsPendingCard> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               AppText(
-                                                "Nov 25,2019 ",
+                                                widget.order.orderDate.toString(),
                                                 bold: true,
                                                 subText: true,
                                               ),
@@ -213,7 +215,7 @@ class OrderDetailsPendingCardState extends State<OrderDetailsPendingCard> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               AppText(
-                                                "Cash on Delivery ",
+                                                widget.order.payment.type.toString(),
                                                 subText: true,
                                                 bold: true,
                                               ),
@@ -230,7 +232,7 @@ class OrderDetailsPendingCardState extends State<OrderDetailsPendingCard> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       AppText(
-                                        "Kamal Korney Mohamed",
+                                        widget.order.customer.toString(),
                                         bold: true,
                                       ),
                                     ],
@@ -239,20 +241,20 @@ class OrderDetailsPendingCardState extends State<OrderDetailsPendingCard> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       AppText(
-                                        "Cairo , 37st elgamaa",
+                                        widget.order.address,
                                         subText: true,
                                       ),
                                     ],
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      AppText(
-                                        "01115404643",
-                                        subText: true,
-                                      ),
-                                    ],
-                                  ),
+                                  // Row(
+                                  //   mainAxisAlignment: MainAxisAlignment.start,
+                                  //   children: [
+                                  //     AppText(
+                                  //       widget.order.,
+                                  //       subText: true,
+                                  //     ),
+                                  //   ],
+                                  // ),
                                   Divider(
                                     thickness: 1,
                                     color: Colors.grey,
@@ -277,7 +279,7 @@ class OrderDetailsPendingCardState extends State<OrderDetailsPendingCard> {
                                         subText: true,
                                       ),
                                       AppText(
-                                        "Nov 30,2019",
+                                        widget.order.dueDate.toString(),
                                         subText: true,
                                         bold: true,
                                       ),
@@ -302,7 +304,7 @@ class OrderDetailsPendingCardState extends State<OrderDetailsPendingCard> {
                                             fontSize: 12,
                                           ),
                                           AppText(
-                                            "120 ",
+                                            widget.order.shipmentPrice.toString(),
                                             subText: true,
                                             bold: true,
                                           ),
@@ -310,29 +312,30 @@ class OrderDetailsPendingCardState extends State<OrderDetailsPendingCard> {
                                       ),
                                     ],
                                   ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      LocalizedText(
-                                        localizedParentData,
-                                        "shipmentVia",
-                                        subText: true,
-                                      ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          AppText(
-                                            "seller Name ",
-                                            subText: true,
-                                            bold: true,
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                                  // Row(
+                                  //   mainAxisAlignment:
+                                  //       MainAxisAlignment.spaceBetween,
+                                  //   children: [
+                                  //     LocalizedText(
+                                  //       localizedParentData,
+                                  //       "shipmentVia",
+                                  //       subText: true,
+                                  //     ),
+                                  //     Row(
+                                  //       mainAxisSize: MainAxisSize.min,
+                                  //       crossAxisAlignment:
+                                  //           CrossAxisAlignment.start,
+                                  //       children: [
+                                  //         AppText(
+                                  //           widget.order.,
+                                  //           subText: true,
+                                  //           bold: true,
+                                  //         ),
+                                  //       ],
+                                  //     ),
+                                  //   ],
+                                  // ),
+                                  
                                   Divider(
                                     thickness: 1,
                                     color: Colors.grey,

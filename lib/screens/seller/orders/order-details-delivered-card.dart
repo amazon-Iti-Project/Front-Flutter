@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:project/models/order-model.dart';
+import 'package:project/screens/customer/order/order-details.dart';
 import 'package:project/screens/templatesWidgets/app-text.dart';
 import 'package:project/screens/templatesWidgets/localized-text.dart';
 
 class OrderDetailsDeliveredCard extends StatefulWidget {
+  final Order order;
+  OrderDetailsDeliveredCard({this.order});
   @override
   OrderDetailsCardState createState() => OrderDetailsCardState();
 }
@@ -12,6 +16,18 @@ class OrderDetailsDeliveredCard extends StatefulWidget {
 class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
   bool isDetailsShown = false;
   final String localizedParentData = "SellerOrders";
+
+  calcFees(){
+    var fees =0;
+    List products = widget.order.products;
+    products.forEach((prod) { 
+      fees += prod.fee.fee;
+    });
+    return fees;
+  }
+  calcNetPrice(){
+    return widget.order.orderPrice + widget.order.shipmentPrice - calcFees();
+  }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -54,7 +70,7 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                 ),
                               ),
                               AppText(
-                                "1",
+                                widget.order.id.toString(),
                                 bold: true,
                                 maxLines: 3,
                               ),
@@ -80,7 +96,7 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                       fontSize: 12,
                                     ),
                                     AppText(
-                                      "120 ",
+                                      widget.order.orderPrice.toString(),
                                       subText: true,
                                       bold: true,
                                     ),
@@ -107,7 +123,7 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                       fontSize: 12,
                                     ),
                                     AppText(
-                                      "120 ",
+                                      calcFees().toString(),
                                       subText: true,
                                       bold: true,
                                     ),
@@ -134,7 +150,7 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                       fontSize: 12,
                                     ),
                                     AppText(
-                                      "120 ",
+                                      widget.order.shipmentPrice.toString(),
                                       subText: true,
                                       bold: true,
                                     ),
@@ -161,7 +177,7 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                       fontSize: 12,
                                     ),
                                     AppText(
-                                      "120 ",
+                                      calcNetPrice(),
                                       subText: true,
                                       bold: true,
                                     ),
@@ -174,10 +190,10 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                             padding: const EdgeInsets.all(8.0),
                             child: InkWell(
                                 onTap: () {
-                                  // Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //         builder: (context) => OrderDetails()));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => OrderDetails(order: widget.order,)));
                                 },
                                 child: LocalizedText(
                                   localizedParentData,
@@ -211,7 +227,7 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               AppText(
-                                                "Nov 25,2019 ",
+                                                widget.order.orderDate.toString(),
                                                 bold: true,
                                                 subText: true,
                                               ),
@@ -236,7 +252,7 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               AppText(
-                                                "Cash on Delivery ",
+                                                widget.order.payment.type.toString(),
                                                 subText: true,
                                                 bold: true,
                                               ),
@@ -253,7 +269,7 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       AppText(
-                                        "Kamal Korney Mohamed",
+                                        widget.order.customer.toString(),
                                         bold: true,
                                       ),
                                     ],
@@ -262,20 +278,20 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       AppText(
-                                        "Cairo , 37st elgamaa",
+                                        widget.order.address,
                                         subText: true,
                                       ),
                                     ],
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      AppText(
-                                        "01115404643",
-                                        subText: true,
-                                      ),
-                                    ],
-                                  ),
+                                  // Row(
+                                  //   mainAxisAlignment: MainAxisAlignment.start,
+                                  //   children: [
+                                  //     AppText(
+                                  //       "01115404643",
+                                  //       subText: true,
+                                  //     ),
+                                  //   ],
+                                  // ),
                                   Divider(
                                     thickness: 1,
                                     color: Colors.grey,
@@ -300,7 +316,7 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                         subText: true,
                                       ),
                                       AppText(
-                                        "Nov 30,2019",
+                                        widget.order.orderDate.toString(),
                                         subText: true,
                                         bold: true,
                                       ),
@@ -325,7 +341,7 @@ class OrderDetailsCardState extends State<OrderDetailsDeliveredCard> {
                                             fontSize: 12,
                                           ),
                                           AppText(
-                                            "120 ",
+                                            widget.order.payment.payment.toString(),
                                             subText: true,
                                             bold: true,
                                           ),

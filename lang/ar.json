@@ -27,6 +27,7 @@
     "deliverdate":"تاريخ الوصول :",
     "paymentstates":"حاله المدفوعات :",
     "paymenttype":"طريقه الدفع :",
+    "paymentValue":"قيمة الدفع",
 
     
     "email":"ادخل البريد الالكتروني",

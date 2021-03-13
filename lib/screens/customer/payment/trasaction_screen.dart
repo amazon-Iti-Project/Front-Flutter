@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/models/order-model.dart';
+import 'package:project/models/payment-model.dart';
 import 'package:project/models/user-model.dart';
 import 'package:project/screens/customer/Auth/login_screen.dart';
 import 'package:project/services/Localization/applocalization.dart';
@@ -24,15 +25,15 @@ class _TrasnactionScreenState extends State<TrasactionScreen> {
   String userToken;
   User currentUser;
 
-  @override
-  void didChangeDependencies() {
-    Locale myLocale = Localizations.localeOf(context);
-    setState(() {
-      langCode = myLocale.languageCode;
-    });
-    getUser();
-    super.didChangeDependencies();
-  }
+  // @override
+  // void didChangeDependencies() {
+  //   Locale myLocale = Localizations.localeOf(context);
+  //   setState(() {
+  //     langCode = myLocale.languageCode;
+  //   });
+  //   getUser();
+  //   super.didChangeDependencies();
+  // }
 
   @override
   void initState() {
@@ -46,12 +47,12 @@ class _TrasnactionScreenState extends State<TrasactionScreen> {
     userToken = await userServ.isUserSignedIn();
     if (userToken != null) {
       currentUser = await userServ.getUserByToken(userToken);
-      print("cu ${userToken}");
-      var paymentval = await PaymentService().getPaymentByUserID(userToken);
+      print(currentUser.name);
+      var paymentval = await PaymentService().getPaymentByUserID(currentUser.id);
+      print(paymentval);
       setState(() {
         paymentlist = paymentval;
       });
-
       setState(() {});
     } else {
       print("no user");
@@ -112,62 +113,79 @@ class _TrasnactionScreenState extends State<TrasactionScreen> {
                 return ListView.builder(
                     itemCount: paymentlist.length,
                     itemBuilder: (ctx, index) {
-                      final payment = paymentlist[index];
-                      return Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15)),
-                        elevation: 10,
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.white,
+                      final payment = paymentlist[index].payment;
+                      return Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15)),
-                          child: Column(
-                            children: [
-                              Row(
+                          elevation: 10,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Column(
                                 children: [
-                                  Text(
-                                    AppLocalizations.of(context)
-                                        .translate('date'),
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        AppLocalizations.of(context)
+                                            .translate('date'),
+                                        style:
+                                            TextStyle(fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(payment.date.toString())
+                                    ],
                                   ),
-                                  Text(payment.payment.date)
+                                  Row(
+                                    children: [
+                                      Text(
+                                          AppLocalizations.of(context)
+                                              .translate('paymentstates'),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold)),
+                                      Text(payment.state.toString())
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                          AppLocalizations.of(context)
+                                              .translate('paymenttype'),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold)),
+                                      Text(payment.type.toString())
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                          AppLocalizations.of(context)
+                                              .translate('paymentValue'),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold)),
+                                      Text(payment.payment.ceilToDouble().toString())
+                                    ],
+                                  ),
+                                  // Row(
+                                  //   children: [
+                                  //     Text(
+                                  //         AppLocalizations.of(context)
+                                  //             .translate('deliverdate'),
+                                  //         style: TextStyle(
+                                  //             fontWeight: FontWeight.bold)),
+                                  //     Text(payment.deliveredDate.toString())
+                                  //   ],
+                                  // ),
                                 ],
                               ),
-                              Row(
-                                children: [
-                                  Text(
-                                      AppLocalizations.of(context)
-                                          .translate('paymentstates'),
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                  Text(payment.payment.state.toString())
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                      AppLocalizations.of(context)
-                                          .translate('paymenttype'),
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                  Text(payment.payment.type.toString())
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                      AppLocalizations.of(context)
-                                          .translate('deliverdate'),
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                  Text(payment.deliveredDate.toString())
-                                ],
-                              ),
-                            ],
+                            ),
                           ),
                         ),
                       );
+                    
                     });
             }),
       ),

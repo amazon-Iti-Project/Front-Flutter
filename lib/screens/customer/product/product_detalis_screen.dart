@@ -24,15 +24,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   String langCode;
   var future;
 
-  @override
-  void didChangeDependencies() {
-    Locale myLocale = Localizations.localeOf(context);
-    setState(() {
-      langCode = myLocale.languageCode;
-    });
-    getProductbyid();
-    super.didChangeDependencies();
-  }
+  // @override
+  // void didChangeDependencies() {
+  //   Locale myLocale = Localizations.localeOf(context);
+  //   setState(() {
+  //     langCode = myLocale.languageCode;
+  //   });
+  //   getProductbyid();
+  //   super.didChangeDependencies();
+  // }
 
   Future<void> getProductbyid() async {
     var productVal = await ProductService().getProductByID(widget.id);

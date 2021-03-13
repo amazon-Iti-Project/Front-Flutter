@@ -33,14 +33,14 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
     //   (e)=>print(e)
     // );
   }
-  @override
-  void didChangeDependencies() {
-    Locale myLocale = Localizations.localeOf(context);
-    setState(() {
-      langCode =  myLocale.languageCode;      
-    });
-    super.didChangeDependencies();
-  }
+  // @override
+  // void didChangeDependencies() {
+  //   Locale myLocale = Localizations.localeOf(context);
+  //   setState(() {
+  //     langCode =  myLocale.languageCode;      
+  //   });
+  //   super.didChangeDependencies();
+  // }
 
   num getNetPrice(Product product) {
     return product.price * ((100-product.discount) / 100) * ((100-product.fee.fee) / 100);
@@ -312,7 +312,7 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                                                 fontSize: 12,
                                               ),
                                               AppText(
-                                                  "${getNetPrice(product)}"),
+                                                  "${getNetPrice(product).ceilToDouble()}"),
                                             ],
                                           )
                                         ],
@@ -344,7 +344,7 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                                                 "\$",
                                                 fontSize: 12,
                                               ),
-                                              AppText("${getNetPrice(product)}",
+                                              AppText("${getNetPrice(product).ceilToDouble()}",
                                             bold: true,
                                               
                                               ),

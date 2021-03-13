@@ -73,8 +73,10 @@ class _NewAddressState extends State<NewAddress> {
         payment: Payment(
             type: PAYMENT_TYPE.cash,
             state: PAYMENT_STATE.pending,
-            payment: total + ship),
-        orderShip: ship,
+            payment: total + ship,
+            date: DateTime.now().toString()
+        ),
+        orderShip: maxDuration,
         orderPrice: total,
         dueDate: DateTime.now().add(new Duration(days: maxDuration)),
         orderDate: DateTime.now(),
