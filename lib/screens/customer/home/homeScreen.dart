@@ -79,28 +79,24 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.only(top: 8.0),
           child: Container(
             color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        AppLocalizations.of(context)
-                            .translate('signInForBestEx'),
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black87,
-                        ),
-                        textAlign: TextAlign.start,
-                      ),
-                    ],
-                  ),
-                  FutureBuilder(builder: (c, s) {
-                    if (userToken == null) {
-                      print("no user sign In");
-                    return  Column(
+            child: Column(
+              children: [
+                FutureBuilder(builder: (c, s) {
+                  if (userToken == null) {
+                    print("no user sign In");
+                    return Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
                         children: [
+                          Text(
+                            AppLocalizations.of(context)
+                                .translate('signInForBestEx'),
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black87,
+                            ),
+                            textAlign: TextAlign.start,
+                          ),
                           Container(
                             width: MediaQuery.of(context).size.width,
                             child: RaisedButton(
@@ -125,12 +121,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                     .translate('createAccount'),
                               ))
                         ],
-                      );
-                    } else
-                      return Container();
-                  }),
-                ],
-              ),
+                      ),
+                    );
+                  } else
+                    return Container();
+                }),
+              ],
             ),
           ),
         ),
