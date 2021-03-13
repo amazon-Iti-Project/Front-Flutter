@@ -26,16 +26,6 @@ class _TrasnactionScreenState extends State<TrasactionScreen> {
   String userToken;
   User currentUser;
 
-  // @override
-  // void didChangeDependencies() {
-  //   Locale myLocale = Localizations.localeOf(context);
-  //   setState(() {
-  //     langCode = myLocale.languageCode;
-  //   });
-  //   getUser();
-  //   super.didChangeDependencies();
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -49,7 +39,9 @@ class _TrasnactionScreenState extends State<TrasactionScreen> {
     if (userToken != null) {
       currentUser = await userServ.getUserByToken(userToken);
       print(currentUser.name);
-      var paymentval = await PaymentService().getPaymentByUserID(currentUser.id);
+      var paymentval =
+          await PaymentService().getPaymentByUserID(currentUser.id);
+      print("current user ${currentUser.id}");
       print(paymentval);
       setState(() {
         paymentlist = paymentval;
@@ -118,78 +110,119 @@ class _TrasnactionScreenState extends State<TrasactionScreen> {
                     itemCount: paymentlist.length,
                     itemBuilder: (ctx, index) {
                       final payment = paymentlist[index].payment;
-                      return Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          elevation: 10,
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
+                      print("date is ${payment.date}");
+                      return Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Text(
+                              "Your Transaction is",
+                              style: TextStyle(
+                                  fontSize: 25, color: Color(0xFFf1c65d)),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                             child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        AppLocalizations.of(context)
-                                            .translate('date'),
-                                        style:
-                                            TextStyle(fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(payment.date.toString())
-                                    ],
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                                elevation: 10,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      border:
+                                          Border.all(color: Color(0xFFf1c65d)),
+                                      borderRadius: BorderRadius.circular(15)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              0, 5, 5, 7),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                AppLocalizations.of(context)
+                                                    .translate('date'),
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18),
+                                              ),
+                                              Text(
+                                                payment.date.toString(),
+                                                style: TextStyle(fontSize: 15),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              0, 0, 5, 7),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                  AppLocalizations.of(context)
+                                                      .translate(
+                                                          'paymentstates'),
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                              Text(
+                                                  " ${payment.state.toString().substring(14).toUpperCase()}")
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              0, 0, 5, 7),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                  AppLocalizations.of(context)
+                                                      .translate('paymenttype'),
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                              Text(
+                                                " ${payment.type.toString().substring(13).toUpperCase()}",
+                                                style: TextStyle(fontSize: 15),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              0, 0, 5, 0),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                  AppLocalizations.of(context)
+                                                      .translate(
+                                                          'paymentValue'),
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                              Text(
+                                                " ${payment.payment.ceilToDouble().toString()}",
+                                                style: TextStyle(fontSize: 15),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                          AppLocalizations.of(context)
-                                              .translate('paymentstates'),
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                      Text(payment.state.toString())
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                          AppLocalizations.of(context)
-                                              .translate('paymenttype'),
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                      Text(payment.type.toString())
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                          AppLocalizations.of(context)
-                                              .translate('paymentValue'),
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                      Text(payment.payment.ceilToDouble().toString())
-                                    ],
-                                  ),
-                                  // Row(
-                                  //   children: [
-                                  //     Text(
-                                  //         AppLocalizations.of(context)
-                                  //             .translate('deliverdate'),
-                                  //         style: TextStyle(
-                                  //             fontWeight: FontWeight.bold)),
-                                  //     Text(payment.deliveredDate.toString())
-                                  //   ],
-                                  // ),
-                                ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
+                        ],
                       );
-                    
                     });
             }),
       ),
