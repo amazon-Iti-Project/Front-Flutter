@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project/models/categoryCollection-model.dart';
+import 'package:project/screens/customer/cart/cart.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/widgets/categoryHeader.dart';
 import 'package:project/widgets/singleItem.dart';
 
 import 'allDepartments.dart';
 import 'categoryList.dart';
-
 
 class Category extends StatefulWidget {
   final List<Datum> categoryItems;
@@ -19,14 +19,12 @@ class Category extends StatefulWidget {
 }
 
 class _CategoryState extends State<Category> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          Icons.menu,
-          color: Colors.black,
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
         ),
         title: Container(
             width: 100,
@@ -37,12 +35,16 @@ class _CategoryState extends State<Category> {
             )),
         actions: [
           IconButton(
-              icon: Icon(Icons.search, color: Colors.black, size: 30),
-              onPressed: null),
+              icon: Icon(Icons.keyboard_voice_outlined,
+                  color: Colors.black, size: 30),
+              onPressed: () {}),
           IconButton(
               icon: Icon(Icons.shopping_cart_outlined,
                   color: Colors.black, size: 28),
-              onPressed: null),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => CartScreen()));
+              }),
         ],
         elevation: 0.0,
         flexibleSpace: Container(
@@ -118,8 +120,7 @@ class _CategoryState extends State<Category> {
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    CategoryList(catId: singleCategory.id)
-                                    ));
+                                    CategoryList(catId: singleCategory.id)));
                           },
                           child: SingleItem(
                             name: singleCategory.name,

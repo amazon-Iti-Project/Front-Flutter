@@ -4,7 +4,6 @@ import 'package:project/screens/customer/home/homepage.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/localizationService.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
-import 'models/product-model.dart';
 import 'screens/customer/home/homepage.dart';
 
 void main() async {

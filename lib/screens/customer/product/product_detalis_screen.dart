@@ -4,11 +4,9 @@ import 'package:project/models/product-model.dart';
 import 'package:project/models/user-model.dart';
 import 'package:project/screens/customer/Auth/login_screen.dart';
 import 'package:project/screens/customer/cart/cart.dart';
-import 'package:project/screens/customer/home/homepage.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/productService.dart';
 import 'package:project/services/userService.dart';
-import 'package:project/widgets/appbar.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   final int id;
@@ -83,9 +81,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         } else
           return Scaffold(
             appBar: AppBar(
-              leading: Icon(
-                Icons.menu,
-                color: Colors.black,
+              iconTheme: IconThemeData(
+                color: Colors.black, //change your color here
               ),
               title: Container(
                   width: 100,
@@ -96,12 +93,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   )),
               actions: [
                 IconButton(
-                    icon: Icon(Icons.search, color: Colors.black, size: 30),
+                    icon: Icon(Icons.keyboard_voice_outlined,
+                        color: Colors.black, size: 30),
                     onPressed: () {}),
                 IconButton(
                     icon: Icon(Icons.shopping_cart_outlined,
                         color: Colors.black, size: 28),
-                    onPressed: () {}),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) => CartScreen()));
+                    }),
               ],
               elevation: 0.0,
               flexibleSpace: Container(

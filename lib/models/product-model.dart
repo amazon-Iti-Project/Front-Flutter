@@ -83,11 +83,6 @@ class Product {
       Map<String,dynamic> shippingObj = json["shipping"];
       Map<String,dynamic> feeObj = json['fee'];
       
-      //3- set product attributes by lang attributes
-      // {id,image,...ar}
-      // print("in product json parsing");
-      // print("period: ${feeObj["fee"]}");
-      // print(json.decoded);
       return Product(
         id: json["id"],
         categoryName: json["categoryName"] == null ? null : json["categoryName"],

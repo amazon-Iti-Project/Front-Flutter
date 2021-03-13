@@ -286,11 +286,7 @@ packages:
       name: path_provider_windows
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
-    version: "0.0.5"
-=======
     version: "0.0.4+3"
->>>>>>> 4d5fe6727b635bcae64780c463fa9e3374906a54
   pedantic:
     dependency: transitive
     description:

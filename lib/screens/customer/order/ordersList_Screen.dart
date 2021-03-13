@@ -29,23 +29,22 @@ class _OrderListState extends State<OrderList> {
 
   getOrderFromServer() async {
     var token = await UserService().isUserSignedIn();
-    if(token != null){
+    if (token != null) {
       User user = await UserService().getUserByToken(token);
       orderList = await OrderListService().getOrdersByUserID(user.id);
       // orderList = await OrderListService().getOrders();
       setState(() {});
-    }else{
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (BuildContext context) => LoginScreen()));
+    } else {
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (BuildContext context) => LoginScreen()));
     }
   }
 
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          Icons.menu,
-          color: Colors.black,
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
         ),
         title: Container(
             width: 100,

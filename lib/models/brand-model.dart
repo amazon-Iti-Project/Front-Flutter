@@ -22,7 +22,6 @@ class Brand implements Value{
 
      @override
     String toString() {
-      // TODO: implement toString
       return "name:${this.name},id:${this.id},image:${this.image},";
     }
 
