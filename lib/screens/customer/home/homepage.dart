@@ -59,10 +59,10 @@ class _MyHomePageState extends State<MyHomePage> {
     var res = await UserService().logOutUser();
     if(res == true){
       _isSignedIn = false;
-      Navigator.pop(context);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppLocalizations.of(context).translate('youLoggedOut')))
-      );
+      // Navigator.pop(context);
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(content: Text(AppLocalizations.of(context).translate('youLoggedOut')))
+      // );
     }
     setState(() {});
   }
