@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project/models/product-model.dart';
+import 'package:project/screens/customer/cart/cart.dart';
 import 'package:project/screens/customer/product/product_detalis_screen.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/productService.dart';
@@ -32,7 +33,7 @@ class _CategoryListState extends State<CategoryList> {
   // void didChangeDependencies() {
   //   Locale myLocale = Localizations.localeOf(context);
   //   setState(() {
-  //     langCode =  myLocale.languageCode;     
+  //     langCode =  myLocale.languageCode;
   //   });
   //   getProducts();
   //   super.didChangeDependencies();
@@ -47,9 +48,8 @@ class _CategoryListState extends State<CategoryList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          Icons.menu,
-          color: Colors.black,
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
         ),
         title: Container(
             width: 100,
@@ -60,12 +60,16 @@ class _CategoryListState extends State<CategoryList> {
             )),
         actions: [
           IconButton(
-              icon: Icon(Icons.search, color: Colors.black, size: 30),
+              icon: Icon(Icons.keyboard_voice_outlined,
+                  color: Colors.black, size: 30),
               onPressed: () {}),
           IconButton(
               icon: Icon(Icons.shopping_cart_outlined,
                   color: Colors.black, size: 28),
-              onPressed: () {}),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => CartScreen()));
+              }),
         ],
         elevation: 0.0,
         flexibleSpace: Container(
@@ -256,4 +260,3 @@ class _CategoryListState extends State<CategoryList> {
     );
   }
 }
-

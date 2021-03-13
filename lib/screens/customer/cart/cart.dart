@@ -33,21 +33,19 @@ class _CartScreenState extends State<CartScreen> {
     getUser();
   }
 
-
   void getUser() async {
     UserService userServ = UserService();
     userToken = await userServ.isUserSignedIn();
-    if(userToken != null){
+    if (userToken != null) {
       currentUser = await userServ.getUserByToken(userToken);
       var cartIDs = currentUser.cart;
-      if(cartIDs == null)
-        _isBtnDisabled = true;
+      if (cartIDs == null) _isBtnDisabled = true;
       cartProducts = await ProductService().getProductListByID(cartIDs);
       getTotalPrice();
       setState(() {});
-    }else{
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (BuildContext context) => LoginScreen()));
+    } else {
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (BuildContext context) => LoginScreen()));
     }
   }
 
@@ -65,9 +63,8 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          Icons.menu,
-          color: Colors.black,
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
         ),
         title: Container(
             width: 100,
@@ -78,11 +75,8 @@ class _CartScreenState extends State<CartScreen> {
             )),
         actions: [
           IconButton(
-              icon: Icon(Icons.search, color: Colors.black, size: 30),
-              onPressed: () {}),
-          IconButton(
-              icon: Icon(Icons.shopping_cart_outlined,
-                  color: Colors.black, size: 28),
+              icon: Icon(Icons.keyboard_voice_outlined,
+                  color: Colors.black, size: 30),
               onPressed: () {}),
         ],
         elevation: 0.0,
@@ -317,16 +311,16 @@ class _CartScreenState extends State<CartScreen> {
                   Container(
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: ElevatedButton(
-                      onPressed: _isBtnDisabled ? null :
-                      () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) => NewAddress()));
-                      },
+                      onPressed: _isBtnDisabled
+                          ? null
+                          : () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      NewAddress()));
+                            },
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                          Color.fromRGBO(242, 196, 89, 1)
-                        )
-                      ),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Color.fromRGBO(242, 196, 89, 1))),
                       child: Text(AppLocalizations.of(context)
                           .translate('proceedToCheckout')),
                     ),

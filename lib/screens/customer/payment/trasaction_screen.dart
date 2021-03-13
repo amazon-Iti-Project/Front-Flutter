@@ -4,6 +4,7 @@ import 'package:project/models/order-model.dart';
 import 'package:project/models/payment-model.dart';
 import 'package:project/models/user-model.dart';
 import 'package:project/screens/customer/Auth/login_screen.dart';
+import 'package:project/screens/customer/cart/cart.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/payment_services.dart';
 import 'package:project/services/userService.dart';
@@ -64,9 +65,8 @@ class _TrasnactionScreenState extends State<TrasactionScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: Icon(
-            Icons.menu,
-            color: Colors.black,
+          iconTheme: IconThemeData(
+            color: Colors.black, //change your color here
           ),
           title: Container(
               width: 100,
@@ -77,12 +77,16 @@ class _TrasnactionScreenState extends State<TrasactionScreen> {
               )),
           actions: [
             IconButton(
-                icon: Icon(Icons.search, color: Colors.black, size: 30),
+                icon: Icon(Icons.keyboard_voice_outlined,
+                    color: Colors.black, size: 30),
                 onPressed: () {}),
             IconButton(
                 icon: Icon(Icons.shopping_cart_outlined,
                     color: Colors.black, size: 28),
-                onPressed: () {}),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => CartScreen()));
+                }),
           ],
           elevation: 0.0,
           flexibleSpace: Container(
