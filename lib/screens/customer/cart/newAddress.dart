@@ -83,9 +83,16 @@ class _NewAddressState extends State<NewAddress> {
         print(DateTime.now().toString());
         print(myOrder.payment.date);
     var response = await OrderService().CreateNewOrder(myOrder);
-    if(response != null)
-      Navigator.of(context).push(
+    if(response != null){
+      print(currentUser.cart);
+      await OrderService().removeCartItems(currentUser.id);
+      print(currentUser.cart);
+      // try replacment if not working go back to push
+      Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => OrderList()));
+      
+      setState(() {});
+    }
   }
 
   @override

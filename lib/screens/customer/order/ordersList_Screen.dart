@@ -4,6 +4,7 @@ import 'package:project/models/order-model.dart';
 import 'package:project/models/user-model.dart';
 import 'package:project/screens/customer/Auth/login_screen.dart';
 import 'package:project/screens/customer/cart/cart.dart';
+import 'package:project/screens/customer/home/homepage.dart';
 import 'package:project/screens/customer/order/order-card.dart';
 import 'package:project/screens/customer/order/order-details.dart';
 import 'package:project/screens/customer/order/searchbar.dart';
@@ -51,13 +52,19 @@ class _OrderListState extends State<OrderList> {
         iconTheme: IconThemeData(
           color: Colors.black, //change your color here
         ),
-        title: Container(
-            width: 100,
-            height: 40,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Image.asset('Images/amazon-black.png'),
-            )),
+        title: InkWell(
+          onTap: (){
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (BuildContext context) => MyHomePage()));
+          },
+          child: Container(
+              width: 100,
+              height: 40,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Image.asset('Images/amazon-black.png'),
+              )),
+        ),
         actions: [
           IconButton(
               icon: Icon(Icons.keyboard_voice_outlined,

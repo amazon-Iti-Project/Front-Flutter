@@ -24,6 +24,7 @@ class Payment {
 
   Map<String, dynamic> toJson()=> {
         "id": id,
+        "date": date,
         "type": type.value,
         "state": state.value,
         "payment": payment,

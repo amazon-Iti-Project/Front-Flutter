@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:project/models/order-model.dart';
+import 'package:project/models/user-model.dart';
 
 import '../constants.dart';
 
@@ -50,6 +51,14 @@ class OrderService {
       }else{
             print(res.statusMessage) ;
       }
+  }
+
+  Future<User> removeCartItems(int id) async{
+    Dio dio = Dio();
+    dio.options.headers['content-Type'] = 'application/json';
+    Response res = await dio.patch(API_URL+"/users/"+id.toString(),
+      data: {"cart":[]} 
+    );
   }
   
 //   export enum DELIVERY_STATE{

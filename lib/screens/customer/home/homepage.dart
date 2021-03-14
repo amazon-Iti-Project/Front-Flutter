@@ -61,6 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _isSignedIn = false;
       setState(() {});
       Navigator.pop(context);
+      setState(() {});
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(AppLocalizations.of(context).translate('youLoggedOut')))
       );

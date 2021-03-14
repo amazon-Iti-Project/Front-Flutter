@@ -19,16 +19,15 @@ class _OrderDetailsState extends State<OrderDetails> {
     void initState() {
       // TODO: implement initState
       super.initState();
-      // widget.order = Order.fromJson(widget.json);
     }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          Icons.menu,
-          color: Colors.black,
-        ),
+        // leading: Icon(
+        //   Icons.menu,
+        //   color: Colors.black,
+        // ),
         title: Container(
             width: 100,
             height: 40,

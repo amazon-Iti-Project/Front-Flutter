@@ -42,8 +42,6 @@ class _HomeScreenState extends State<HomeScreen> {
     userToken = await userServ.isUserSignedIn();
     if (userToken != null) {
       currentUser = await userServ.getUserByToken(userToken);
-      print("cu ${userToken}");
-
       setState(() {});
     } else {
       print("no user");
