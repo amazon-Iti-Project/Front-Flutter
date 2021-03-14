@@ -1,11 +1,12 @@
 import 'package:countdown_flutter/countdown_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:project/models/user-model.dart';
 import 'package:project/screens/customer/Auth/login_screen.dart';
 import 'package:project/screens/customer/Auth/signUp_screen.dart';
 import 'package:project/services/Localization/applocalization.dart';
+import 'package:project/services/userService.dart';
 import 'package:project/widgets/nineSections.dart';
-
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -13,6 +14,40 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  var future;
+  User user;
+  String langCode;
+  String userToken;
+  User currentUser;
+
+  @override
+  void didChangeDependencies() {
+    Locale myLocale = Localizations.localeOf(context);
+    setState(() {
+      langCode = myLocale.languageCode;
+    });
+    getUser();
+    super.didChangeDependencies();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    langCode = 'en';
+    future = getUser();
+  }
+
+  Future<void> getUser() async {
+    UserService userServ = UserService();
+    userToken = await userServ.isUserSignedIn();
+    if (userToken != null) {
+      currentUser = await userServ.getUserByToken(userToken);
+      setState(() {});
+    } else {
+      print("no user");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -42,46 +77,54 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.only(top: 8.0),
           child: Container(
             color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        AppLocalizations.of(context)
-                            .translate('signInForBestEx'),
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black87,
-                        ),
-                        textAlign: TextAlign.start,
+            child: Column(
+              children: [
+                FutureBuilder(builder: (c, s) {
+                  if (userToken == null) {
+                    print("no user sign In");
+                    return Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)
+                                .translate('signInForBestEx'),
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black87,
+                            ),
+                            textAlign: TextAlign.start,
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            child: RaisedButton(
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        LoginScreen()));
+                              },
+                              color: Color.fromRGBO(242, 196, 89, 1),
+                              child: Text(AppLocalizations.of(context)
+                                  .translate('signIn')),
+                            ),
+                          ),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        SignUpScreen()));
+                              },
+                              child: Text(
+                                AppLocalizations.of(context)
+                                    .translate('createAccount'),
+                              ))
+                        ],
                       ),
-                    ],
-                  ),
-                  Padding(padding: const EdgeInsets.only(top: 2.0)),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: RaisedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) => LoginScreen()));
-                      },
-                      color: Color.fromRGBO(242, 196, 89, 1),
-                      child: Text(
-                          AppLocalizations.of(context).translate('signIn')),
-                    ),
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) => SignUpScreen()));
-                      },
-                      child: Text(
-                        AppLocalizations.of(context).translate('createAccount'),
-                      ))
-                ],
-              ),
+                    );
+                  } else
+                    return Container();
+                }),
+              ],
             ),
           ),
         ),

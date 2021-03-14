@@ -13,6 +13,30 @@
     "login":"Login",
     "addtocart":"Add To Cart",
     "buynow":"Buy Now ",
+    "logout":"Log out",
+    "youLoggedOut":"you logged out successfully",
+    "profile":"Profile",
+    "yourtransaction":"Your Trasaction",
+    "youraddress":"Your Address",
+    "shopwithpoint":"Shop With Point",
+    "productc":"Products Voucher",
+    "payment":"Payment",
+    "personalc":"Personal Content",
+    "description":"Description ",
+    "seller":"Seller :",
+    "price":"Price :",
+    "brand":"Brand :",
+    "rate":"Rate :",
+    "size":"Size :",
+    "date":"Date : ",
+    "deliverdate":"Deliver Date :",
+    "paymentstates":"Payment State :",
+    "paymenttype":"Payment type :",
+    "paymentValue":"Payment Value :",
+
+
+
+
 
   "orderdate":"Order Date",
   "transactiontype":"Trasaction Type",

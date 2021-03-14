@@ -36,7 +36,7 @@ class UserService {
     Dio dio = Dio();
     dio.options.headers['content-Type'] = 'application/json';
     Response res = await dio.post(API_URL + "/users", data: user.toJson());
-    if (res.statusCode == 200) {
+    if (res.statusCode == 201) {
       return User.fromJson(res.data);
     } else {
       AlertDialog(
@@ -48,9 +48,11 @@ class UserService {
 
   //1-to get the user from db.json  in login page after submit
   Future<User> getUserByNameAndPassword(User user) async {
+    print(user.username);
+    print(user.repassword);
     Dio dio = Dio();
     Response res = await dio.get(
-        API_URL + "/users?username=${user.name}&password=${user.password}");
+        API_URL + "/users?username=${user.username}&password=${user.password}");
     if (res.statusCode == 200) {
       var users = res.data as List<dynamic>;
       if (users.length == 1) {
@@ -67,9 +69,9 @@ class UserService {
     return null;
   }
 
-  Future<User> getUserById(User user) async {
+  Future<User> getUserById(int id) async {
     Dio dio = Dio();
-    Response res = await dio.get(API_URL + "/users/${user.id}");
+    Response res = await dio.get(API_URL + "/users/${id}");
     if (res.statusCode == 200) {
       return User.fromJson(res.data);
     } else {
@@ -81,11 +83,16 @@ class UserService {
   }
 
   //2- if a user create a token in local storage
-  Future<String> createTokenbyUserId(User user) async {
+  Future<String> createToken() async {
     Guid token = Guid.newGuid;
     print("generated token is :${token.value}");
     await LocalizationService().prefs.setString("UserToken", token.value);
     return token.value;
+  }
+
+  Future<String> setToken(String token) async {
+    await LocalizationService().prefs.setString("UserToken", token);
+    return token;
   }
 
   //3- add token to user in db
@@ -136,7 +143,15 @@ class UserService {
   // 1- get the user and on click add to cart send user and productId tp addTpCart method
   Future<User> addToCart(User user, num productId) async {
     var cart = user.cart;
+    if(cart == null ){
+      user.cart = [];
+      cart = user.cart;
+    }try{
     cart.add(productId);
+    }catch (e){
+      print("can't add this product to this cart");
+      return null;
+    }
     Dio dio = Dio();
     dio.options.headers['content-Type'] = 'application/json';
     Response res =
@@ -184,8 +199,6 @@ class UserService {
 
   // reomve from local storage
   Future<bool> logOutUser() async {
-    SharedPreferences prefs =
-        await LocalizationService().getSharedPreferences();
-    return await prefs.remove('UserToken');
+    return await LocalizationService().prefs.remove('UserToken');
   }
 }

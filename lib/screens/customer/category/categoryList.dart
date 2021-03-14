@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project/models/product-model.dart';
+import 'package:project/screens/customer/cart/cart.dart';
 import 'package:project/screens/customer/product/product_detalis_screen.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/productService.dart';
@@ -11,43 +12,79 @@ import 'package:project/widgets/appbar.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class CategoryList extends StatefulWidget {
-  final String catName;
-  CategoryList({this.catName});
+  final int catId;
+  CategoryList({this.catId});
   @override
   _CategoryListState createState() => _CategoryListState();
 }
 
 class _CategoryListState extends State<CategoryList> {
-  List<Product> productsList = new List();
-  String langCode;
+  List<Product> productsList = [];
+  // String langCode;
 
   @override
   void initState() {
     super.initState();
-    langCode='en';
+    // langCode='en';
+    getProducts();
   }
 
-  @override
-  void didChangeDependencies() {
-    Locale myLocale = Localizations.localeOf(context);
-    setState(() {
-      langCode =  myLocale.languageCode;     
-    });
-    getProducts();
-    super.didChangeDependencies();
-  }
+  // @override
+  // void didChangeDependencies() {
+  //   Locale myLocale = Localizations.localeOf(context);
+  //   setState(() {
+  //     langCode =  myLocale.languageCode;
+  //   });
+  //   getProducts();
+  //   super.didChangeDependencies();
+  // }
 
   getProducts() async {
-    productsList = await ProductService().getProductsByCatID(widget.catName);
+    productsList = await ProductService().getProductsByCatID(widget.catId);
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
+        ),
+        title: Container(
+            width: 100,
+            height: 40,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Image.asset('Images/amazon-black.png'),
+            )),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.keyboard_voice_outlined,
+                  color: Colors.black, size: 30),
+              onPressed: () {}),
+          IconButton(
+              icon: Icon(Icons.shopping_cart_outlined,
+                  color: Colors.black, size: 28),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => CartScreen()));
+              }),
+        ],
+        elevation: 0.0,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                Color.fromRGBO(133, 217, 225, 1),
+                Color.fromRGBO(165, 230, 206, 1)
+              ])),
+        ),
+      ),
       body: ListView(
         children: [
-          AmazonAppBar(),
           Container(
             height: 50,
             decoration: BoxDecoration(
@@ -223,4 +260,3 @@ class _CategoryListState extends State<CategoryList> {
     );
   }
 }
-

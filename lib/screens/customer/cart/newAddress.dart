@@ -19,7 +19,6 @@ class NewAddress extends StatefulWidget {
 }
 
 class _NewAddressState extends State<NewAddress> {
-  String userToken = "aea407a0-7f44-fcd0-c325-b1b3cbbe7711";
   final myController = TextEditingController();
   User currentUser;
   String userName;
@@ -42,7 +41,8 @@ class _NewAddressState extends State<NewAddress> {
   }
 
   getUser() async {
-    currentUser = await UserService().getUserByToken(userToken);
+    String token = await UserService().isUserSignedIn();
+    currentUser = await UserService().getUserByToken(token);
     var list = await ProductService().getProductListByID(currentUser.cart);
     for (var i = 0; i < list.length; i++) {
       ship += list[i].shipping.shipPrice;
@@ -57,15 +57,9 @@ class _NewAddressState extends State<NewAddress> {
   }
 
   submitOrder() async {
-    // setState(() {});
     List<Product> products =
         await ProductService().getProductListByID(currentUser.cart);
-    print("first product:${products[0]}");
-    print("address:${address}");
-    print("id:${currentUser.id}");
-    print("status:${Status.pending}");
-    print("first product:${products[0]}");
-
+    products.forEach((element) { element.quantity = 1;});
     myOrder = Order(
         address: address,
         canCancelledUntil: DateTime.now().add(new Duration(days: 2)),
@@ -76,18 +70,29 @@ class _NewAddressState extends State<NewAddress> {
         payment: Payment(
             type: PAYMENT_TYPE.cash,
             state: PAYMENT_STATE.pending,
-            payment: total + ship),
-        orderShip: ship,
+            payment: total + ship,
+            date: DateTime.now().toString()
+        ),
+        orderShip: maxDuration,
         orderPrice: total,
         dueDate: DateTime.now().add(new Duration(days: maxDuration)),
         orderDate: DateTime.now(),
         deliveredDate: DateTime.now().add(new Duration(days: maxDuration)),
         );
+        print('in creating order');
+        print(DateTime.now().toString());
+        print(myOrder.payment.date);
     var response = await OrderService().CreateNewOrder(myOrder);
-    print("this is response$response");
-    if(response != null)
-      Navigator.of(context).push(
+    if(response != null){
+      print(currentUser.cart);
+      await OrderService().removeCartItems(currentUser.id);
+      print(currentUser.cart);
+      // try replacment if not working go back to push
+      Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => OrderList()));
+      
+      setState(() {});
+    }
   }
 
   @override

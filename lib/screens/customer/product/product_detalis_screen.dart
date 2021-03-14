@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/models/product-model.dart';
-import 'package:project/screens/customer/home/homepage.dart';
+import 'package:project/models/user-model.dart';
+import 'package:project/screens/customer/Auth/login_screen.dart';
+import 'package:project/screens/customer/cart/cart.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/productService.dart';
-import 'package:project/widgets/appbar.dart';
+import 'package:project/services/userService.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   final int id;
@@ -20,15 +22,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   String langCode;
   var future;
 
-  @override
-  void didChangeDependencies() {
-    Locale myLocale = Localizations.localeOf(context);
-    setState(() {
-      langCode = myLocale.languageCode;
-    });
-    getProductbyid();
-    super.didChangeDependencies();
-  }
+  // @override
+  // void didChangeDependencies() {
+  //   Locale myLocale = Localizations.localeOf(context);
+  //   setState(() {
+  //     langCode = myLocale.languageCode;
+  //   });
+  //   getProductbyid();
+  //   super.didChangeDependencies();
+  // }
 
   Future<void> getProductbyid() async {
     var productVal = await ProductService().getProductByID(widget.id);
@@ -44,15 +46,76 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     future = getProductbyid();
   }
 
+  buyThisProduct() async {
+    String token = await UserService().isUserSignedIn();
+    if (token != null) {
+      User user = await UserService().getUserByToken(token);
+      var res = await UserService().addToCart(user, widget.id);
+      if (res != null) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => CartScreen()),
+        );
+      }
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => LoginScreen()),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: future,
       builder: (c, s) {
         if (s.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return Scaffold(
+              backgroundColor: Colors.white,
+              body: Center(
+                  child: Container(
+                      width: 100,
+                      height: 100,
+                      child: CircularProgressIndicator())));
         } else
           return Scaffold(
+            appBar: AppBar(
+              iconTheme: IconThemeData(
+                color: Colors.black, //change your color here
+              ),
+              title: Container(
+                  width: 100,
+                  height: 40,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Image.asset('Images/amazon-black.png'),
+                  )),
+              actions: [
+                IconButton(
+                    icon: Icon(Icons.keyboard_voice_outlined,
+                        color: Colors.black, size: 30),
+                    onPressed: () {}),
+                IconButton(
+                    icon: Icon(Icons.shopping_cart_outlined,
+                        color: Colors.black, size: 28),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) => CartScreen()));
+                    }),
+              ],
+              elevation: 0.0,
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [
+                      Color.fromRGBO(133, 217, 225, 1),
+                      Color.fromRGBO(165, 230, 206, 1)
+                    ])),
+              ),
+            ),
             body: SafeArea(
               child: Form(
                 key: key,
@@ -60,7 +123,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      AmazonAppBar(),
                       Padding(
                         padding: const EdgeInsets.all(10),
                         child: Text(
@@ -82,7 +144,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           Expanded(
                             flex: 1,
                             child: Text(
-                              "Description ",
+                              AppLocalizations.of(context)
+                                  .translate('description'),
                               style: TextStyle(
                                   color: Colors.grey[600], fontSize: 18),
                             ),
@@ -118,7 +181,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     Expanded(
                                       flex: 1,
                                       child: Text(
-                                        "Seller :",
+                                        AppLocalizations.of(context)
+                                            .translate('seller'),
                                         style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 16,
@@ -145,7 +209,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       Expanded(
                                         flex: 1,
                                         child: Text(
-                                          "Price :",
+                                          AppLocalizations.of(context)
+                                              .translate('price'),
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16),
@@ -172,7 +237,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       Expanded(
                                         flex: 1,
                                         child: Text(
-                                          "Rate :",
+                                          AppLocalizations.of(context)
+                                              .translate('rate'),
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16),
@@ -221,7 +287,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       Expanded(
                                         flex: 1,
                                         child: Text(
-                                          "Brand :",
+                                          AppLocalizations.of(context)
+                                              .translate('brand'),
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16),
@@ -245,7 +312,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       Expanded(
                                         flex: 1,
                                         child: Text(
-                                          "Screen Size :",
+                                          AppLocalizations.of(context)
+                                              .translate('size'),
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16),
@@ -270,18 +338,18 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: RaisedButton(
-                      color: Color(0xFFf1c65d),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Color(0xFFf1c65d)),
+                      ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => MyHomePage()),
-                        );
+                        buyThisProduct();
                       },
                       child: Row(
                         children: [
                           Container(
-                            margin: EdgeInsets.fromLTRB(0, 5, 18, 5),
+                            margin: EdgeInsets.fromLTRB(15, 5, 18, 5),
                             padding: EdgeInsets.all(5),
                             color: Colors.black54,
                             child: Icon(

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project/models/categoryCollection-model.dart';
+import 'package:project/screens/customer/cart/cart.dart';
 import 'package:project/services/Localization/applocalization.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:project/services/localizationService.dart';
 import 'dart:convert';
 
 import '../../../constants.dart';
 import 'category.dart';
 
 Future<List<CategoryCollection>> fetchCategories() async {
-  print('entered!');
   final response = await http.get(API_URL + "/categoriesCollection");
   if (response.statusCode == 200) {
-    print('data');
     return List<CategoryCollection>.from((jsonDecode(response.body) as List)
         .map((e) => CategoryCollection.fromJson((e)))).toList();
   } else {
@@ -28,7 +28,6 @@ class AllDepartments extends StatefulWidget {
 }
 
 class _AllDepartmentsState extends State<AllDepartments> {
-
   Future<List<CategoryCollection>> allCategories;
 
   @override
@@ -41,9 +40,8 @@ class _AllDepartmentsState extends State<AllDepartments> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          Icons.menu,
-          color: Colors.black,
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
         ),
         title: Container(
             width: 100,
@@ -54,12 +52,16 @@ class _AllDepartmentsState extends State<AllDepartments> {
             )),
         actions: [
           IconButton(
-              icon: Icon(Icons.search, color: Colors.black, size: 30),
+              icon: Icon(Icons.keyboard_voice_outlined,
+                  color: Colors.black, size: 30),
               onPressed: () {}),
           IconButton(
               icon: Icon(Icons.shopping_cart_outlined,
                   color: Colors.black, size: 28),
-              onPressed: () {}),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => CartScreen()));
+              }),
         ],
         elevation: 0.0,
         flexibleSpace: Container(
@@ -101,12 +103,16 @@ class _AllDepartmentsState extends State<AllDepartments> {
                         itemCount: categories.length,
                         itemBuilder: (context, index) {
                           final category = categories[index];
+                          String lang = LocalizationService().lang;
                           return Container(
                               child: ListTile(
                                 onTap: () {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                          Category(categoryItems: category.data,title: category.title,)));
+                                          Category(
+                                            categoryItems: category.data,
+                                            title: category.title,
+                                          )));
                                 },
                                 title: Text(category.title),
                                 trailing: Icon(
@@ -122,8 +128,7 @@ class _AllDepartmentsState extends State<AllDepartments> {
                               ));
                         },
                       );
-                    }
-                    else{
+                    } else {
                       return Container(
                         width: 100,
                         height: 100,

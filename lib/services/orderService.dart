@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:project/models/order-model.dart';
+import 'package:project/models/user-model.dart';
 
 import '../constants.dart';
 
@@ -9,71 +10,15 @@ class OrderService {
   Future<Order> CreateNewOrder(Order myOrder) async {
     Dio dio = new Dio();
     dio.options.headers['content-Type'] = 'application/json';
-    // print(myOrder.address);
-    // print(myOrder.status);
-    // print(myOrder.shipmentPrice);
-    // print(myOrder.products);
-    // print(myOrder.payment);
-    // print(myOrder.orderShip);
-    // print(myOrder.orderPrice);
-    // print(myOrder.orderDate);
-    // print(myOrder.id);
-    // print(myOrder.dueDate);
-    // print(myOrder.deliveredDate);
-    // print(myOrder.customer);
-    // print(myOrder.canCancelledUntil);
-
-    // print('before request');
-       Response<Order> res = await dio.post<Order>(API_URL + "/orders", data: myOrder.toJson());
-    // print('after request');
-    print(res.statusCode);
-    print("data${res.data}");
-    // print(jsonDecode(myOrder.toString()));
-    // var json = jsonEncode(myOrder.toJson());
-    // print(json);
-    // Map<String, dynamic> map = myOrder.toJson();
-    // String rawJson = jsonEncode(map);
-    // print(rawJson);
-    // try{
-    //   var first = myOrder.toJson();
-    //   var second = jsonDecode(myOrder.toJson().toString());
-    //   print(second);
-    // }catch(e){
-    //   print('not working');
-    // }
-
-////////////////////////////////
-    // Response res = await dio.post(API_URL + "/orders", data: myOrder.toJson());
-    // print('after request');
-    // print(res);
-    // print(res.data);
-    // if (res.statusCode == 200) {
-    //   return Order.fromJson(res.data);
-    // } else {
-    //   print('error!');
-    //   return null;
-    // }
-//////////////////////////////////////////////////////////////
-
-    // response =
-    //     await dio.post(API_URL + "/orders",
-    //       options: Options(headers: {
-    //         HttpHeaders.contentTypeHeader: "application/json",
-    //       }),
-    //       // data: jsonEncode(myOrder),
-    //       data: myOrder.toJson()
-    //     );
-    // return response;
-    // Response res = await dio.post(API_URL + "/users", data: user.toJson());
-    
+    Response res = await dio.post(API_URL + "/orders", data: myOrder.toJson());
+    return(Order.fromJson(res.data));
   }
   Future<List<Order>> getOrders() async {
-    List<Order> orders = new List();
+    List<Order> orders = [];
     Response resopnse;
     Dio dio = new Dio();
     resopnse = await dio.get(API_URL+"/orders");
     var data = resopnse.data;
-    // print(data);
     data.forEach((value) {
       orders.add(Order.fromJson(value));
     });
@@ -106,6 +51,14 @@ class OrderService {
       }else{
             print(res.statusMessage) ;
       }
+  }
+
+  Future<User> removeCartItems(int id) async{
+    Dio dio = Dio();
+    dio.options.headers['content-Type'] = 'application/json';
+    Response res = await dio.patch(API_URL+"/users/"+id.toString(),
+      data: {"cart":[]} 
+    );
   }
   
 //   export enum DELIVERY_STATE{

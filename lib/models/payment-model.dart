@@ -15,6 +15,7 @@ class Payment {
 
     return Payment(
       id: json['id'],
+      date: json['date'],
       type: t.getPaymentType(json['type']),
       state: s.getStateType(json['state']),
       date: json['date'],
@@ -24,6 +25,7 @@ class Payment {
 
   Map<String, dynamic> toJson()=> {
         "id": id,
+        "date": date,
         "type": type.value,
         "state": state.value,
         "payment": payment,

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project/models/order-model.dart';
+import 'package:project/models/user-model.dart';
+import 'package:project/screens/customer/Auth/login_screen.dart';
 import 'package:project/screens/customer/cart/cart.dart';
+import 'package:project/screens/customer/home/homepage.dart';
 import 'package:project/screens/customer/order/order-card.dart';
 import 'package:project/screens/customer/order/order-details.dart';
 import 'package:project/screens/customer/order/searchbar.dart';
 import 'package:project/services/orderlistService.dart';
 import 'package:project/enums/status-enum.dart';
+import 'package:project/services/userService.dart';
 // import '../applocalization.dart';
 
 class OrderList extends StatefulWidget {
@@ -16,7 +20,7 @@ class OrderList extends StatefulWidget {
 
 class _OrderListState extends State<OrderList> {
   String _chosenValue;
-  List<Order> orderList = new List();
+  List<Order> orderList = [];
 
   @override
   void initState() {
@@ -25,24 +29,42 @@ class _OrderListState extends State<OrderList> {
   }
 
   getOrderFromServer() async {
-    orderList = await OrderListService().getOrders();
-    setState(() {});
+    var token = await UserService().isUserSignedIn();
+    if (token != null) {
+      User user = await UserService().getUserByToken(token);
+      orderList = await OrderListService().getOrdersByUserID(user.id);
+      // orderList = await OrderListService().getOrders();
+      setState(() {});
+    } else {
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (BuildContext context) => LoginScreen()));
+    }
   }
 
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          Icons.menu,
-          color: Colors.black,
+        // leading: InkWell(
+        //   onTap: (){
+        //     Navigator.popUntil(context, );
+        //   },
+        //   child: Icon(Icons.arrow_back_ios)),
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
         ),
-        title: Container(
-            width: 100,
-            height: 40,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Image.asset('Images/amazon-black.png'),
-            )),
+        title: InkWell(
+          onTap: (){
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (BuildContext context) => MyHomePage()));
+          },
+          child: Container(
+              width: 100,
+              height: 40,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Image.asset('Images/amazon-black.png'),
+              )),
+        ),
         actions: [
           IconButton(
               icon: Icon(Icons.keyboard_voice_outlined,
