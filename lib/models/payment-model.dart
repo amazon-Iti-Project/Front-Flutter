@@ -17,6 +17,7 @@ class Payment {
       id: json['id'],
       type: t.getPaymentType(json['type']),
       state: s.getStateType(json['state']),
+      date: json['date'],
       payment: json['payment'],
     );
   }
@@ -26,5 +27,6 @@ class Payment {
         "type": type.value,
         "state": state.value,
         "payment": payment,
+        "date": date,
   };
 }
