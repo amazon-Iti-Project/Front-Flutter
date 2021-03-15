@@ -163,6 +163,7 @@ class SellerAddProductState extends State<SellerAddProduct> {
                               name: "chooseCategory",
                               list: this.catList,
                               onDropChange: (Datum selectedCat) {
+                                print("value of selected Cate: ${selectedCat.value}");
                                 this.product.category = selectedCat.id;
 
                                 feeServ
@@ -180,8 +181,9 @@ class SellerAddProductState extends State<SellerAddProduct> {
                               validFun: (Datum selectedCat) {
                                 if (selectedCat != null &&
                                     selectedCat.id == this.product.category)
-                                  return true;
-                                return null;
+                                    return null;
+                                  return selectedCat;
+                                
                               },
                               errorText: 'select a Category',
                             ),
@@ -203,8 +205,8 @@ class SellerAddProductState extends State<SellerAddProduct> {
                               validFun: (Brand selectedBrand) {
                                 if (selectedBrand != null &&
                                     selectedBrand.id == this.product.brand)
-                                  return true;
-                                return null;
+                                  return null;
+                                return selectedBrand;
                               },
                               errorText: 'select a brand',
                             ),

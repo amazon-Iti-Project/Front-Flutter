@@ -18,7 +18,6 @@ class Payment {
       date: json['date'],
       type: t.getPaymentType(json['type']),
       state: s.getStateType(json['state']),
-      date: json['date'],
       payment: json['payment'],
     );
   }

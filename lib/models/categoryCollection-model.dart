@@ -38,7 +38,7 @@ class Datum implements Value{
       return Datum(
         id: json["id"],
         name: langObj["name"],
-        image: json["image"]
+        image: json["image"],
       );
     }
 

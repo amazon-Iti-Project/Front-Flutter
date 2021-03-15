@@ -64,114 +64,106 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final product = snapshot.data;
-            return Card(
-              shape: RoundedRectangleBorder(
-                  side: BorderSide(
-                    width: 1,
-                    color: HexColor("#f08804"),
-                  ),
-                  borderRadius: BorderRadius.circular(5.0)),
-              elevation: 5,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListView(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            LocalizedText(
-                              localizedParentData,
-                              "brand",
-                              color: Colors.lightBlue[700],
-                              subText: true,
-                            ),
-                            AppText(
-                              ":${product.brand}",
-                              color: Colors.lightBlue[700],
-                              subText: true,
-                            ),
-                          ],
-                        ),
-                        //rating
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.star_rate,
-                              color:
-                                  true ? Colors.yellow[800] : Colors.grey[400],
-                              size: 20,
-                            ),
-                            Icon(
-                              Icons.star_rate,
-                              color:
-                                  true ? Colors.yellow[800] : Colors.grey[400],
-                              size: 20,
-                            ),
-                            Icon(
-                              Icons.star_rate,
-                              color:
-                                  true ? Colors.yellow[800] : Colors.grey[400],
-                              size: 20,
-                            ),
-                            Icon(
-                              Icons.star_rate,
-                              color:
-                                  false ? Colors.yellow[800] : Colors.grey[400],
-                              size: 20,
-                            ),
-                            Icon(
-                              Icons.star_rate,
-                              color:
-                                  false ? Colors.yellow[800] : Colors.grey[400],
-                              size: 20,
-                            ),
-                          ],
-                        )
-                      ],
+            return ListView(
+              children: [
+              Card(
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      width: 1,
+                      color: HexColor("#f08804"),
                     ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Flexible(
-                          fit: FlexFit.loose,
-                          child: AppText(
-                            "${product.description}",
-                            maxLines: 10,
-                            color: Colors.grey[800],
+                    borderRadius: BorderRadius.circular(5.0)),
+                elevation: 5,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child:
+                   Column(
+                    children: [
+                      //rating  and brand
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          // brand row
+                          Row(
+                            children: [
+                              LocalizedText(
+                                localizedParentData,
+                                "brand",
+                                color: Colors.lightBlue[700],
+                                subText: true,
+                              ),
+                              AppText(
+                                ":${product.brand}",
+                                color: Colors.lightBlue[700],
+                                subText: true,
+                              ),
+                            ],
                           ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 10,
-                    ),
-                    Flexible(
-                      flex: 1,
-                      child: Container(
+                          //rating
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.star_rate,
+                                color:
+                                    true ? Colors.yellow[800] : Colors.grey[400],
+                                size: 20,
+                              ),
+                              Icon(
+                                Icons.star_rate,
+                                color:
+                                    true ? Colors.yellow[800] : Colors.grey[400],
+                                size: 20,
+                              ),
+                              Icon(
+                                Icons.star_rate,
+                                color:
+                                    true ? Colors.yellow[800] : Colors.grey[400],
+                                size: 20,
+                              ),
+                              Icon(
+                                Icons.star_rate,
+                                color:
+                                    false ? Colors.yellow[800] : Colors.grey[400],
+                                size: 20,
+                              ),
+                              Icon(
+                                Icons.star_rate,
+                                color:
+                                    false ? Colors.yellow[800] : Colors.grey[400],
+                                size: 20,
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      // description
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Flexible(
+                            fit: FlexFit.loose,
+                            child: AppText(
+                              "${product.description}",
+                              maxLines: 10,
+                              color: Colors.grey[800],
+                            ),
+                          )
+                        ],
+                      ),
+                      //  image
+                      Container(
                         // padding: EdgeInsets.all(8.0),
                         width: double.infinity,
                         constraints:
                             BoxConstraints(maxHeight: 300, minHeight: 300),
                         color: Colors.grey[200],
-                        child: FittedBox(
-                          fit: BoxFit.fitWidth,
                           child: Image.network(
                             product.image,
                           ),
-                        ),
                       ),
-                    ),
-                    Flexible(
-                      flex: 1,
-                      child: Padding(
+                     
+                      Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -593,10 +585,12 @@ class SellerInventroyDetailsState extends State<SellerInventroyDetails> {
                           ],
                         ),
                       ),
-                    ),
-                  ],
+                    
+                    ],
+                  ),
                 ),
               ),
+            ]
             );
           
           } else {

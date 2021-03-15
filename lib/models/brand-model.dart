@@ -1,4 +1,6 @@
 
+import 'package:project/services/localizationService.dart';
+
 import 'categoryCollection-model.dart';
 
 class Brand implements Value{
@@ -14,11 +16,15 @@ class Brand implements Value{
     String name;
     String image;
 
-    factory Brand.fromJson(Map<String, dynamic> json) => Brand(
-        id: json["id"],
-        name: json["name"],
-        image: json["image"],
+    factory Brand.fromJson(Map<String, dynamic> json) {
+    String lang = LocalizationService().lang; //en
+    Map<String, dynamic> langObj = json[lang];
+    return Brand(
+      id: json["id"],
+      name: langObj["name"],
+      image: json["image"],
     );
+  } 
 
      @override
     String toString() {

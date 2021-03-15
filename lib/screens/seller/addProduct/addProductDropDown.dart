@@ -18,7 +18,6 @@ import 'package:project/screens/templatesWidgets/localized-text.dart';
   
 //   @override
 //   Widget build(BuildContext context) {
-//     // TODO: implement build
 //     return AppText("aa");
 //   }
 // }
@@ -49,7 +48,6 @@ class _AddProductDropDownState extends State<AddProductDropDown> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     
     // dropdownValue = this.list[0];
@@ -59,7 +57,6 @@ class _AddProductDropDownState extends State<AddProductDropDown> {
 
   @override
     void setState(fn) {
-      // TODO: implement setState
       super.setState(fn);
       print("child setState");
     }
@@ -111,7 +108,7 @@ class _AddProductDropDownState extends State<AddProductDropDown> {
             // underline:null,
             decoration: InputDecoration(
                 floatingLabelBehavior: FloatingLabelBehavior.never,
-                errorText:widget.errorText,
+                // errorText:widget.errorText,
                 // focusedBorder: OutlineInputBorder(
                 //   borderSide: BorderSide(color: HexColor("#f08804"), width: 1),
                 //   borderRadius: BorderRadius.all(Radius.circular(10.0)),
