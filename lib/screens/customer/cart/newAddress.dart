@@ -14,6 +14,8 @@ import 'package:project/services/userService.dart';
 import 'package:project/models/product-model.dart';
 
 class NewAddress extends StatefulWidget {
+  List <Product> cartItems;
+  NewAddress({this.cartItems});
   @override
   _NewAddressState createState() => _NewAddressState();
 }
@@ -25,12 +27,14 @@ class _NewAddressState extends State<NewAddress> {
   Order myOrder;
   var ship;
   var total;
+  var list;
   var maxDuration;
   String address;
 
   @override
   void initState() {
     super.initState();
+    list = widget.cartItems;
     userName = '';
     ship = 0;
     total = 0;
@@ -43,10 +47,9 @@ class _NewAddressState extends State<NewAddress> {
   getUser() async {
     String token = await UserService().isUserSignedIn();
     currentUser = await UserService().getUserByToken(token);
-    var list = await ProductService().getProductListByID(currentUser.cart);
     for (var i = 0; i < list.length; i++) {
       ship += list[i].shipping.shipPrice;
-      total += list[i].price * (list[i].discount / 100);
+      total += list[i].price * (list[i].discount / 100) *list[i].quantity;
       if (list[i].shipping.period > maxDuration)
         maxDuration = list[i].shipping.period;
     }
@@ -57,13 +60,10 @@ class _NewAddressState extends State<NewAddress> {
   }
 
   submitOrder() async {
-    List<Product> products =
-        await ProductService().getProductListByID(currentUser.cart);
-    products.forEach((element) { element.quantity = 1;});
     myOrder = Order(
         address: address,
         canCancelledUntil: DateTime.now().add(new Duration(days: 2)),
-        products: products,
+        products: list,
         customer: currentUser.id,
         status: Status.pending,
         shipmentPrice: ship,
@@ -79,18 +79,11 @@ class _NewAddressState extends State<NewAddress> {
         orderDate: DateTime.now(),
         deliveredDate: DateTime.now().add(new Duration(days: maxDuration)),
         );
-        print('in creating order');
-        print(DateTime.now().toString());
-        print(myOrder.payment.date);
     var response = await OrderService().CreateNewOrder(myOrder);
     if(response != null){
-      print(currentUser.cart);
       await OrderService().removeCartItems(currentUser.id);
-      print(currentUser.cart);
-      // try replacment if not working go back to push
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => OrderList()));
-      
       setState(() {});
     }
   }

@@ -16,10 +16,11 @@ class OrderDetails extends StatefulWidget {
 class _OrderDetailsState extends State<OrderDetails> {
   final String pageName = "OrdersDetails";
   @override
-    void initState() {
-      // TODO: implement initState
-      super.initState();
-    }
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,211 +61,252 @@ class _OrderDetailsState extends State<OrderDetails> {
               ])),
         ),
       ),
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              child: Column(
-                children: [
-                  Image.network(widget.order.products[0].image,
-                      height: 100, width: 100),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(3, 1.0, 10.0, 10.0),
-                          child:
-                        // LocalizedText(
-                        //   pageName,"title",
-                        //   bold: true,
-                        //   textAlign: TextAlign.start,
-                        //   color: Colors.red,
-                        //   maxLines: 3,
-                        //   subText: true,
-                          
-
-                        // ),
-                           Text(
-                            widget.order.products[0].name,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(3, 1.0, 10.0, 10.0),
-                          child: Text(
-                            "Price: ${widget.order.products[0].price} \$",
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(3, 1.0, 10.0, 10.0),
-                          child: Text(
-                            widget.order.products[0].description,
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: ScreenProgress(
-                  ticks: widget.order.status.value,
-                ),
-              ),
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 25, bottom: 25, right: 5),
-                        child: Text(
-                          'Ordered',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
-                        ),
-                      ),
-                      Text(
-                          "${widget.order.orderDate.day} - ${widget.order.orderDate.month} - ${widget.order.orderDate.year}")
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 1, top: 25, bottom: 25, right: 80),
-                        child: Text(
-                          'Shipped',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 1, top: 25, bottom: 25, right: 20),
-                        child: Row(
+      body: ListView.builder(
+          itemCount: widget.order.products.length,
+          itemBuilder: (context, index) {
+            final prod = widget.order.products[index];
+            return Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Card(
+                        child: Column(
                           children: [
-                            Text(
-                              'Out For Delivery',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 18),
+                            Image.network(prod.image,
+                                height: 100, width: 100),
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        3, 1.0, 10.0, 10.0),
+                                    child:
+                                        // LocalizedText(
+                                        //   pageName,"title",
+                                        //   bold: true,
+                                        //   textAlign: TextAlign.start,
+                                        //   color: Colors.red,
+                                        //   maxLines: 3,
+                                        //   subText: true,
+
+                                        // ),
+                                        Text(
+                                      prod.name,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 25),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        3, 1.0, 10.0, 10.0),
+                                    child: Text(
+                                      "Price: ${prod.price} \$",
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        3, 1.0, 10.0, 10.0),
+                                    child: Text(
+                                      "Quantity: ${prod.quantity}",
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        3, 1.0, 10.0, 10.0),
+                                    child: Text(
+                                      "Total Price: ${prod.price * prod.quantity} \$",
+                                      style: TextStyle(fontSize: 20,color: Colors.blue),
+                                    ),
+                                  ),
+                                  // Padding(
+                                  //   padding: const EdgeInsets.fromLTRB(
+                                  //       3, 1.0, 10.0, 10.0),
+                                  //   child: Text(
+                                  //     "Total Price: ${widget.order.orderPrice.ceil()} \$",
+                                  //     style: TextStyle(fontSize: 20,color: Colors.blue),
+                                  //   ),
+                                  // ),
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        3, 1.0, 10.0, 10.0),
+                                    child: Text(
+                                      prod.description,
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 20, top: 25, bottom: 25, right: 5),
-                        child: Text(
-                          ' Arriving By ',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
-                        ),
-                      ),
-                      Text(
-                          "${widget.order.deliveredDate.day} - ${widget.order.deliveredDate.month} - ${widget.order.deliveredDate.year}")
-                    ],
-                  )
-                ],
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.all(3.0),
-            child: Card(
-              child: Column(
-                children: [
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          'Tracking info provided by Amazon',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 22),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Text(
-                              '   Shipped with Cart2india',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Text(
-                              'Tracking ID: ${widget.order.id}             ',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(3.0),
-            child: Card(
-              child: Column(
-                children: [
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(9.0),
-                        child: Text(
-                          'Address Info',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 22),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Text(
-                      widget.order.address,
-                      style: TextStyle(fontSize: 20),
                     ),
-                  ),
-                ],
-              ),
-            ),
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(30.0),
+                          child: ScreenProgress(
+                            ticks: widget.order.status.value,
+                          ),
+                        ),
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 25, bottom: 25, right: 5),
+                                  child: Text(
+                                    'Ordered',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  ),
+                                ),
+                                Text(
+                                    "${widget.order.orderDate.day} - ${widget.order.orderDate.month} - ${widget.order.orderDate.year}")
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 1, top: 25, bottom: 25, right: 80),
+                                  child: Text(
+                                    'Shipped',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 1, top: 25, bottom: 25, right: 20),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        'Out For Delivery',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 20, top: 25, bottom: 25, right: 5),
+                                  child: Text(
+                                    ' Arriving By ',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  ),
+                                ),
+                                Text(
+                                    "${widget.order.deliveredDate.day} - ${widget.order.deliveredDate.month} - ${widget.order.deliveredDate.year}")
+                              ],
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(3.0),
+                      child: Card(
+                        child: Column(
+                          children: [
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    'Tracking info provided by Amazon',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 22),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Text(
+                                        '   Shipped with Cart2india',
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Text(
+                                        'Tracking ID: ${widget.order.id}             ',
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: Card(
+                          child: Column(
+                            children: [
+                              Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(9.0),
+                                    child: Text(
+                                      'Address Info',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 22),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Text(
+                                  widget.order.address,
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+              ],
+            );
+          }
+          
           ),
-        ],
-      ),
+          
     );
   }
 }

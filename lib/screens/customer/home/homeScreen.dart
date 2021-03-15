@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:project/models/user-model.dart';
 import 'package:project/screens/customer/Auth/login_screen.dart';
 import 'package:project/screens/customer/Auth/signUp_screen.dart';
+import 'package:project/screens/customer/category/categoryList.dart';
 import 'package:project/services/Localization/applocalization.dart';
 import 'package:project/services/userService.dart';
 import 'package:project/widgets/nineSections.dart';
@@ -402,7 +403,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   children: [
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CategoryList(catId: 1,)),
+                          );
+                        },
                         child: Text(
                           AppLocalizations.of(context).translate('allDep'),
                         )),

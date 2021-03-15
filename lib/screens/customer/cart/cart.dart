@@ -41,6 +41,7 @@ class _CartScreenState extends State<CartScreen> {
       var cartIDs = currentUser.cart;
       if (cartIDs == null || cartIDs.length ==0) _isBtnDisabled = true;
       cartProducts = await ProductService().getProductListByID(cartIDs);
+      cartProducts.forEach((element) {element.quantity =1;});
       getTotalPrice();
       setState(() {});
     } else {
@@ -52,7 +53,7 @@ class _CartScreenState extends State<CartScreen> {
   getTotalPrice() {
     var newTotal = 0;
     for (var i = 0; i < cartProducts.length; i++) {
-      newTotal += cartProducts[i].price;
+      newTotal += cartProducts[i].price * cartProducts[i].quantity;
     }
     setState(() {
       total = newTotal;
@@ -176,9 +177,11 @@ class _CartScreenState extends State<CartScreen> {
                                     MaterialStateProperty.all<double>(0.0),
                               ),
                               onPressed: () {
-                                // Respond to button press
                                 setState(() {
-                                  _value -= 1;
+                                  if(cartItem.quantity == 0)
+                                    cartItem.quantity = 0;
+                                  else cartItem.quantity -=1;
+                                  getTotalPrice();
                                 });
                               },
                               child: Text('-'),
@@ -186,7 +189,7 @@ class _CartScreenState extends State<CartScreen> {
                             Container(
                               width: 70,
                               height: 35,
-                              child: Center(child: Text(_value.toString())),
+                              child: Center(child: Text(cartItem.quantity.toString())),
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   border: Border.all(color: Colors.grey)),
@@ -202,7 +205,10 @@ class _CartScreenState extends State<CartScreen> {
                               onPressed: () {
                                 // Respond to button press
                                 setState(() {
-                                  _value += 1;
+                                  if(cartItem.quantity == 10)
+                                    cartItem.quantity = 10;
+                                  else cartItem.quantity +=1;
+                                  getTotalPrice();
                                 });
                               },
                               child: Text('+'),
@@ -223,7 +229,10 @@ class _CartScreenState extends State<CartScreen> {
                                       MaterialStateProperty.all<double>(0.0),
                                 ),
                                 onPressed: () {
-                                  // Respond to button press
+                                  setState(() {
+                                    cartItem.quantity = 0;
+                                    getTotalPrice();
+                                  });
                                 },
                                 child: Text(AppLocalizations.of(context)
                                     .translate('delete')),
@@ -314,9 +323,14 @@ class _CartScreenState extends State<CartScreen> {
                       onPressed: _isBtnDisabled
                           ? null
                           : () {
+                              List<Product> checked = [];
+                              cartProducts.forEach((element) {
+                                if(element.quantity != 0)
+                                  checked.add(element);
+                              });
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      NewAddress()));
+                                      NewAddress(cartItems: checked,)));
                             },
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(

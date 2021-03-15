@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project/models/user-model.dart';
 import 'package:project/modules/language.dart';
 import 'package:project/screens/customer/Auth/login_screen.dart';
 import 'package:project/screens/customer/category/allDepartments.dart';
@@ -24,6 +25,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool _isSignedIn;
+  User user;
   void _changeLanguage(Language language) {
     print(language.languageCode);
     Locale _temp;
@@ -52,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
     String token = await UserService().isUserSignedIn();
     if(token != null){
       _isSignedIn = true;
+      user = await UserService().getUserByToken(token);
     }
     setState(() {});
   }
@@ -86,7 +89,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(10, 18, 10, 5),
-                  child: Text(
+                  child: Text(_isSignedIn ?
+                    AppLocalizations.of(context).translate('hello')+ user.name :
                     AppLocalizations.of(context).translate('hello'),
                     style: TextStyle(fontSize: 25),
                   ),

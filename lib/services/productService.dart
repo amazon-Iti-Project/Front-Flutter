@@ -55,10 +55,10 @@ class ProductService {
     ).toList(); 
   }
 
-      fromJson(Map<String, dynamic> json) {
-        var name= json["name"];
-        var desc= json["name"];
-      }
-
-   //   object.decode
+  Future<Product> addNewProduct(Product product) async{
+    Dio dio = new Dio();
+    dio.options.headers['content-Type'] = 'application/json';
+    Response res = await dio.post(API_URL + "/products", data: product.toJson());
+    return(Product.fromJson(res.data));
+  }
 }

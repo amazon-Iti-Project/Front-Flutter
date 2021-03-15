@@ -410,19 +410,19 @@ class SellerAddProductState extends State<SellerAddProduct> {
                                 print(this.product.size);
                               },
                             ),
-                            SellerAddProductInput(
-                              "color",
-                              // controller: this.controller,
-                              hintTxt: "ex: red ",
-                              validFun: (String value) {
-                                if (value.length < 5) return ',min char';
-                                return null;
-                              },
-                              onChange: (String value) {
-                                this.product.description = value;
-                                print(this.product.size);
-                              },
-                            ),
+                            // SellerAddProductInput(
+                            //   "color",
+                            //   // controller: this.controller,
+                            //   hintTxt: "ex: red ",
+                            //   validFun: (String value) {
+                            //     if (value.length < 5) return ',min char';
+                            //     return null;
+                            //   },
+                            //   onChange: (String value) {
+                            //     this.product.description = value;
+                            //     print(this.product.size);
+                            //   },
+                            // ),
                           ],
                         ),
                       ),
