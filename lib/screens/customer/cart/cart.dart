@@ -39,12 +39,12 @@ class _CartScreenState extends State<CartScreen> {
     if (userToken != null) {
       currentUser = await userServ.getUserByToken(userToken);
       var cartIDs = currentUser.cart;
-      if (cartIDs == null) _isBtnDisabled = true;
+      if (cartIDs == null || cartIDs.length ==0) _isBtnDisabled = true;
       cartProducts = await ProductService().getProductListByID(cartIDs);
       getTotalPrice();
       setState(() {});
     } else {
-      Navigator.of(context).push(
+      Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (BuildContext context) => LoginScreen()));
     }
   }

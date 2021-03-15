@@ -26,12 +26,12 @@ class _LoginScreenState extends State<LoginScreen> {
     var res = await UserService().getUserByNameAndPassword(user);
     if (res != null) {
       await UserService().setToken(res.token);
-      Navigator.of(context).push(
+      Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (BuildContext context) => MyHomePage()));
     } else {
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   SnackBar(content: Text('This username or password may be incorrect!'))
-      // );
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('This username or password may be incorrect!'))
+      );
       pwController.text='';
     }
   }

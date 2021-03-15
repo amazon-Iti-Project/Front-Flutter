@@ -30,7 +30,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
     var user = await UserService().addNewUser(newUser);
     if (user != null){
-      Navigator.of(context).push(
+      Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => MyHomePage()));
     }
   }
