@@ -51,13 +51,16 @@ class SellerAddProduct extends StatefulWidget {
 }
 
 class SellerAddProductState extends State<SellerAddProduct> {
+// class SellerAddProduct extends StatelessWidget {
+
   final _formKey = GlobalKey<FormState>();
   String localizedParentData = 'SellerAdd';
   Product product;
   Shipping shipment;
-  List<Datum> catList = [Datum(name: "")];
-  List<Brand> brandList = [Brand(name: "")];
-
+  List<Datum> catList = [Datum(name:"")];
+  List<Brand> brandList = [Brand(name:"")];
+  Datum catValue;
+  Brand brandValue;
   // final controller = TextEditingController();
   FeeService feeServ = FeeService();
   @override
@@ -79,7 +82,8 @@ class SellerAddProductState extends State<SellerAddProduct> {
           print("${this.catList}"),
           setState(() {
             this.catList = res;
-            this.product.category = res[0].id;
+            this.catValue = this.catList[0];
+            this.product.category = this.catValue.id;
             print("catId: ${res[0].toString()}");
             feeServ.getFeebyCatId(this.product.category).then((res) => {
                   // print("Res: ${res.toString()}"),
@@ -96,6 +100,9 @@ class SellerAddProductState extends State<SellerAddProduct> {
           print("${this.catList}"),
           setState(() {
             this.brandList = res;
+            this.brandValue = this.brandList[0] ;
+            this.product.brand = this.brandValue.id;
+            print("brand value:${this.brandValue}");
           }),
         });
   }
@@ -141,6 +148,7 @@ class SellerAddProductState extends State<SellerAddProduct> {
               Expanded(
                 flex: 4,
                 child: ListView(
+                   key: ObjectKey("key"),
                   children: <Widget>[
                     LocalizedText(
                       localizedParentData,
@@ -158,14 +166,16 @@ class SellerAddProductState extends State<SellerAddProduct> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
+                          key: ObjectKey("key1"),
                           children: [
                             AddProductDropDown(
                               name: "chooseCategory",
                               list: this.catList,
+                              value:this.catValue,
                               onDropChange: (Datum selectedCat) {
                                 print("value of selected Cate: ${selectedCat.value}");
                                 this.product.category = selectedCat.id;
-
+                                this.catValue =selectedCat;
                                 feeServ
                                     .getFeebyCatId(selectedCat.id)
                                     .then((res) => {
@@ -179,10 +189,12 @@ class SellerAddProductState extends State<SellerAddProduct> {
                                 // print("selectedCat id is: $selectedCat");
                               },
                               validFun: (Datum selectedCat) {
+                                print("valid fun1");
                                 if (selectedCat != null &&
-                                    selectedCat.id == this.product.category)
+                                    selectedCat.id == this.product.category){
                                     return null;
-                                  return selectedCat;
+                                    }
+                                return (selectedCat);
                                 
                               },
                               errorText: 'select a Category',
@@ -190,22 +202,21 @@ class SellerAddProductState extends State<SellerAddProduct> {
                             AddProductDropDown(
                               name: "chooseBrand",
                               list: this.brandList,
-                              onDropChange: (Brand selectedCat) {
-                                this.product.brand = selectedCat.id;
-                                FeeService feeServ = FeeService();
-                                feeServ
-                                    .getFeebyCatId(selectedCat.id)
-                                    .then((res) => {
-                                          this.product.fee = res,
-                                        })
-                                    .catchError((err) => print("$err"));
+                              value:this.brandValue,
+                              onDropChange: (Brand selectedBrand) {
+                                this.product.brand = selectedBrand.id;
+                                this.brandValue =selectedBrand;
 
                                 // print("selected brand id is: $selectedCat");
                               },
-                              validFun: (Brand selectedBrand) {
-                                if (selectedBrand != null &&
-                                    selectedBrand.id == this.product.brand)
+                              validFun: (Value selectedBrand) {
+                                print("valid fun2");
+                                if (selectedBrand is Brand && selectedBrand != null &&
+                                    selectedBrand.id == this.product.brand){
+                                      print("valid");
                                   return null;
+
+                                    }
                                 return selectedBrand;
                               },
                               errorText: 'select a brand',

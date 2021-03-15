@@ -26,18 +26,19 @@ class AddProductDropDown extends StatefulWidget {
   final String name;
   final String localizedParentData="SellerAdd";
    List<Value> list;
-  Value dropdownValue;
   final String hintTxt;
   final Function onDropChange;
   final Function validFun;
   final String errorText;
-  AddProductDropDown({this.name, this.list, this.hintTxt, this.onDropChange,this.validFun,this.errorText}){
-    print("child");
+  final Value value;
+  AddProductDropDown({this.name, this.list, this.hintTxt, this.onDropChange,this.validFun,
+  this.errorText,this.value}){
+    print("child dropdown constructor");
     // dropdownValue=this.list!=null? this.list[0]:"";
   }
   @override
   _AddProductDropDownState createState() {
-    print("create state");
+    print("create dropdown state");
     return  _AddProductDropDownState();
     }
 }
@@ -49,7 +50,7 @@ class _AddProductDropDownState extends State<AddProductDropDown> {
   @override
   void initState() {
     super.initState();
-    
+    print("dropdown initstate ${widget.value.toString()}");
     // dropdownValue = this.list[0];
     // print("init done: ${list.length}");
 
@@ -64,10 +65,7 @@ class _AddProductDropDownState extends State<AddProductDropDown> {
 
   @override
   Widget build(BuildContext context) {
-    // print("build done: ${list.length}");
-    //   this.list = widget.list;
-    // dropdownValue = this.list[0];
-    // print("dropdown: ${dropdownValue}");
+    print("value:${widget.value.toString()}");
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -78,19 +76,13 @@ class _AddProductDropDownState extends State<AddProductDropDown> {
                 fontSize: 20,
                 color: HexColor("#f08804"),
           ) 
-          // Text(
-          //   widget.name,
-          //   textAlign: TextAlign.start,
-          //   style: TextStyle(
-          //     fontSize: 20,
-          //     color: HexColor("#f08804"),
-          //   ),
-          // ),
         ),
+    
+      // drop down starts
         DropdownButtonFormField(
 
-            value: widget.dropdownValue,
-            validator:widget.validFun(widget.dropdownValue),
+            value: widget.value,
+            // validator:widget.validFun(widget.value),
             icon: Icon(
               Icons.expand_more,
             ),
@@ -101,42 +93,13 @@ class _AddProductDropDownState extends State<AddProductDropDown> {
             isExpanded: true,
             elevation: 16,
             style: TextStyle(color: Colors.black, fontSize: 20),
-            // underline: Container(
-            //   height: 0,
-            //   // color: Colors.deepPurpleAccent,
-            // ),
-            // underline:null,
             decoration: InputDecoration(
                 floatingLabelBehavior: FloatingLabelBehavior.never,
-                // errorText:widget.errorText,
-                // focusedBorder: OutlineInputBorder(
-                //   borderSide: BorderSide(color: HexColor("#f08804"), width: 1),
-                //   borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                // ),
-                // enabledBorder: OutlineInputBorder(
-                //   borderSide: BorderSide(color: HexColor("#232F3E"), width: 1),
-                //   borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                // ),
-                // disabledBorder: OutlineInputBorder(
-                //   borderSide: BorderSide(color: HexColor("#232F3E"), width: 1),
-                //   borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                // ),
                 errorBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.red, width: 1),
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
                 contentPadding: EdgeInsets.all(8),
-                // labelText:"Product Name",
-                // labelStyle: TextStyle(
-                //   color:HexColor("#232F3E"),
-                //   fontSize: 25
-                // ),
-                // prefixText:"prefix",
-                // prefixStyle:TextStyle(
-                //   color:HexColor("#232F3E"),
-                //   fontSize: 25
-                // ),
-                // prefix:Text("kamal"),
                 hintText: widget.hintTxt,
                 hintStyle: TextStyle(
                   fontSize: 20,
@@ -144,12 +107,8 @@ class _AddProductDropDownState extends State<AddProductDropDown> {
                 )),
             onChanged: (Value newValue) {
               widget.onDropChange(newValue);
-              setState(() {
-                widget.dropdownValue = newValue;
-              });
             },
             items: widget.list.map<DropdownMenuItem<Value>>((Value listItem) {
-              // print("listItem: $listItem");
               return DropdownMenuItem<Value>(
                   key: UniqueKey(),
                   value: listItem,
