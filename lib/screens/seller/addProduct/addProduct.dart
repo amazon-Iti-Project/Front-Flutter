@@ -1,16 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:project/models/brand-model.dart';
 import 'package:project/models/categoryCollection-model.dart';
 import 'package:project/models/product-model.dart';
 import 'package:project/models/shipping-model.dart';
 import 'package:project/screens/seller/addProduct/picK-Image.dart';
+import 'package:project/screens/seller/inventory/seller-inventory.dart';
 import 'package:project/screens/templatesWidgets/app-text.dart';
 import 'package:project/screens/templatesWidgets/localized-text.dart';
 import 'package:project/services/brandService.dart';
 import 'package:project/services/categoryService.dart';
 import 'package:project/services/feeService.dart';
+import 'package:project/services/productService.dart';
 
 import 'addProductDropDown.dart';
 import 'addProductInput.dart';
@@ -57,8 +60,8 @@ class SellerAddProductState extends State<SellerAddProduct> {
   String localizedParentData = 'SellerAdd';
   Product product;
   Shipping shipment;
-  List<Datum> catList = [Datum(name:"")];
-  List<Brand> brandList = [Brand(name:"")];
+  List<Datum> catList = [Datum(name: "")];
+  List<Brand> brandList = [Brand(name: "")];
   Datum catValue;
   Brand brandValue;
   // final controller = TextEditingController();
@@ -100,11 +103,32 @@ class SellerAddProductState extends State<SellerAddProduct> {
           print("${this.catList}"),
           setState(() {
             this.brandList = res;
-            this.brandValue = this.brandList[0] ;
+            this.brandValue = this.brandList[0];
             this.product.brand = this.brandValue.id;
             print("brand value:${this.brandValue}");
           }),
         });
+  }
+
+  submitProduct() async {
+    // name,description,size,color
+    product.enObj={
+      "name":product.name,
+      "description":product.description,
+      "color":product.color,
+      "size":product.size};
+    product.arObj=product.enObj;
+    product.seller=1;
+    product.rate = 0;
+    product.oldPrice =0.0;
+    product.tags =[];
+    var response = await ProductService().addNewProduct(product);
+    if (response != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SellerInventroy()),
+      );
+    }
   }
 
   @override
@@ -134,7 +158,6 @@ class SellerAddProductState extends State<SellerAddProduct> {
     // print(product.toString());
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      
       appBar: AppBar(
         title: const Text('add Product'),
         backgroundColor: HexColor("#232F3E"),
@@ -148,7 +171,7 @@ class SellerAddProductState extends State<SellerAddProduct> {
               Expanded(
                 flex: 4,
                 child: ListView(
-                   key: ObjectKey("key"),
+                  key: ObjectKey("key"),
                   children: <Widget>[
                     LocalizedText(
                       localizedParentData,
@@ -171,11 +194,12 @@ class SellerAddProductState extends State<SellerAddProduct> {
                             AddProductDropDown(
                               name: "chooseCategory",
                               list: this.catList,
-                              value:this.catValue,
+                              value: this.catValue,
                               onDropChange: (Datum selectedCat) {
-                                print("value of selected Cate: ${selectedCat.value}");
+                                print(
+                                    "value of selected Cate: ${selectedCat.value}");
                                 this.product.category = selectedCat.id;
-                                this.catValue =selectedCat;
+                                this.catValue = selectedCat;
                                 feeServ
                                     .getFeebyCatId(selectedCat.id)
                                     .then((res) => {
@@ -191,32 +215,31 @@ class SellerAddProductState extends State<SellerAddProduct> {
                               validFun: (Datum selectedCat) {
                                 print("valid fun1");
                                 if (selectedCat != null &&
-                                    selectedCat.id == this.product.category){
-                                    return null;
-                                    }
+                                    selectedCat.id == this.product.category) {
+                                  return null;
+                                }
                                 return (selectedCat);
-                                
                               },
                               errorText: 'select a Category',
                             ),
                             AddProductDropDown(
                               name: "chooseBrand",
                               list: this.brandList,
-                              value:this.brandValue,
+                              value: this.brandValue,
                               onDropChange: (Brand selectedBrand) {
                                 this.product.brand = selectedBrand.id;
-                                this.brandValue =selectedBrand;
+                                this.brandValue = selectedBrand;
 
                                 // print("selected brand id is: $selectedCat");
                               },
                               validFun: (Value selectedBrand) {
                                 print("valid fun2");
-                                if (selectedBrand is Brand && selectedBrand != null &&
-                                    selectedBrand.id == this.product.brand){
-                                      print("valid");
+                                if (selectedBrand is Brand &&
+                                    selectedBrand != null &&
+                                    selectedBrand.id == this.product.brand) {
+                                  print("valid");
                                   return null;
-
-                                    }
+                                }
                                 return selectedBrand;
                               },
                               errorText: 'select a brand',
@@ -268,12 +291,11 @@ class SellerAddProductState extends State<SellerAddProduct> {
                               // controller: this.controller,
                               hintTxt: "ex: 5.3 x 4.2 inch ",
                               validFun: (String value) {
-                                if (value.length < 5) return ',min char';
+                                if (value.length < 3) return ',min char';
                                 return null;
                               },
                               onChange: (String value) {
-                                this.product.description = value;
-                                print(this.product.size);
+                                this.product.size = value;
                               },
                             ),
                             SellerAddProductInput(
@@ -281,12 +303,11 @@ class SellerAddProductState extends State<SellerAddProduct> {
                               // controller: this.controller,
                               hintTxt: "ex: red ",
                               validFun: (String value) {
-                                if (value.length < 5) return ',min char';
+                                if (value.length < 3) return ',min char';
                                 return null;
                               },
                               onChange: (String value) {
-                                this.product.description = value;
-                                print(this.product.size);
+                                this.product.color = value;
                               },
                             ),
                           ],
@@ -341,7 +362,7 @@ class SellerAddProductState extends State<SellerAddProduct> {
                               // controller: this.controller,
                               hintTxt: "ex: 120\$",
                               validFun: (String value) {
-                                if (value.length < 5) return 'min 5 char';
+                                if (value.length < 2) return 'min 2 char';
                                 return null;
                               },
                               onChange: (String value) {
@@ -361,12 +382,14 @@ class SellerAddProductState extends State<SellerAddProduct> {
                               hintTxt: "ex: 20% ",
                               keyboard: TextInputType.number,
                               validFun: (String value) {
-                                if (value.length < 5) return ',min char';
+                                if (value.length < 2) return ',min char';
                                 return null;
                               },
                               onChange: (String value) {
-                                this.product.description = value;
-                                print(this.product.description);
+                                this.product.discount = int.parse(value);
+                                print('value');
+                                print(value);
+                                print(this.product.discount);
                               },
                             ),
                             Container(
@@ -394,15 +417,15 @@ class SellerAddProductState extends State<SellerAddProduct> {
                               hintTxt: "ex: 2 days ",
                               validFun: (String value) {
                                 double parsedValue;
-                                     // Variable name should start with small letter
+                                // Variable name should start with small letter
                                 try {
                                   parsedValue = double.parse(value);
                                 } catch (e) {
                                   print("error in double: $e");
                                   return 'please enter valid number';
                                 }
-                                if (parsedValue.isNaN ||
-                                    parsedValue < 2) return 'min 1 day';
+                                if (parsedValue.isNaN || parsedValue < 2)
+                                  return 'min 1 day';
                                 return null;
                               },
                               onChange: (String value) {
@@ -443,53 +466,49 @@ class SellerAddProductState extends State<SellerAddProduct> {
                       // alignment:AlignmentDirectional(0,1) ,
 
                       margin: EdgeInsets.symmetric(vertical: 10.0),
-                      child: RaisedButton(
-                        disabledColor: HexColor("#e8c878"),
-                        disabledTextColor: Colors.grey[500],
-                        elevation: 5,
-                        color: HexColor("#edc350"),
-                        textColor: Colors.black,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                HexColor("#edc350"))),
+                        // disabledColor: HexColor("#e8c878"),
+                        // disabledTextColor: Colors.grey[500],
+                        // elevation: 5,
+                        // color: HexColor("#edc350"),
+                        // textColor: Colors.black,
                         child: LocalizedText(
-                          "SellerAdd","add",
+                          "SellerAdd",
+                          "add",
                           fontSize: 20,
                         ),
-                        onPressed: false
-                            ? () {
-                                if (_formKey.currentState.validate()) {
-                                  // If the form is valid, display a snackbar. In the real world,
-                                  // you'd often call a server or save the information in a database.
+                        onPressed: () {
+                          if (_formKey.currentState.validate()) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Processing Data')));
+                            submitProduct();
+                          }
+                          return null;
+                          //   }
+                          // : () {
+                          //     // return showDialog(
+                          //     //   context: context,
+                          //     //   builder: (context) {
+                          //     //     return AlertDialog(
+                          //     //       // Retrieve the text the that user has entered by using the
+                          //     //       // TextEditingController.
+                          //     //       content: Text(this.product.name),
+                          //     //     );
+                          //     //   },
+                          //     // );
 
-                                  Scaffold.of(context).showSnackBar(SnackBar(
-                                      content: Text('Processing Data')));
-                                }
-                                return null;
-                              }
-                            : () {
-                                // return showDialog(
-                                //   context: context,
-                                //   builder: (context) {
-                                //     return AlertDialog(
-                                //       // Retrieve the text the that user has entered by using the
-                                //       // TextEditingController.
-                                //       content: Text(this.product.name),
-                                //     );
-                                //   },
-                                // );
+                          //     if (_formKey.currentState.validate()) {
+                          //       // If the form is valid, display a snackbar. In the real world,
+                          //       // you'd often call a server or save the information in a database.
 
-                                if (_formKey.currentState.validate()) {
-                                  // If the form is valid, display a snackbar. In the real world,
-                                  // you'd often call a server or save the information in a database.
-
-                                  Scaffold.of(context).showSnackBar(SnackBar(
-                                      content: Text('Processing Data')));
-                                }
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //       builder: (context) => SellerInventroy()),
-                                // );
-                              },
-                        padding: const EdgeInsets.all(10.0),
+                          //       Scaffold.of(context).showSnackBar(SnackBar(
+                          //           content: Text('Processing Data')));
+                          //     }
+                        },
+                        // padding: const EdgeInsets.all(10.0),
                       ),
                     ),
                   ],

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/models/user-model.dart';
+import 'package:project/screens/customer/Auth/signUp_screen.dart';
 import 'package:project/screens/customer/home/homepage.dart';
 import 'package:project/services/userService.dart';
 
@@ -163,10 +164,24 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Text(
                                   "By signing in, you agree to Amazon's Conditions of Use and Privacy Notice."),
                             ),
-                            Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [],
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    InkWell(
+                                      onTap: (){
+                                        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (BuildContext context) => SignUpScreen()));
+                                      },
+                                      child: Text('Create new account?',style: TextStyle(
+                                        color: Colors.yellow[600],
+                                        fontWeight: FontWeight.bold
+                                      ),),
+                                    ),
+                                  ],
+                                ),
                               ),
                             )
                           ],
